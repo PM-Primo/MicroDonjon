@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\MonstreRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -36,6 +38,16 @@ class Monstre
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $imageMonstre;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Combat::class, mappedBy="monstres")
+     */
+    private $combats;
+
+    public function __construct()
+    {
+        $this->combats = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -86,6 +98,36 @@ class Monstre
     public function setImageMonstre(?string $imageMonstre): self
     {
         $this->imageMonstre = $imageMonstre;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Combat>
+     */
+    public function getCombats(): Collection
+    {
+        return $this->combats;
+    }
+
+    public function addCombat(Combat $combat): self
+    {
+        if (!$this->combats->contains($combat)) {
+            $this->combats[] = $combat;
+            $combat->setMonstres($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCombat(Combat $combat): self
+    {
+        if ($this->combats->removeElement($combat)) {
+            // set the owning side to null (unless already changed)
+            if ($combat->getMonstres() === $this) {
+                $combat->setMonstres(null);
+            }
+        }
 
         return $this;
     }

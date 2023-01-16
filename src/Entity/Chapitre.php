@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\ChapitreRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -26,6 +28,21 @@ class Chapitre
      * @ORM\Column(type="string", length=50)
      */
     private $typePage;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=User::class, mappedBy="chapitres")
+     */
+    private $users;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Zone::class, inversedBy="chapitres")
+     */
+    private $zone;
+
+    public function __construct()
+    {
+        $this->users = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -52,6 +69,45 @@ class Chapitre
     public function setTypePage(string $typePage): self
     {
         $this->typePage = $typePage;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, User>
+     */
+    public function getUsers(): Collection
+    {
+        return $this->users;
+    }
+
+    public function addUser(User $user): self
+    {
+        if (!$this->users->contains($user)) {
+            $this->users[] = $user;
+            $user->addChapitre($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUser(User $user): self
+    {
+        if ($this->users->removeElement($user)) {
+            $user->removeChapitre($this);
+        }
+
+        return $this;
+    }
+
+    public function getZone(): ?Zone
+    {
+        return $this->zone;
+    }
+
+    public function setZone(?Zone $zone): self
+    {
+        $this->zone = $zone;
 
         return $this;
     }
