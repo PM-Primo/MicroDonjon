@@ -53,8 +53,16 @@ class GameController extends AbstractController
 
         $chapStandard = $repository->findOneBy(['chapitre' => $chapitre]);
 
+        //Si il y a un objet à récupérer
         if($chapStandard->getItemPrendre()){
             $this->getUser()->addInventaire($chapStandard->getItemPrendre()); 
+            $entityManager->persist($this->getUser());
+            $entityManager->flush(); 
+        }
+
+        //Si de l'or doit être récupéré/perdu
+        if($chapStandard->getModifGold()){
+            $this->getUser()->setGold($this->getUser()->getGold() + $chapStandard->getModifGold()); 
             $entityManager->persist($this->getUser());
             $entityManager->flush(); 
         }
