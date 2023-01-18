@@ -8,9 +8,19 @@
 </style>
 
 <div class="example-wrapper">
-    <h1>Chapitre Combat</h1>
+    <h1>- {{chapitre.zone}} -</h1>
 
-    <p>Ceci est un chapitre combat</p>
+    <p>{{chapCombat.texteInitial | raw}}</p>
+
+    {{chapCombat.monstre}}<br>
+    PV : {{combat.PVactuelsMonstre}}/{{chapCombat.monstre.PVmaxMonstre}}<br>
+    Attaque : {{chapCombat.monstre.attaqueMonstre}}
+
+    <p>{{chapCombat.texteVictoire | raw}}</p>
+
+    {% for sortie in chapCombat.sorties %}
+        <a href="{{path("routing", {'id': sortie.chapitre.id})}}">{{sortie.texteLien}}</a><br><br>
+    {% endfor %}    
 
 </div>
 {% endblock %}

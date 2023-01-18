@@ -2,7 +2,9 @@
 
 namespace App\Controller;
 
+use App\Entity\Combat;
 use App\Entity\Chapitre;
+use App\Entity\ChapCombat;
 use App\Entity\ChapStandard;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Response;
@@ -31,7 +33,7 @@ class GameController extends AbstractController
             return $this->redirectToRoute('display_standard', ['id' => $chapitre->getId()]);
         }
         elseif($type == 'Combat'){
-            //return $this->redirectToRoute('display_combat', ['id' => $chapitre->getId()]);
+            return $this->redirectToRoute('display_combat', ['id' => $chapitre->getId()]);
         }
         elseif($type == 'Condition'){
             //return $this->redirectToRoute('display_condition', ['id' => $chapitre->getId()]);
@@ -60,6 +62,33 @@ class GameController extends AbstractController
         return $this->render('game/standard.html.twig', [
             'chapitre' => $chapitre,
             'chapStandard' => $chapStandard
+        ]);
+
+    }
+
+    /**
+     * @Route("/game/combat/{id}", name="display_combat")
+     */
+    public function displayCombat(ManagerRegistry $doctrine, Chapitre $chapitre): Response
+    {
+
+        $repository = $doctrine->getRepository(ChapCombat::class);
+        $entityManager = $doctrine->getManager();
+
+        $chapCombat = $repository->findOneBy(['chapitre' => $chapitre]);
+
+        $combat=new Combat;
+        $combat->setAventurier($this->getUser());
+        $combat->setMonstres($chapCombat->getMonstre());
+        $combat->setPVactuelsMonstre($chapCombat->getMonstre()->getPVmaxMonstre());      
+
+        $entityManager->persist($combat);
+        $entityManager->flush(); 
+
+        return $this->render('game/combat.html.twig', [
+            'chapitre' => $chapitre,
+            'chapCombat' => $chapCombat,
+            'combat' => $combat
         ]);
 
     }
