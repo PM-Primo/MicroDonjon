@@ -8,12 +8,17 @@
 </style>
 
 <div class="example-wrapper">
-    <h1>{{chapitre.zone}}</h1>
+    <h1>- {{chapitre.zone}} -</h1>
 
     <p>{{chapStandard.texteChapitre | raw}}</p>
 
     {% for sortie in chapStandard.sorties %}
         <a href="{{path("routing", {'id': sortie.chapitre.id})}}">{{sortie.texteLien}}</a><br><br>
+    {% endfor %}
+
+    Inventaire : 
+    {% for item in app.user.inventaire %}
+        {{item}}
     {% endfor %}
 
 </div>

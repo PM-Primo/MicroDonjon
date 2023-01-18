@@ -47,7 +47,15 @@ class GameController extends AbstractController
     {
 
         $repository = $doctrine->getRepository(ChapStandard::class);
+        $entityManager = $doctrine->getManager();
+
         $chapStandard = $repository->findOneBy(['chapitre' => $chapitre]);
+
+        if($chapStandard->getItemPrendre()){
+            $this->getUser()->addInventaire($chapStandard->getItemPrendre()); 
+            $entityManager->persist($this->getUser());
+            $entityManager->flush(); 
+        }
 
         return $this->render('game/standard.html.twig', [
             'chapitre' => $chapitre,
