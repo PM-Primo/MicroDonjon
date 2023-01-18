@@ -8,9 +8,27 @@
 </style>
 
 <div class="example-wrapper">
-    <h1>Chapitre Condition</h1>
+    <h1>- {{chapitre.zone}} -</h1>
 
-    <p>Ceci est un chapitre condition</p>
+    {% if condition %}
+        <p>{{chapCondition.texteSiVrai}}</p>
 
+        {% for sortie in chapCondition.sorties %}
+            {% if sortie.conditionVrai %}
+                <a href="{{path("routing", {'id': sortie.chapitre.id})}}">{{sortie.texteLien}}</a><br><br>
+            {% endif %}
+        {% endfor %}
+
+    {% else %}
+        <p>{{chapCondition.texteSiFaux}}</p>
+        
+        {% for sortie in chapCondition.sorties %}
+            {% if not sortie.conditionVrai %}
+                <a href="{{path("routing", {'id': sortie.chapitre.id})}}">{{sortie.texteLien}}</a><br><br>
+            {% endif %}
+        {% endfor %}   
+    {% endif %}
+    
+    
 </div>
 {% endblock %}

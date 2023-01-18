@@ -6,6 +6,7 @@ use App\Entity\Combat;
 use App\Entity\Chapitre;
 use App\Entity\ChapCombat;
 use App\Entity\ChapStandard;
+use App\Entity\ChapCondition;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -36,7 +37,7 @@ class GameController extends AbstractController
             return $this->redirectToRoute('display_combat', ['id' => $chapitre->getId()]);
         }
         elseif($type == 'Condition'){
-            //return $this->redirectToRoute('display_condition', ['id' => $chapitre->getId()]);
+            return $this->redirectToRoute('display_condition', ['id' => $chapitre->getId()]);
         }
 
         return $this->redirectToRoute('app_home');
@@ -97,6 +98,33 @@ class GameController extends AbstractController
             'chapitre' => $chapitre,
             'chapCombat' => $chapCombat,
             'combat' => $combat
+        ]);
+
+    }
+
+    /**
+     * @Route("/game/condition/{id}", name="display_condition")
+     */
+    public function displayCondition(ManagerRegistry $doctrine, Chapitre $chapitre): Response
+    {
+
+        $repository = $doctrine->getRepository(ChapCondition::class);
+        $entityManager = $doctrine->getManager();
+
+        $chapCondition = $repository->findOneBy(['chapitre' => $chapitre]);
+
+        $itemCondition = $chapCondition->getItemCondition();
+        $inventaire = $this->getUser()->getInventaire();
+
+        $condition = false;
+        if($inventaire->contains($itemCondition)){
+            $condition = true;
+        }
+
+        return $this->render('game/condition.html.twig', [
+            'chapitre' => $chapitre,
+            'chapCondition' => $chapCondition,
+            'condition' => $condition
         ]);
 
     }
