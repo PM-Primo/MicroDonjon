@@ -42,7 +42,10 @@ class RegistrationController extends AbstractController
                     $form->get('plainPassword')->getData()
                 )
             );
-
+            $user->setPVmax(100);
+            $user->setPVactuels(100);
+            $user->setGold(0);
+            $user->setAttaque(10);
             $entityManager->persist($user);
             $entityManager->flush();
 
@@ -51,7 +54,7 @@ class RegistrationController extends AbstractController
                 (new TemplatedEmail())
                     ->from(new Address('admin@microdonjon.fr', 'Admin Microdonjon'))
                     ->to($user->getEmail())
-                    ->subject('Please Confirm your Email')
+                    ->subject('Confirmation de l\'adresse mail')
                     ->htmlTemplate('registration/confirmation_email.html.twig')
             );
             // do anything else you need here, like send an email
