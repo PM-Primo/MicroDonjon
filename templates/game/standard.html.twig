@@ -16,9 +16,13 @@
         <a href="{{path("routing", {'id': sortie.chapitre.id})}}">{{sortie.texteLien}}</a><br><br>
     {% endfor %}
 
+
+    PV : {{app.user.PVactuels}} / {{app.user.PVmax}}<br>
+    Or : {{app.user.gold}}<br>
+
     Inventaire : 
     {% for item in app.user.inventaire %}
-        {{item}}
+        {{item}} / 
     {% endfor %}
 
 </div>

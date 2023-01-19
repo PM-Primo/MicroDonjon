@@ -11,7 +11,7 @@
     <h1>- {{chapitre.zone}} -</h1>
 
     {% if condition %}
-        <p>{{chapCondition.texteSiVrai}}</p>
+        <p>{{chapCondition.texteSiVrai | raw}}</p>
 
         {% for sortie in chapCondition.sorties %}
             {% if sortie.conditionVrai %}
@@ -20,7 +20,7 @@
         {% endfor %}
 
     {% else %}
-        <p>{{chapCondition.texteSiFaux}}</p>
+        <p>{{chapCondition.texteSiFaux | raw}}</p>
         
         {% for sortie in chapCondition.sorties %}
             {% if not sortie.conditionVrai %}
