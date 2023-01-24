@@ -63,9 +63,13 @@ class GameController extends AbstractController
 
         //Si il y a un objet à perdre
         if($chapStandard->getItemPerdre()){
-            $this->getUser()->removeInventaire($chapStandard->getItemPerdre()); 
-            $entityManager->persist($this->getUser());
-            $entityManager->flush(); 
+            $inventaire = $this->getUser()->getInventaire();
+            $item = $chapStandard->getItemPerdre();
+            if($inventaire->contains($item)){
+                $this->getUser()->removeInventaire($chapStandard->getItemPerdre()); 
+                $entityManager->persist($this->getUser());
+                $entityManager->flush(); 
+            }
         }
 
         //Si de l'or doit être récupéré/perdu
