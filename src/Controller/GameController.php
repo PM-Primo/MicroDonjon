@@ -27,8 +27,17 @@ class GameController extends AbstractController
     /**
      * @Route("/game/routing/{id}", name="routing")
      */
-    public function routing(Chapitre $chapitre): Response
+    public function routing(ManagerRegistry $doctrine, Chapitre $chapitre): Response
     {
+
+        //On ajoute le chapitre à l'historique de l'utilisateur
+        $this->getUser()->addChapitre($chapitre);
+        
+        $entityManager = $doctrine->getManager();
+        $entityManager->persist($this->getUser());
+        $entityManager->flush(); 
+        
+        //On redirige vers la fonction d'affichage correspondant au type de chapitre
         $type = $chapitre->getTypePage();
         if($type == 'Standard'){
             return $this->redirectToRoute('display_standard', ['id' => $chapitre->getId()]);
@@ -81,7 +90,7 @@ class GameController extends AbstractController
 
         //Si des PV doivent être récupérés/perdus
         if($chapStandard->getModifPV()){
-            
+
             $modifPV = $chapStandard->getModifPV();
             $PVuser = $this->getUser()->getPVactuels();
             $PVmax = $this->getUser()->getPVmax();
