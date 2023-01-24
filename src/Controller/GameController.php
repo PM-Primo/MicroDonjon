@@ -32,7 +32,9 @@ class GameController extends AbstractController
 
         //On ajoute le chapitre à l'historique de l'utilisateur
         $this->getUser()->addChapitre($chapitre);
-        
+        //Et on définit le chapitre en cours
+        $this->getUser()->setChapitreEnCours($chapitre->getId());
+
         $entityManager = $doctrine->getManager();
         $entityManager->persist($this->getUser());
         $entityManager->flush(); 
