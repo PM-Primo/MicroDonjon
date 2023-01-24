@@ -82,6 +82,13 @@ class GameController extends AbstractController
             $entityManager->flush(); 
         }
 
+        //Si l'attaque doit être modifiée
+        if($chapStandard->getModifAttaque()){
+            $this->getUser()->setAttaque($this->getUser()->getAttaque() + $chapStandard->getModifAttaque()); 
+            $entityManager->persist($this->getUser());
+            $entityManager->flush(); 
+        }
+
         return $this->render('game/standard.html.twig', [
             'chapitre' => $chapitre,
             'chapStandard' => $chapStandard
