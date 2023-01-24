@@ -81,9 +81,28 @@ class GameController extends AbstractController
 
         //Si des PV doivent être récupérés/perdus
         if($chapStandard->getModifPV()){
-            $this->getUser()->setPVactuels($this->getUser()->getPVactuels() + $chapStandard->getModifPV()); 
-            $entityManager->persist($this->getUser());
-            $entityManager->flush(); 
+            
+            $modifPV = $chapStandard->getModifPV();
+            $PVuser = $this->getUser()->getPVactuels();
+            $PVmax = $this->getUser()->getPVmax();
+
+            //Cas où on dépasse le max de PV
+            if($PVuser + $modifPV >= $PVmax){
+                $this->getUser()->setPVactuels($PVmax); 
+                $entityManager->persist($this->getUser());
+                $entityManager->flush(); 
+            }
+            if($PVuser + $modifPV <= 0){
+                $this->getUser()->setPVactuels(0); 
+                $entityManager->persist($this->getUser());
+                $entityManager->flush();
+                //Gestion de la mort à ajouter
+            }
+            else{
+                $this->getUser()->setPVactuels($this->getUser()->getPVactuels() + $chapStandard->getModifPV()); 
+                $entityManager->persist($this->getUser());
+                $entityManager->flush(); 
+            }
         }
 
         //Si l'attaque doit être modifiée
