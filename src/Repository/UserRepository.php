@@ -56,6 +56,34 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
         $this->add($user, true);
     }
 
+
+    // public function clearUserCollections($userId)
+    // {
+    //     $conn = $doctrine->getManager()->getConnection();
+
+    //     //Créer les requêtes pour vider Combat / User_Item / User_Chapitre / User_Zone
+
+    //     //On vide l'inventaire (table User_Item)
+    //     $stmt = $conn->prepare("DELETE FROM user_item WHERE user_id = :id");
+    //     $stmt->bindParam('id', $userId);
+    //     $stmt->executeUpdate();
+
+    //     //On vide les chapitres visités (User_Chapitre)
+    //     $stmt = $conn->prepare("DELETE FROM user_chapitre WHERE user_id = :id");
+    //     $stmt->bindParam('id', $userId);
+    //     $stmt->executeUpdate();
+
+    //     //On vide les zones visitées (User_Zone)
+    //     $stmt = $conn->prepare("DELETE FROM user_zone WHERE user_id = :id");
+    //     $stmt->bindParam('id', $userId);
+    //     $stmt->executeUpdate();
+
+    //     //On vide les combats
+    //     $stmt = $conn->prepare("DELETE FROM combat WHERE aventurier_id = :id");
+    //     $stmt->bindParam('id', $userId);
+    //     $stmt->executeUpdate();
+    // }
+
 //    /**
 //     * @return User[] Returns an array of User objects
 //     */

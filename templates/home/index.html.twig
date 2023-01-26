@@ -13,9 +13,10 @@
 
     {% if app.user %}
         {% if app.user.chapitreEnCours %}
-            <a href="{{path("routing", {'id': app.user.chapitreEnCours})}}">Continuer la partie en cours</a>
+            <a href="{{path("routing", {'id': app.user.chapitreEnCours})}}">Continuer la partie en cours</a><br>
+            <a href="{{path("reset")}}">Écraser la partie en cours</a>
         {% else %}
-        <a href="{{path("routing", {'id': 1})}}">Commencer une nouvelle partie</a>
+            <a href="{{path("routing", {'id': 1})}}">Commencer une nouvelle partie</a>
         {% endif %}
 
         {% else %}

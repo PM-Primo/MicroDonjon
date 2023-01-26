@@ -184,4 +184,39 @@ class GameController extends AbstractController
 
     }
 
+    /**
+     * @Route("/reset", name="reset")
+     */
+    public function reset(ManagerRegistry $doctrine): Response
+    {
+        $entityManager = $doctrine->getManager();
+
+        $user = $this->getUser();
+        $user->setPVmax(100);
+        $user->setPVactuels(100);
+        $user->setPVmax(100);
+        $user->setGold(0);
+        $user->setAttaque(10);
+        $user->setChapitreEnCours(null);       
+
+        foreach($user->getInventaire() as $item){
+            $user->removeInventaire($item);
+        }
+        foreach($user->getChapitres() as $chapitre){
+            $user->removeChapitre($chapitre);
+        }
+        foreach($user->getVisites() as $zone){
+            $user->removeVisite($zone);
+        }
+        foreach($user->getCombats() as $combat){
+            $entityManager->remove($combat, $flush=true);
+        }
+        
+        $entityManager->persist($user);
+        $entityManager->flush();
+
+        return $this->render('home/index.html.twig');
+
+    }
+
 }
