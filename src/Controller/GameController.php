@@ -7,7 +7,9 @@ use App\Entity\Chapitre;
 use App\Entity\ChapCombat;
 use App\Entity\ChapStandard;
 use App\Entity\ChapCondition;
+use App\Service\StatsManager;
 use Doctrine\Persistence\ManagerRegistry;
+use Symfony\Component\Security\Core\Security;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -57,7 +59,7 @@ class GameController extends AbstractController
     /**
      * @Route("/game/standard/{id}", name="display_standard")
      */
-    public function displayStandard(ManagerRegistry $doctrine, Chapitre $chapitre): Response
+    public function displayStandard(ManagerRegistry $doctrine, Chapitre $chapitre, StatsManager $statsManager): Response
     {
 
         $repository = $doctrine->getRepository(ChapStandard::class);
@@ -103,26 +105,9 @@ class GameController extends AbstractController
         if($chapStandard->getModifPV()){
 
             $modifPV = $chapStandard->getModifPV();
-            $PVuser = $this->getUser()->getPVactuels();
-            $PVmax = $this->getUser()->getPVmax();
+            $statsManager->changePV($modifPV);
+            //On fait la modif de PV depuis un Service pour éviter de répéter le code dans Combat + Boire potion etc.
 
-            //Cas où on dépasse le max de PV
-            if($PVuser + $modifPV >= $PVmax){
-                $this->getUser()->setPVactuels($PVmax); 
-                $entityManager->persist($this->getUser());
-                $entityManager->flush(); 
-            }
-            if($PVuser + $modifPV <= 0){
-                $this->getUser()->setPVactuels(0); 
-                $entityManager->persist($this->getUser());
-                $entityManager->flush();
-                //Gestion de la mort à ajouter
-            }
-            else{
-                $this->getUser()->setPVactuels($this->getUser()->getPVactuels() + $chapStandard->getModifPV()); 
-                $entityManager->persist($this->getUser());
-                $entityManager->flush(); 
-            }
         }
 
         //Si l'attaque doit être modifiée
