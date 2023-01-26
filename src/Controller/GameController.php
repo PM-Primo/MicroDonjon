@@ -228,4 +228,35 @@ class GameController extends AbstractController
 
     }
 
+    /**
+     * @Route("/game_over", name="game_over")
+     */
+    public function gameOver(ManagerRegistry $doctrine){
+
+        $repository = $doctrine->getRepository(Item::class);
+
+        $inventaire = $this->getUser()->getInventaire();
+        $gourde = $repository->findOneBy(['id' => '5']);
+        $eau = $repository->findOneBy(['id' => '6']);
+        $potion = $repository->findOneBy(['id' => '7']);
+
+        if($inventaire->contains($eau)){
+            //On ajoute les pv, on retire l'eau de l'inventaire, on ajoute la gourde vide et on redirige vers la page où on boit
+            $this->getUser()->removeInventaire($eau); 
+            $this->getUser()->addInventaire($gourde); 
+            $entityManager->persist($this->getUser());
+            $entityManager->flush(); 
+            return $this->render('game/gameover.html.twig', ['boire' => true, 'boisson' => "l\'eau cristalline",]);
+        }
+        if($inventaire->contains($potion)){
+            $this->getUser()->removeInventaire($potion); 
+            $this->getUser()->addInventaire($gourde); 
+            $entityManager->persist($this->getUser());
+            $entityManager->flush(); 
+            return $this->render('game/gameover.html.twig', ['boire' => true, 'boisson' => "la potion de soin",]);
+        }
+
+        return $this->render('game/gameover.html.twig', ['boire' => false, 'boisson' => "la potion de soin",]);
+    }
+
 }

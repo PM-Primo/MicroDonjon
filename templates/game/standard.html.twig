@@ -12,10 +12,14 @@
 
     <p>{{chapStandard.texteChapitre | raw}}</p>
 
-    {% for sortie in chapStandard.sorties %}
-        <a href="{{path("routing", {'id': sortie.chapitre.id})}}">{{sortie.texteLien}}</a><br><br>
-    {% endfor %}
-
+    {% if app.user.PVactuels > 0 %}
+        {% for sortie in chapStandard.sorties %}
+            <a href="{{path("routing", {'id': sortie.chapitre.id})}}">{{sortie.texteLien}}</a><br><br>
+        {% endfor %}
+    {% else %}
+        Hélas, vos blessures risquent de mettre un terme à vos aventures.<br><br>
+        <a href="{{path("game_over")}}">Vous vous sentez défaillir.</a><br><br>
+    {% endif %}
 
     PV : {{app.user.PVactuels}} / {{app.user.PVmax}}<br>
     Or : {{app.user.gold}}<br>

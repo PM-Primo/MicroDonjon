@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}MicroDonjon{% endblock %}
+
+{% block body %}
+<style>
+
+</style>
+
+<div class="example-wrapper">
+
+    {% if not boire %}
+        <h1>- Fin de l'aventure -</h1>
+
+        <p>Vous êtes trop blessé.e pour continuer votre aventure.<br>
+            Vous vous en voulez de n'avoir pas su délivrer les terres d'Ängerjalg de la malédiction qui les étreint.<br>
+            Vous vous allongez sur le sol froid et poussiéreux du donjon et attendez votre heure.<br>
+        </p>
+        
+        <a href="{{path("reset")}}">Mais peut-être un.e autre aventurier.ère reprendra votre flambeau ?</a>
+    {% else %}
+        <h1>- Boire {{boisson}} -</h1>
+
+        <p>Vous ouvrez votre gourde et buvez de grandes lampées de {{boisson}} que vous vous étiez réservée.<br>
+            Vous sentez instantanément la vitalité regagner votre corps.
+            Vous êtes prêt.e à repartir au combat !
+        </p>
+        
+        <a href="{{path("routing", {'id': app.user.chapitreEnCours})}}">C'est reparti !</a><br>    
+    {% endif %}
+
+</div>
+{% endblock %}
