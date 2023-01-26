@@ -67,9 +67,18 @@ class GameController extends AbstractController
 
         //Si il y a un objet à récupérer
         if($chapStandard->getItemPrendre()){
-            $this->getUser()->addInventaire($chapStandard->getItemPrendre()); 
+            $nvItem = $chapStandard->getItemPrendre();
+            $this->getUser()->addInventaire($nvItem);
+
+            //Si l'utilisateur récupère l'armure, on augmente ses PV max
+            //Si d'autres items avaient des effets "à la récupération" on aurait fait une fonction dédiée avec tous les choix
+            if($nvItem->getId() == 9){
+                $this->getUser()->setPVmax(125);
+                $this->getUser()->setPVactuels($this->getUser()->getPVactuels() + 25);
+            }
+            
             $entityManager->persist($this->getUser());
-            $entityManager->flush(); 
+            $entityManager->flush();
         }
 
         //Si il y a un objet à perdre
