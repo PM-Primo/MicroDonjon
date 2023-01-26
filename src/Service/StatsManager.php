@@ -27,10 +27,10 @@ class StatsManager
         $PVmax = $user->getPVmax();
 
         //Cas où on dépasse le max de PV
-        if($PVuser + $modifPV >= $PVmax){
+        if($PVuser+$modifPV >= $PVmax){
             $user->setPVactuels($PVmax); 
         }
-        if($PVuser + $modifPV <= 0){
+        elseif($PVuser + $modifPV <= 0){
             $user->setPVactuels(0); 
         }
         else{

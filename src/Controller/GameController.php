@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Item;
 use App\Entity\Combat;
 use App\Entity\Chapitre;
 use App\Entity\ChapCombat;
@@ -216,9 +217,10 @@ class GameController extends AbstractController
     /**
      * @Route("/game_over", name="game_over")
      */
-    public function gameOver(ManagerRegistry $doctrine){
+    public function gameOver(ManagerRegistry $doctrine, StatsManager $statsManager){
 
         $repository = $doctrine->getRepository(Item::class);
+        $entityManager = $doctrine->getManager();
 
         $inventaire = $this->getUser()->getInventaire();
         $gourde = $repository->findOneBy(['id' => '5']);
@@ -229,19 +231,21 @@ class GameController extends AbstractController
             //On ajoute les pv, on retire l'eau de l'inventaire, on ajoute la gourde vide et on redirige vers la page où on boit
             $this->getUser()->removeInventaire($eau); 
             $this->getUser()->addInventaire($gourde); 
+            $statsManager->changePV(25);
             $entityManager->persist($this->getUser());
             $entityManager->flush(); 
-            return $this->render('game/gameover.html.twig', ['boire' => true, 'boisson' => "l\'eau cristalline",]);
+            return $this->render('game/gameover.html.twig', ['boire' => true, 'boisson' => "l'eau revigorante",]);
         }
         if($inventaire->contains($potion)){
             $this->getUser()->removeInventaire($potion); 
-            $this->getUser()->addInventaire($gourde); 
+            $this->getUser()->addInventaire($gourde);
+            $statsManager->changePV(50);
             $entityManager->persist($this->getUser());
             $entityManager->flush(); 
             return $this->render('game/gameover.html.twig', ['boire' => true, 'boisson' => "la potion de soin",]);
         }
 
-        return $this->render('game/gameover.html.twig', ['boire' => false, 'boisson' => "la potion de soin",]);
+        return $this->render('game/gameover.html.twig', ['boire' => false, 'boisson' => " ",]);
     }
 
 }
