@@ -14,6 +14,7 @@ use Symfony\Component\Security\Core\Security;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 class GameController extends AbstractController
 {
@@ -274,6 +275,49 @@ class GameController extends AbstractController
         }
 
         return $this->render('game/gameover.html.twig', ['boire' => false, 'boisson' => " ",]);
+    }
+
+    /**
+     * @Route("/combattre/{idcombat}/{idchap}/{idchapcombat}", name="combattre")
+     * @ParamConverter("combat", options={"mapping" : {"idcombat": "id"}})
+     * @ParamConverter("chapitre", options={"mapping": {"idchap": "id"}})
+     * @ParamConverter("chapCombat", options={"mapping": {"idchapcombat": "id"}})
+     */
+    public function combattre(Combat $combat, Chapitre $chapitre, ChapCombat $chapCombat){
+        
+        for($i = 0; $i <= 3; $i++){
+            $lancersDes[$i]= rand(1, 6);
+        }
+
+        $totalJoueur = $lancersDes[0] + $lancersDes[1] + $this->getUser()->getAttaque();
+        $totalMonstre = $lancersDes[2] + $lancersDes[3] + $combat->getMonstres()->getAttaqueMonstre();
+
+
+        if($totalJoueur>$totalMonstre){
+            $texteCombat = "Vous infligez X dégâts à la créature";
+            //Le joueur inflige des dégâts au monstre
+        }
+        elseif($totalJoueur<$totalMonstre){
+            $texteCombat = "La créature vous inflige X dégâts";
+            //Le joueur prend des dégâts
+        }
+        else{
+            $texteCombat = "Vous et la créature esquivez mutuellement vos attaques";
+            //Personne ne prend de dégâts
+        }
+
+
+        return $this->render('game/combat.html.twig', [
+            'chapitre' => $chapitre,
+            'chapCombat' => $chapCombat,
+            'combat' => $combat,
+            'attaque' => true, 
+            'lancers' => $lancersDes, 
+            'texteCombat' => $texteCombat,
+            'totalJoueur' => $totalJoueur,
+            'totalMonstre' => $totalMonstre,
+        ]);  
+
     }
 
 }
