@@ -33,14 +33,8 @@ class GameController extends AbstractController
     public function routing(ManagerRegistry $doctrine, Chapitre $chapitre): Response
     {
 
-        //On ajoute le chapitre à l'historique de l'utilisateur
-        $this->getUser()->addChapitre($chapitre);
-        //Et on définit le chapitre en cours
-        $this->getUser()->setChapitreEnCours($chapitre->getId());
-
         $entityManager = $doctrine->getManager();
-        $entityManager->persist($this->getUser());
-        $entityManager->flush(); 
+ 
         
         //On redirige vers la fonction d'affichage correspondant au type de chapitre
         $type = $chapitre->getTypePage();
@@ -68,55 +62,67 @@ class GameController extends AbstractController
 
         $chapStandard = $repository->findOneBy(['chapitre' => $chapitre]);
 
-        //Si il y a un objet à récupérer
-        if($chapStandard->getItemPrendre()){
-            $nvItem = $chapStandard->getItemPrendre();
-            $this->getUser()->addInventaire($nvItem);
 
-            //Si l'utilisateur récupère l'armure, on augmente ses PV max
-            //Si d'autres items avaient des effets "à la récupération" on aurait fait une fonction dédiée avec tous les choix
-            if($nvItem->getId() == 9){
-                $this->getUser()->setPVmax(125);
-                $this->getUser()->setPVactuels($this->getUser()->getPVactuels() + 25);
+        //On vérifie que le joueur n'est pas déjà passé par ce chapitre pour appliquer les effets
+        if(!$this->getUser()->getChapitres()->contains($chapitre)){
+            //Si il y a un objet à récupérer
+            if($chapStandard->getItemPrendre()){
+                $nvItem = $chapStandard->getItemPrendre();
+                $this->getUser()->addInventaire($nvItem);
+
+                //Si l'utilisateur récupère l'armure, on augmente ses PV max
+                //Si d'autres items avaient des effets "à la récupération" on aurait fait une fonction dédiée avec tous les choix
+                if($nvItem->getId() == 9){
+                    $this->getUser()->setPVmax(125);
+                    $this->getUser()->setPVactuels($this->getUser()->getPVactuels() + 25);
+                }
+                
+                $entityManager->persist($this->getUser());
+                $entityManager->flush();
             }
-            
-            $entityManager->persist($this->getUser());
-            $entityManager->flush();
-        }
 
-        //Si il y a un objet à perdre
-        if($chapStandard->getItemPerdre()){
-            $inventaire = $this->getUser()->getInventaire();
-            $item = $chapStandard->getItemPerdre();
-            if($inventaire->contains($item)){
-                $this->getUser()->removeInventaire($chapStandard->getItemPerdre()); 
+            //Si il y a un objet à perdre
+            if($chapStandard->getItemPerdre()){
+                $inventaire = $this->getUser()->getInventaire();
+                $item = $chapStandard->getItemPerdre();
+                if($inventaire->contains($item)){
+                    $this->getUser()->removeInventaire($chapStandard->getItemPerdre()); 
+                    $entityManager->persist($this->getUser());
+                    $entityManager->flush(); 
+                }
+            }
+
+            //Si de l'or doit être récupéré/perdu
+            if($chapStandard->getModifGold()){
+                $this->getUser()->setGold($this->getUser()->getGold() + $chapStandard->getModifGold()); 
+                $entityManager->persist($this->getUser());
+                $entityManager->flush(); 
+            }
+
+            //Si des PV doivent être récupérés/perdus
+            if($chapStandard->getModifPV()){
+
+                $modifPV = $chapStandard->getModifPV();
+                $statsManager->changePV($modifPV);
+                //On fait la modif de PV depuis un Service pour éviter de répéter le code dans Combat + Boire potion etc.
+
+            }
+
+            //Si l'attaque doit être modifiée
+            if($chapStandard->getModifAttaque()){
+                $this->getUser()->setAttaque($this->getUser()->getAttaque() + $chapStandard->getModifAttaque()); 
                 $entityManager->persist($this->getUser());
                 $entityManager->flush(); 
             }
         }
 
-        //Si de l'or doit être récupéré/perdu
-        if($chapStandard->getModifGold()){
-            $this->getUser()->setGold($this->getUser()->getGold() + $chapStandard->getModifGold()); 
-            $entityManager->persist($this->getUser());
-            $entityManager->flush(); 
-        }
+        //On ajoute le chapitre à l'historique de l'utilisateur
+        $this->getUser()->addChapitre($chapitre);
+        //Et on définit le chapitre en cours
+        $this->getUser()->setChapitreEnCours($chapitre->getId());
+        $entityManager->persist($this->getUser());
+        $entityManager->flush();
 
-        //Si des PV doivent être récupérés/perdus
-        if($chapStandard->getModifPV()){
-
-            $modifPV = $chapStandard->getModifPV();
-            $statsManager->changePV($modifPV);
-            //On fait la modif de PV depuis un Service pour éviter de répéter le code dans Combat + Boire potion etc.
-
-        }
-
-        //Si l'attaque doit être modifiée
-        if($chapStandard->getModifAttaque()){
-            $this->getUser()->setAttaque($this->getUser()->getAttaque() + $chapStandard->getModifAttaque()); 
-            $entityManager->persist($this->getUser());
-            $entityManager->flush(); 
-        }
 
         return $this->render('game/standard.html.twig', [
             'chapitre' => $chapitre,
@@ -136,13 +142,28 @@ class GameController extends AbstractController
 
         $chapCombat = $repository->findOneBy(['chapitre' => $chapitre]);
 
-        $combat=new Combat;
-        $combat->setAventurier($this->getUser());
-        $combat->setMonstres($chapCombat->getMonstre());
-        $combat->setPVactuelsMonstre($chapCombat->getMonstre()->getPVmaxMonstre());      
+        if(!$this->getUser()->getChapitres()->contains($chapitre)){
+            $combat=new Combat;
+            $combat->setAventurier($this->getUser());
+            $combat->setMonstres($chapCombat->getMonstre());
+            $combat->setPVactuelsMonstre($chapCombat->getMonstre()->getPVmaxMonstre());
 
-        $entityManager->persist($combat);
-        $entityManager->flush(); 
+            $entityManager->persist($combat);
+            $entityManager->flush(); 
+        }
+        else{
+            //Aller chercher le bon combat dans la base de données
+            $repositoryCombat = $doctrine->getRepository(Combat::class);
+            $combat = $repositoryCombat->findOneBy(['aventurier' => $this->getUser(), 'monstres' => $chapCombat->getMonstre() ]);
+        }    
+
+
+        //On ajoute le chapitre à l'historique de l'utilisateur
+        $this->getUser()->addChapitre($chapitre);
+        //Et on définit le chapitre en cours
+        $this->getUser()->setChapitreEnCours($chapitre->getId());
+        $entityManager->persist($this->getUser());
+        $entityManager->flush();
 
         return $this->render('game/combat.html.twig', [
             'chapitre' => $chapitre,
@@ -170,6 +191,13 @@ class GameController extends AbstractController
         if($inventaire->contains($itemCondition)){
             $condition = true;
         }
+
+        //On ajoute le chapitre à l'historique de l'utilisateur
+        $this->getUser()->addChapitre($chapitre);
+        //Et on définit le chapitre en cours
+        $this->getUser()->setChapitreEnCours($chapitre->getId());
+        $entityManager->persist($this->getUser());
+        $entityManager->flush();
 
         return $this->render('game/condition.html.twig', [
             'chapitre' => $chapitre,
