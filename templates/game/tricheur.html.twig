@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}MicroDonjon{% endblock %}
+
+{% block body %}
+<style>
+
+</style>
+
+<div class="example-wrapper">
+
+
+    <h1>- Raccourci -</h1>
+
+    <p>Vous avez essayé de prendre un raccourci. <br>
+        Hélas le donjon n'aime pas les tricheurs.<br>
+        Un puissant champ de force entrave votre progression.<br>
+        Vous n'allez avoir d'autre choix que de reprendre la route traditionnelle
+    </p>
+
+    <a href="{{path("routing", {'id': app.user.chapitreEnCours})}}">Quitter le raccourci</a>
+
+
+</div>
+{% endblock %}

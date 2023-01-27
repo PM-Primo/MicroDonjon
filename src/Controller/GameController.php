@@ -7,6 +7,7 @@ use App\Entity\Combat;
 use App\Entity\Chapitre;
 use App\Entity\ChapCombat;
 use App\Entity\ChapStandard;
+use App\Service\PathChecker;
 use App\Entity\ChapCondition;
 use App\Service\StatsManager;
 use Doctrine\Persistence\ManagerRegistry;
@@ -55,13 +56,18 @@ class GameController extends AbstractController
     /**
      * @Route("/game/standard/{id}", name="display_standard")
      */
-    public function displayStandard(ManagerRegistry $doctrine, Chapitre $chapitre, StatsManager $statsManager): Response
+    public function displayStandard(ManagerRegistry $doctrine, Chapitre $chapitre, StatsManager $statsManager, PathChecker $pathChecker): Response
     {
 
         $repository = $doctrine->getRepository(ChapStandard::class);
         $entityManager = $doctrine->getManager();
 
         $chapStandard = $repository->findOneBy(['chapitre' => $chapitre]);
+
+        $check = $pathChecker->checkPath($chapitre);
+        if(!$check){
+            return $this->render('game/tricheur.html.twig');
+        }
 
 
         //On vérifie que le joueur n'est pas déjà passé par ce chapitre pour appliquer les effets
@@ -135,13 +141,18 @@ class GameController extends AbstractController
     /**
      * @Route("/game/combat/{id}", name="display_combat")
      */
-    public function displayCombat(ManagerRegistry $doctrine, Chapitre $chapitre): Response
+    public function displayCombat(ManagerRegistry $doctrine, Chapitre $chapitre, PathChecker $pathChecker): Response
     {
 
         $repository = $doctrine->getRepository(ChapCombat::class);
         $entityManager = $doctrine->getManager();
 
         $chapCombat = $repository->findOneBy(['chapitre' => $chapitre]);
+
+        $check = $pathChecker->checkPath($chapitre);
+        if(!$check){
+            return $this->render('game/tricheur.html.twig');
+        }
 
         if(!$this->getUser()->getChapitres()->contains($chapitre)){
             $combat=new Combat;
@@ -177,13 +188,18 @@ class GameController extends AbstractController
     /**
      * @Route("/game/condition/{id}", name="display_condition")
      */
-    public function displayCondition(ManagerRegistry $doctrine, Chapitre $chapitre): Response
+    public function displayCondition(ManagerRegistry $doctrine, Chapitre $chapitre, PathChecker $pathChecker): Response
     {
 
         $repository = $doctrine->getRepository(ChapCondition::class);
         $entityManager = $doctrine->getManager();
 
         $chapCondition = $repository->findOneBy(['chapitre' => $chapitre]);
+
+        $check = $pathChecker->checkPath($chapitre);
+        if(!$check){
+            return $this->render('game/tricheur.html.twig');
+        }
 
         $itemCondition = $chapCondition->getItemCondition();
         $inventaire = $this->getUser()->getInventaire();
