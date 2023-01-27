@@ -10,7 +10,7 @@
 <div class="example-wrapper">
 
     {% if not boire %}
-        <h1>- Fin de l'aventure -</h1>
+        <h1>- Game Over -</h1>
 
         <p>Vous êtes trop blessé.e pour continuer votre aventure.<br>
             Vous vous en voulez de n'avoir pas su délivrer les terres d'Ängerjalg de la malédiction qui les étreint.<br>
@@ -19,7 +19,7 @@
         
         <a href="{{path("reset")}}">Mais peut-être un.e autre aventurier.ère reprendra votre flambeau ?</a>
     {% else %}
-        <h1>- Boire {{boisson}} -</h1>
+        <h1>- Game Over ? {{boisson}} -</h1>
 
         <p>Vous ouvrez votre gourde et buvez de grandes lampées de {{boisson}} que vous conserviez dans votre gourde.<br>
             Vous sentez instantanément la vitalité regagner votre corps.

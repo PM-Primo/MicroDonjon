@@ -296,7 +296,7 @@ class GameController extends AbstractController
         if($totalJoueur>$totalMonstre){
             if($lancersDes[0] + $lancersDes[1]>=11){
                 $texteCombat = "Coup Critique ! Vous infligez 3 dégâts à la créature";
-                $combat->setPVactuelsMonstre($combat->getPVactuelsMonstre() - 2);
+                $combat->setPVactuelsMonstre($combat->getPVactuelsMonstre() - 3);
                 $entityManager = $doctrine->getManager();
                 $entityManager->persist($combat);
                 $entityManager->flush();

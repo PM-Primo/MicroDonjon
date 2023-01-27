@@ -17,7 +17,7 @@
             <a href="{{path("routing", {'id': sortie.chapitre.id})}}">{{sortie.texteLien}}</a><br><br>
         {% endfor %}
     {% else %}
-        Hélas, vos blessures risquent de mettre un terme à vos aventures.<br><br>
+        Hélas, vos blessures risquent de mettre un terme à vos aventures. Votre vision se trouble.<br><br>
         <a href="{{path("game_over")}}">Vous vous sentez défaillir.</a><br><br>
     {% endif %}
 
