@@ -283,7 +283,7 @@ class GameController extends AbstractController
      * @ParamConverter("chapitre", options={"mapping": {"idchap": "id"}})
      * @ParamConverter("chapCombat", options={"mapping": {"idchapcombat": "id"}})
      */
-    public function combattre(Combat $combat, Chapitre $chapitre, ChapCombat $chapCombat){
+    public function combattre(Combat $combat, Chapitre $chapitre, ChapCombat $chapCombat, ManagerRegistry $doctrine, StatsManager $statsManager){
         
         for($i = 0; $i <= 3; $i++){
             $lancersDes[$i]= rand(1, 6);
@@ -294,18 +294,34 @@ class GameController extends AbstractController
 
 
         if($totalJoueur>$totalMonstre){
-            $texteCombat = "Vous infligez X dégâts à la créature";
-            //Le joueur inflige des dégâts au monstre
+            if($lancersDes[0] + $lancersDes[1]>=11){
+                $texteCombat = "Coup Critique ! Vous infligez 3 dégâts à la créature";
+                $combat->setPVactuelsMonstre($combat->getPVactuelsMonstre() - 2);
+                $entityManager = $doctrine->getManager();
+                $entityManager->persist($combat);
+                $entityManager->flush();
+            }
+            else{                
+                $texteCombat = "Vous infligez 2 dégâts à la créature";
+                $combat->setPVactuelsMonstre($combat->getPVactuelsMonstre() - 2);
+                $entityManager = $doctrine->getManager();
+                $entityManager->persist($combat);
+                $entityManager->flush();
+            }
         }
         elseif($totalJoueur<$totalMonstre){
-            $texteCombat = "La créature vous inflige X dégâts";
-            //Le joueur prend des dégâts
+            if($lancersDes[0] + $lancersDes[1] <= 3){
+                $texteCombat = "Blessure critique ! La créature vous inflige 3 dégâts";
+                $statsManager->changePV(-3);
+            }
+            else{
+                $texteCombat = "La créature vous inflige 2 dégâts";
+                $statsManager->changePV(-2);
+            }
         }
         else{
             $texteCombat = "Vous et la créature esquivez mutuellement vos attaques";
-            //Personne ne prend de dégâts
         }
-
 
         return $this->render('game/combat.html.twig', [
             'chapitre' => $chapitre,
