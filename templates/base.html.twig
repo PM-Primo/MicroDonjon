@@ -18,6 +18,9 @@
             <h1>MicroDonjon</h1>
             <a href="{{path("app_home")}}" class="menu__link">Home</a>
             {% if app.user %}
+            {% if is_granted('ROLE_ADMIN') %}
+                <a href="{{path("admin_editor")}}" class="menu__link">Éditeur</a>
+            {% endif %}
                 <a href="{{path("app_logout")}}" class="menu__link">Se déconnecter</a>
             {% else %}
                 <a href="{{path("app_login")}}" class="menu__link">Se connecter</a>
@@ -28,21 +31,24 @@
             {% block body %}{% endblock %}
         </main>
         
-        {# Emplacement provisoire pour l'inventaire/stats #}
-        PV : {{app.user.PVactuels}} / {{app.user.PVmax}}<br>
-        Or : {{app.user.gold}}<br>
-        Attaque : {{app.user.attaque}}<br>
-    
-        Inventaire : 
-        {% for item in app.user.inventaire %}
-            {{item}} / 
-        {% endfor %}
+        {% if app.user %}
+            {# Emplacement provisoire pour l'inventaire/stats #}
+            <br><br>
+            PV : {{app.user.PVactuels}} / {{app.user.PVmax}}<br>
+            Or : {{app.user.gold}}<br>
+            Attaque : {{app.user.attaque}}<br>
+        
+            Inventaire : 
+            {% for item in app.user.inventaire %}
+                {{item}} / 
+            {% endfor %}
 
-        {# Emplacement provisoire pour le stack progression #}
-        <br><br>Progression : <br>
-        {% for zone in app.user.visites %}
-            {{zone}} / 
-        {% endfor %}
+            {# Emplacement provisoire pour le stack progression #}
+            <br><br>Progression : <br>
+            {% for zone in app.user.visites %}
+                {{zone}} / 
+            {% endfor %}
+        {% endif %}
     
     </body>
 </html>

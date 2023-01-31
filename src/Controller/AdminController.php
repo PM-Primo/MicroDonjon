@@ -2,9 +2,11 @@
 
 namespace App\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Entity\Chapitre;
+use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class AdminController extends AbstractController
 {
@@ -17,4 +19,20 @@ class AdminController extends AbstractController
             'controller_name' => 'AdminController',
         ]);
     }
+
+    /**
+     * @Route("/admin/editor", name="admin_editor")
+     */
+    public function openEditor(ManagerRegistry $doctrine): Response
+    {
+
+        $repository = $doctrine->getRepository(Chapitre::class);
+        $allChapitres = $repository->findAll();
+        
+        return $this->render('admin/editor.html.twig', [
+            'chapitres' => $allChapitres
+        ]);
+        
+    }
+
 }
