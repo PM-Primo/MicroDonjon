@@ -72,6 +72,21 @@ class GameController extends AbstractController
 
         //On vérifie que le joueur n'est pas déjà passé par ce chapitre pour appliquer les effets
         if(!$this->getUser()->getChapitres()->contains($chapitre)){
+            
+            //Si de l'or doit être récupéré/perdu
+            if($chapStandard->getModifGold()){
+
+                if($this->getUser()->getGold() + $chapStandard->getModifGold() < 0){
+                    $manque = -($this->getUser()->getGold() + $chapStandard->getModifGold());
+                    return $this->render('game/needgold.html.twig', ['manque' => $manque]);
+                }
+                else{
+                     $this->getUser()->setGold($this->getUser()->getGold() + $chapStandard->getModifGold()); 
+                    $entityManager->persist($this->getUser());
+                    $entityManager->flush(); 
+                }
+            }
+
             //Si il y a un objet à récupérer
             if($chapStandard->getItemPrendre()){
                 $nvItem = $chapStandard->getItemPrendre();
@@ -97,13 +112,6 @@ class GameController extends AbstractController
                     $entityManager->persist($this->getUser());
                     $entityManager->flush(); 
                 }
-            }
-
-            //Si de l'or doit être récupéré/perdu
-            if($chapStandard->getModifGold()){
-                $this->getUser()->setGold($this->getUser()->getGold() + $chapStandard->getModifGold()); 
-                $entityManager->persist($this->getUser());
-                $entityManager->flush(); 
             }
 
             //Si des PV doivent être récupérés/perdus
