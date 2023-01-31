@@ -10,6 +10,8 @@
 <div class="example-wrapper">
     <h1>Éditeur de chapitres</h1>
 
+    <a href="{{path("add_standard")}}">Nouveau chapitre standard</a><br><br>
+
     {% for tableauChapitre in tableauTotal %}
         <a href="{{path("edit_routing", {'id': tableauChapitre[0].id})}}">Chapitre n° {{tableauChapitre[0].id}}</a><br>
         Titre : {{tableauChapitre[0].titreChapitre}}<br>
@@ -21,7 +23,6 @@
         {% endfor %}
         <br><br>    
     {% endfor %}
-
 
 </div>
 {% endblock %}

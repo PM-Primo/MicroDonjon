@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}MicroDonjon{% endblock %}
+
+{% block body %}
+<style>
+
+</style>
+
+<div class="example-wrapper">
+    <h1>Nouveau chapitre standard</h1>
+
+    {{ form_start(formAddChapStandard) }}
+
+        {{ form_row(formAddChapStandard.titreChapitre) }}
+        {{ form_row(formAddChapStandard.texteChapitre) }}
+        {{ form_row(formAddChapStandard.zone) }}
+        {{ form_row(formAddChapStandard.modifGold) }}
+        {{ form_row(formAddChapStandard.modifPV) }}
+        {{ form_row(formAddChapStandard.modifAttaque) }}
+        {{ form_row(formAddChapStandard.itemPrendre) }}
+        {{ form_row(formAddChapStandard.itemPerdre) }}
+
+        {{ form_row(formAddChapStandard.submit) }}
+
+    {{ form_end(formAddChapStandard) }}
+
+</div>
+{% endblock %}

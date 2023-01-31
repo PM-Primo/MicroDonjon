@@ -8,8 +8,10 @@ use App\Entity\ChapStandard;
 use App\Entity\SortieCombat;
 use App\Entity\ChapCondition;
 use App\Entity\SortieStandard;
+use App\Form\ChapStandardType;
 use App\Entity\SortieCondition;
 use Doctrine\Persistence\ManagerRegistry;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -68,8 +70,39 @@ class AdminController extends AbstractController
         return $this->render('admin/editor.html.twig', [
             'tableauTotal' => $grandTableau,
         ]);
-
+        
     }
+    
+    /**
+     * @Route("/add/standard", name="add_standard")
+     */
+    public function addStandard(ManagerRegistry $doctrine, Request $request){
+
+        $form = $this->createForm(ChapStandardType::class);
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()){
+            $chapitre = new Chapitre;
+            $chapitre->setTitreChapitre($form->get("titreChapitre")->getData());
+            $chapitre->setZone($form->get("zone")->getData());
+            $chapitre->setTypePage("Standard");
+            $chapStandard = new ChapStandard;
+            $chapStandard = $form->getData();
+            $chapStandard->setChapitre($chapitre);
+
+            $entityManager = $doctrine->getManager();
+            $entityManager->persist($chapitre);
+            $entityManager->persist($chapStandard);
+            $entityManager->flush(); 
+
+            return $this->redirectToRoute('admin_editor');
+        }
+
+        return $this->render('admin/chapstandard_add.html.twig', [
+            'formAddChapStandard' =>$form->createView(),
+        ]);
+    }
+
 
     /**
      * @Route("/edit/routing/{id}", name="edit_routing")
@@ -118,5 +151,6 @@ class AdminController extends AbstractController
     {
     
     }
+
 
 }
