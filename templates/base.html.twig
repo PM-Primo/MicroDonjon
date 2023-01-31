@@ -27,6 +27,22 @@
         <main>
             {% block body %}{% endblock %}
         </main>
+        
+        {# Emplacement provisoire pour l'inventaire/stats #}
+        PV : {{app.user.PVactuels}} / {{app.user.PVmax}}<br>
+        Or : {{app.user.gold}}<br>
+        Attaque : {{app.user.attaque}}<br>
+    
+        Inventaire : 
+        {% for item in app.user.inventaire %}
+            {{item}} / 
+        {% endfor %}
+
+        {# Emplacement provisoire pour le stack progression #}
+        <br><br>Progression : <br>
+        {% for zone in app.user.visites %}
+            {{zone}} / 
+        {% endfor %}
     
     </body>
 </html>

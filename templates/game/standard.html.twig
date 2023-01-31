@@ -21,14 +21,5 @@
         <a href="{{path("game_over")}}">Vous vous sentez défaillir.</a><br><br>
     {% endif %}
 
-    PV : {{app.user.PVactuels}} / {{app.user.PVmax}}<br>
-    Or : {{app.user.gold}}<br>
-    Attaque : {{app.user.attaque}}<br>
-
-    Inventaire : 
-    {% for item in app.user.inventaire %}
-        {{item}} / 
-    {% endfor %}
-
 </div>
 {% endblock %}

@@ -131,6 +131,10 @@ class GameController extends AbstractController
             }
         }
 
+        //On ajoute la zone à l'historique de l'utilisateur
+        if($chapitre->getZone()){
+            $this->getUser()->addVisite($chapitre->getZone());
+        }
         //On ajoute le chapitre à l'historique de l'utilisateur
         $this->getUser()->addChapitre($chapitre);
         //Et on définit le chapitre en cours
@@ -177,7 +181,10 @@ class GameController extends AbstractController
             $combat = $repositoryCombat->findOneBy(['aventurier' => $this->getUser(), 'monstres' => $chapCombat->getMonstre() ]);
         }    
 
-
+        //On ajoute la zone à l'historique de l'utilisateur
+        if($chapitre->getZone()){
+            $this->getUser()->addVisite($chapitre->getZone());
+        }        
         //On ajoute le chapitre à l'historique de l'utilisateur
         $this->getUser()->addChapitre($chapitre);
         //Et on définit le chapitre en cours
@@ -217,6 +224,10 @@ class GameController extends AbstractController
             $condition = true;
         }
 
+        //On ajoute la zone à l'historique de l'utilisateur
+        if($chapitre->getZone()){
+            $this->getUser()->addVisite($chapitre->getZone());
+        }        
         //On ajoute le chapitre à l'historique de l'utilisateur
         $this->getUser()->addChapitre($chapitre);
         //Et on définit le chapitre en cours
