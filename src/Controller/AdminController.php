@@ -131,9 +131,37 @@ class AdminController extends AbstractController
     /**
      * @Route("/edit/standard/{id}", name="edit_standard")
      */
-    public function editStandard(ManagerRegistry $doctrine, Chapitre $chapitre): Response
-    {
-    
+    public function editStandard(ManagerRegistry $doctrine, Chapitre $chapitre, Request $request): Response
+    {    
+
+        $repositoryChapStandard = $doctrine->getRepository(ChapStandard::class);
+        $chapStandard = $repositoryChapStandard->findOneBy(['chapitre' => $chapitre]);
+
+
+        $form = $this->createForm(ChapStandardType::class, $chapStandard);
+        $form->get('titreChapitre')->setData($chapitre->getTitreChapitre());
+        $form->get('zone')->setData($chapitre->getZone());
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()){
+            $chapitre->setTitreChapitre($form->get("titreChapitre")->getData());
+            $chapitre->setZone($form->get("zone")->getData());
+            $chapitre->setTypePage("Standard");
+            $chapStandard = $form->getData();
+            $chapStandard->setChapitre($chapitre);
+
+            $entityManager = $doctrine->getManager();
+            $entityManager->persist($chapitre);
+            $entityManager->persist($chapStandard);
+            $entityManager->flush(); 
+
+            return $this->redirectToRoute('admin_editor');
+        }
+
+        //Vue pour afficher le formulaire d'ajout
+        return $this->render('admin/chapstandard_add.html.twig', [
+            'formAddChapStandard' =>$form->createView(),
+        ]);
     }
 
     /**
