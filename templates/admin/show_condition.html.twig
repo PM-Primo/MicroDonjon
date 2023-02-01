@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}MicroDonjon{% endblock %}
+
+{% block body %}
+<style>
+
+</style>
+
+<div class="example-wrapper">
+    <h1>[{{chapitre.id}}] : {{chapitre.titreChapitre}}</h1>
+    <h2>Chapitre {{chapitre.typePage}}</h2>
+
+    <div>
+        Zone : {{chapitre.Zone}}<br><br>
+        Texte (condition vérifiée) : {{chapCondition.texteSiVrai | raw}}<br><br>
+        Texte (condition non vérifiée) : {{chapCondition.texteSiFaux | raw}}<br><br>
+        Objet condition : {{chapCondition.itemCondition}}
+        <br><br>
+        Sorties disponibles : <br>
+
+        {% for sortie in sorties %}
+            [{{sortie.chapitre.id}}] : {{sortie.texteLien}} 
+
+            {% if sortie.conditionVrai %}
+                (condition vérifiée)
+            {% else %}
+                (condition non vérifiée)
+            {% endif %}
+
+            <br>
+        {% endfor %}
+
+    </div>
+
+</div>
+{% endblock %}

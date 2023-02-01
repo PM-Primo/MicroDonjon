@@ -294,7 +294,6 @@ class AdminController extends AbstractController
         $type = $chapitre->getTypePage();
 
         if($type == 'Standard'){
-
             $repositoryStandard = $doctrine->getRepository(ChapStandard::class);
             $chapStandard = $repositoryStandard->findOneBy(['chapitre' => $chapitre]);
             $repositorySortieStandard = $doctrine->getRepository(SortieStandard::class);
@@ -307,10 +306,28 @@ class AdminController extends AbstractController
             ]);
         }
         elseif($type == 'Combat'){
-            return $this->redirectToRoute('edit_combat', ['id' => $chapitre->getId()]);
+            $repositoryCombat = $doctrine->getRepository(ChapCombat::class);
+            $chapCombat = $repositoryCombat->findOneBy(['chapitre' => $chapitre]);
+            $repositorySortieCombat = $doctrine->getRepository(SortieCombat::class);
+            $sorties = $repositorySortieCombat->findBy(['chapCombat' => $chapCombat]);
+
+            return $this->render('admin/show_combat.html.twig', [
+                'chapitre' => $chapitre,
+                'chapCombat' => $chapCombat,
+                'sorties' => $sorties
+            ]);        
         }
         elseif($type == 'Condition'){
-            return $this->redirectToRoute('edit_condition', ['id' => $chapitre->getId()]);
+            $repositoryCondition = $doctrine->getRepository(ChapCondition::class);
+            $chapCondition = $repositoryCondition->findOneBy(['chapitre' => $chapitre]);
+            $repositorySortieCondition = $doctrine->getRepository(SortieCondition::class);
+            $sorties = $repositorySortieCondition->findBy(['chapCondition' => $chapCondition]);
+
+            return $this->render('admin/show_condition.html.twig', [
+                'chapitre' => $chapitre,
+                'chapCondition' => $chapCondition,
+                'sorties' => $sorties
+            ]);   
         }
 
         return $this->redirectToRoute('app_home');
