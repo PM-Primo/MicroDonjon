@@ -6,6 +6,7 @@ use App\Entity\Chapitre;
 use App\Entity\ChapCombat;
 use App\Entity\ChapStandard;
 use App\Entity\SortieCombat;
+use App\Form\ChapCombatType;
 use App\Entity\ChapCondition;
 use App\Entity\SortieStandard;
 use App\Form\ChapStandardType;
@@ -103,6 +104,36 @@ class AdminController extends AbstractController
         ]);
     }
 
+    /**
+     * @Route("/add/combat", name="add_combat")
+     */
+    public function addCombat(ManagerRegistry $doctrine, Request $request){
+
+        $form = $this->createForm(ChapCombatType::class);
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()){
+            $chapitre = new Chapitre;
+            $chapitre->setTitreChapitre($form->get("titreChapitre")->getData());
+            $chapitre->setZone($form->get("zone")->getData());
+            $chapitre->setTypePage("Combat");
+            $chapCombat = new ChapCombat;
+            $chapCombat = $form->getData();
+            $chapCombat->setChapitre($chapitre);
+
+            $entityManager = $doctrine->getManager();
+            $entityManager->persist($chapitre);
+            $entityManager->persist($chapCombat);
+            $entityManager->flush(); 
+
+            return $this->redirectToRoute('admin_editor');
+        }
+
+        return $this->render('admin/chapcombat_add.html.twig', [
+            'formAddChapCombat' =>$form->createView(),
+        ]);
+    }
+
 
     /**
      * @Route("/edit/routing/{id}", name="edit_routing")
@@ -133,10 +164,8 @@ class AdminController extends AbstractController
      */
     public function editStandard(ManagerRegistry $doctrine, Chapitre $chapitre, Request $request): Response
     {    
-
         $repositoryChapStandard = $doctrine->getRepository(ChapStandard::class);
         $chapStandard = $repositoryChapStandard->findOneBy(['chapitre' => $chapitre]);
-
 
         $form = $this->createForm(ChapStandardType::class, $chapStandard);
         $form->get('titreChapitre')->setData($chapitre->getTitreChapitre());
@@ -146,9 +175,7 @@ class AdminController extends AbstractController
         if($form->isSubmitted() && $form->isValid()){
             $chapitre->setTitreChapitre($form->get("titreChapitre")->getData());
             $chapitre->setZone($form->get("zone")->getData());
-            $chapitre->setTypePage("Standard");
             $chapStandard = $form->getData();
-            $chapStandard->setChapitre($chapitre);
 
             $entityManager = $doctrine->getManager();
             $entityManager->persist($chapitre);
@@ -167,15 +194,39 @@ class AdminController extends AbstractController
     /**
      * @Route("/edit/combat/{id}", name="edit_combat")
      */
-    public function editCombat(ManagerRegistry $doctrine, Chapitre $chapitre): Response
+    public function editCombat(ManagerRegistry $doctrine, Chapitre $chapitre, Request $request): Response
     {
-    
+        $repositoryChapCombat = $doctrine->getRepository(ChapCombat::class);
+        $chapCombat = $repositoryChapCombat->findOneBy(['chapitre' => $chapitre]);
+
+        $form = $this->createForm(ChapCombatType::class, $chapCombat);
+        $form->get('titreChapitre')->setData($chapitre->getTitreChapitre());
+        $form->get('zone')->setData($chapitre->getZone());
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()){
+            $chapitre->setTitreChapitre($form->get("titreChapitre")->getData());
+            $chapitre->setZone($form->get("zone")->getData());
+            $chapCombat = $form->getData();
+
+            $entityManager = $doctrine->getManager();
+            $entityManager->persist($chapitre);
+            $entityManager->persist($chapCombat);
+            $entityManager->flush(); 
+
+            return $this->redirectToRoute('admin_editor');
+        }
+
+        //Vue pour afficher le formulaire d'ajout
+        return $this->render('admin/chapcombat_add.html.twig', [
+            'formAddChapCombat' =>$form->createView(),
+        ]);
     }
 
     /**
      * @Route("/edit/condition/{id}", name="edit_condition")
      */
-    public function editCondition(ManagerRegistry $doctrine, Chapitre $chapitre): Response
+    public function editCondition(ManagerRegistry $doctrine, Chapitre $chapitre, Request $reques): Response
     {
     
     }

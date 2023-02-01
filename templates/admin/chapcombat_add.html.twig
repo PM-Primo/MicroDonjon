@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}MicroDonjon{% endblock %}
+
+{% block body %}
+<style>
+
+</style>
+
+<div class="example-wrapper">
+    <h1>Nouveau chapitre combat</h1>
+
+    {{ form_start(formAddChapCombat) }}
+
+        {{ form_row(formAddChapCombat.titreChapitre) }}
+        {{ form_row(formAddChapCombat.texteInitial) }}
+        {{ form_row(formAddChapCombat.texteVictoire) }}
+        {{ form_row(formAddChapCombat.zone) }}
+        {{ form_row(formAddChapCombat.monstre) }}
+
+        {{ form_row(formAddChapCombat.submit) }}
+
+    {{ form_end(formAddChapCombat) }}
+
+</div>
+{% endblock %}
