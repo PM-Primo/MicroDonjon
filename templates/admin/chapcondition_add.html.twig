@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}MicroDonjon{% endblock %}
+
+{% block body %}
+<style>
+
+</style>
+
+<div class="example-wrapper">
+    <h1>Nouveau chapitre à condition</h1>
+
+    {{ form_start(formAddChapCondition) }}
+
+        {{ form_row(formAddChapCondition.titreChapitre) }}
+        {{ form_row(formAddChapCondition.texteSiVrai) }}
+        {{ form_row(formAddChapCondition.texteSiFaux) }}
+        {{ form_row(formAddChapCondition.zone) }}
+        {{ form_row(formAddChapCondition.itemCondition) }}
+
+        {{ form_row(formAddChapCondition.submit) }}
+
+    {{ form_end(formAddChapCondition) }}
+
+</div>
+{% endblock %}

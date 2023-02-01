@@ -11,7 +11,8 @@
     <h1>Éditeur de chapitres</h1>
 
     <a href="{{path("add_standard")}}">Nouveau chapitre standard</a><br>
-    <a href="{{path("add_combat")}}">Nouveau chapitre combat</a><br><br>
+    <a href="{{path("add_combat")}}">Nouveau chapitre combat</a><br>
+    <a href="{{path("add_condition")}}">Nouveau chapitre condition</a><br><br>
 
     {% for tableauChapitre in tableauTotal %}
         <a href="{{path("edit_routing", {'id': tableauChapitre[0].id})}}">Chapitre n° {{tableauChapitre[0].id}}</a><br>

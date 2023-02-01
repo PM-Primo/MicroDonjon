@@ -11,6 +11,7 @@ use App\Entity\ChapCondition;
 use App\Entity\SortieStandard;
 use App\Form\ChapStandardType;
 use App\Entity\SortieCondition;
+use App\Form\ChapConditionType;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -134,6 +135,36 @@ class AdminController extends AbstractController
         ]);
     }
 
+    /**
+     * @Route("/add/condition", name="add_condition")
+     */
+    public function addCondition(ManagerRegistry $doctrine, Request $request){
+
+        $form = $this->createForm(ChapConditionType::class);
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()){
+            $chapitre = new Chapitre;
+            $chapitre->setTitreChapitre($form->get("titreChapitre")->getData());
+            $chapitre->setZone($form->get("zone")->getData());
+            $chapitre->setTypePage("Condition");
+            $chapCondition = new ChapCondition;
+            $chapCondition = $form->getData();
+            $chapCondition->setChapitre($chapitre);
+
+            $entityManager = $doctrine->getManager();
+            $entityManager->persist($chapitre);
+            $entityManager->persist($chapCondition);
+            $entityManager->flush(); 
+
+            return $this->redirectToRoute('admin_editor');
+        }
+
+        return $this->render('admin/chapcondition_add.html.twig', [
+            'formAddChapCondition' =>$form->createView(),
+        ]);
+    }
+
 
     /**
      * @Route("/edit/routing/{id}", name="edit_routing")
@@ -226,9 +257,33 @@ class AdminController extends AbstractController
     /**
      * @Route("/edit/condition/{id}", name="edit_condition")
      */
-    public function editCondition(ManagerRegistry $doctrine, Chapitre $chapitre, Request $reques): Response
+    public function editCondition(ManagerRegistry $doctrine, Chapitre $chapitre, Request $request): Response
     {
-    
+        $repositoryChapCondition = $doctrine->getRepository(ChapCondition::class);
+        $chapCondition = $repositoryChapCondition->findOneBy(['chapitre' => $chapitre]);
+
+        $form = $this->createForm(ChapConditionType::class, $chapCondition);
+        $form->get('titreChapitre')->setData($chapitre->getTitreChapitre());
+        $form->get('zone')->setData($chapitre->getZone());
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()){
+            $chapitre->setTitreChapitre($form->get("titreChapitre")->getData());
+            $chapitre->setZone($form->get("zone")->getData());
+            $chapCondition = $form->getData();
+
+            $entityManager = $doctrine->getManager();
+            $entityManager->persist($chapitre);
+            $entityManager->persist($chapCondition);
+            $entityManager->flush(); 
+
+            return $this->redirectToRoute('admin_editor');
+        }
+
+        //Vue pour afficher le formulaire d'ajout
+        return $this->render('admin/chapcondition_add.html.twig', [
+            'formAddChapCondition' =>$form->createView(),
+        ]);
     }
 
 
