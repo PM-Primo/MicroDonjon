@@ -169,12 +169,9 @@ class AdminController extends AbstractController
     /**
      * @Route("/edit/routing/{id}", name="edit_routing")
      */
-    public function editRouting(ManagerRegistry $doctrine, Chapitre $chapitre): Response
+    public function editRouting(Chapitre $chapitre): Response
     {
-
-        $entityManager = $doctrine->getManager();
- 
-        
+       
         //On redirige vers la fonction d'affichage correspondant au type de chapitre
         $type = $chapitre->getTypePage();
         if($type == 'Standard'){
@@ -285,6 +282,40 @@ class AdminController extends AbstractController
             'formAddChapCondition' =>$form->createView(),
         ]);
     }
+
+    /**
+     * @Route("/show/{id}", name="show")
+     */
+    public function show(ManagerRegistry $doctrine, Chapitre $chapitre): Response
+    {
+        $entityManager = $doctrine->getManager();
+        
+        //On redirige vers la fonction d'affichage correspondant au type de chapitre
+        $type = $chapitre->getTypePage();
+
+        if($type == 'Standard'){
+
+            $repositoryStandard = $doctrine->getRepository(ChapStandard::class);
+            $chapStandard = $repositoryStandard->findOneBy(['chapitre' => $chapitre]);
+            $repositorySortieStandard = $doctrine->getRepository(SortieStandard::class);
+            $sorties = $repositorySortieStandard->findBy(['chapStandard' => $chapStandard]);
+
+            return $this->render('admin/show_standard.html.twig', [
+                'chapitre' => $chapitre,
+                'chapStandard' => $chapStandard,
+                'sorties' => $sorties
+            ]);
+        }
+        elseif($type == 'Combat'){
+            return $this->redirectToRoute('edit_combat', ['id' => $chapitre->getId()]);
+        }
+        elseif($type == 'Condition'){
+            return $this->redirectToRoute('edit_condition', ['id' => $chapitre->getId()]);
+        }
+
+        return $this->redirectToRoute('app_home');
+    }
+
 
 
 }

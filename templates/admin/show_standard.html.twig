@@ -1,0 +1,61 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}MicroDonjon{% endblock %}
+
+{% block body %}
+<style>
+
+</style>
+
+<div class="example-wrapper">
+    <h1>[{{chapitre.id}}] : {{chapitre.titreChapitre}}</h1>
+    <h2>Chapitre {{chapitre.typePage}}</h2>
+
+    <div>
+        Zone : {{chapitre.Zone}}<br><br>
+        Texte du chapitre : {{chapStandard.texteChapitre | raw}}<br><br>
+        Modificateur de monnaie : 
+        {% if chapStandard.modifGold %}
+            {{chapStandard.modifGold}}
+        {% else %}
+            <i>Aucun</i>
+        {% endif %}
+        <br>
+        Modificateur de PV : 
+        {% if chapStandard.modifPV %}
+            {{chapStandard.modifPV}}
+        {% else %}
+            <i>Aucun</i>
+        {% endif %}
+        <br>
+        Modificateur de la stat d'attaque : 
+        {% if chapStandard.modifAttaque %}
+            {{chapStandard.modifAttaque}}
+        {% else %}
+            <i>Aucun</i>
+        {% endif %}
+        <br>
+        Objet à récupérer : 
+        {% if chapStandard.itemPrendre %}
+            {{chapStandard.itemPrendre}}
+        {% else %}
+            <i>Aucun</i>
+        {% endif %}
+        <br>
+        Objet à perdre : 
+        {% if chapStandard.itemPerdre %}
+            {{chapStandard.itemPerdre}}
+        {% else %}
+            <i>Aucun</i>
+        {% endif %}
+        <br><br>
+        Sorties disponibles : <br>
+
+        {% for sortie in sorties %}
+            [{{sortie.chapitre.id}}] : {{sortie.texteLien}}<br>
+        {% endfor %}
+
+    </div>
+
+</div>
+{% endblock %}
