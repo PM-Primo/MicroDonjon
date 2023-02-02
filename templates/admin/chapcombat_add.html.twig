@@ -18,6 +18,22 @@
         {{ form_row(formAddChapCombat.zone) }}
         {{ form_row(formAddChapCombat.monstre) }}
 
+        <br>
+        Sorties :
+        <br><br>
+
+        <div id="listeSorties" 
+            data-prototype="{{ form_widget(formAddChapCombat.sorties.vars.prototype)| e('html_attr') }}"
+            data-index="0">
+            {% for sortie in formAddChapCombat.sorties %}
+                <div class="card">
+                    {{ form_row(sortie) }}
+                </div>
+                <br>
+            {% endfor %}
+            <a id="addSortie" href="#" class="">Ajouter une sortie</a><br><br>
+        </div>
+
         {{ form_row(formAddChapCombat.submit) }}
 
     {{ form_end(formAddChapCombat) }}

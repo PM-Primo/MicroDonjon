@@ -35,7 +35,7 @@ class ChapCombat
     private $chapitre;
 
     /**
-     * @ORM\OneToMany(targetEntity=SortieCombat::class, mappedBy="chapCombat", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity=SortieCombat::class, mappedBy="chapCombat", orphanRemoval=true, cascade={"persist"})
      */
     private $sorties;
 
