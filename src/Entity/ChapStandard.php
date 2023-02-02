@@ -40,7 +40,7 @@ class ChapStandard
     private $modifAttaque;
 
     /**
-     * @ORM\OneToMany(targetEntity=SortieStandard::class, mappedBy="chapStandard", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity=SortieStandard::class, mappedBy="chapStandard", orphanRemoval=true, cascade={"persist"})
      */
     private $sorties;
 

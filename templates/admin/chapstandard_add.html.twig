@@ -8,7 +8,7 @@
 </style>
 
 <div class="example-wrapper">
-    <h1>Nouveau chapitre standard</h1>
+    <h1>Editeur de chapitres standards</h1>
 
     {{ form_start(formAddChapStandard) }}
 
@@ -20,6 +20,20 @@
         {{ form_row(formAddChapStandard.modifAttaque) }}
         {{ form_row(formAddChapStandard.itemPrendre) }}
         {{ form_row(formAddChapStandard.itemPerdre) }}
+
+        <br>
+        Sorties :
+        <br><br>
+
+        <div id="listeSorties" data-prototype="{{ form_widget(formAddChapStandard.sorties.vars.prototype)| e('html_attr') }}">
+            {% for sortie in formAddChapStandard.sorties %}
+                <div class="card">
+                    {{ form_row(sortie) }}
+                </div>
+                <br>
+            {% endfor %}
+            <a id="addSortie" href="#" class="">Ajouter une sortie</a><br><br>
+        </div>
 
         {{ form_row(formAddChapStandard.submit) }}
 

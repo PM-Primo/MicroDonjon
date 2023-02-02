@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\Item;
 use App\Entity\Zone;
 use App\Entity\ChapStandard;
+use App\Form\SortieStandardType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -13,6 +14,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 
 class ChapStandardType extends AbstractType
 {
@@ -27,7 +29,17 @@ class ChapStandardType extends AbstractType
             ->add('modifAttaque', IntegerType::class, ["attr" => ["class" => "form-control"],'required'=> false])
             ->add('itemPrendre', EntityType::class, ['class' => Item::class, 'choice_label' => 'nomItem',"attr" => ["class" => "form-control"],'required'=> false])
             ->add('itemPerdre', EntityType::class, ['class' => Item::class, 'choice_label' => 'nomItem',"attr" => ["class" => "form-control"],'required'=> false])
-        
+
+            ->add('sorties', CollectionType::class, [
+                'entry_type' => SortieStandardType::class,
+                'entry_options' => [
+                    'label' => false,
+                ],
+                'by_reference' => false,
+                'allow_add' => true,
+                'allow_delete' => true
+            ])
+
             ->add('submit', SubmitType::class, ["attr" => ["class" => "button-valider"]])
         ;
     }

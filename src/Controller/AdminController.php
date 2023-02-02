@@ -324,6 +324,12 @@ class AdminController extends AbstractController
         return $this->redirectToRoute('app_home');
     }
 
-
+    /**
+     * @Route("/add/sortie/{id}", name="add_sortie")
+     */
+    public function addSortie(ManagerRegistry $doctrine, Chapitre $chapitre): Response
+    {
+        
+    }
 
 }
