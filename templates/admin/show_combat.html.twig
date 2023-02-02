@@ -19,7 +19,7 @@
         <br><br>
         Sorties disponibles : <br>
 
-        {% for sortie in sorties %}
+        {% for sortie in chapCombat.sorties %}
             [{{sortie.chapitre.id}}] : {{sortie.texteLien}}<br>
         {% endfor %}
 

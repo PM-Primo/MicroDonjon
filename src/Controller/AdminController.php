@@ -296,37 +296,28 @@ class AdminController extends AbstractController
         if($type == 'Standard'){
             $repositoryStandard = $doctrine->getRepository(ChapStandard::class);
             $chapStandard = $repositoryStandard->findOneBy(['chapitre' => $chapitre]);
-            $repositorySortieStandard = $doctrine->getRepository(SortieStandard::class);
-            $sorties = $repositorySortieStandard->findBy(['chapStandard' => $chapStandard]);
 
             return $this->render('admin/show_standard.html.twig', [
                 'chapitre' => $chapitre,
-                'chapStandard' => $chapStandard,
-                'sorties' => $sorties
+                'chapStandard' => $chapStandard
             ]);
         }
         elseif($type == 'Combat'){
             $repositoryCombat = $doctrine->getRepository(ChapCombat::class);
             $chapCombat = $repositoryCombat->findOneBy(['chapitre' => $chapitre]);
-            $repositorySortieCombat = $doctrine->getRepository(SortieCombat::class);
-            $sorties = $repositorySortieCombat->findBy(['chapCombat' => $chapCombat]);
 
             return $this->render('admin/show_combat.html.twig', [
                 'chapitre' => $chapitre,
-                'chapCombat' => $chapCombat,
-                'sorties' => $sorties
+                'chapCombat' => $chapCombat
             ]);        
         }
         elseif($type == 'Condition'){
             $repositoryCondition = $doctrine->getRepository(ChapCondition::class);
             $chapCondition = $repositoryCondition->findOneBy(['chapitre' => $chapitre]);
-            $repositorySortieCondition = $doctrine->getRepository(SortieCondition::class);
-            $sorties = $repositorySortieCondition->findBy(['chapCondition' => $chapCondition]);
 
             return $this->render('admin/show_condition.html.twig', [
                 'chapitre' => $chapitre,
-                'chapCondition' => $chapCondition,
-                'sorties' => $sorties
+                'chapCondition' => $chapCondition
             ]);   
         }
 
