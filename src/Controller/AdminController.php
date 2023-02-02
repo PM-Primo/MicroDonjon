@@ -49,20 +49,17 @@ class AdminController extends AbstractController
                 //On récupère toutes les sorties possibles et on fait un tableau avec le chapitre + ses sorties Et on array push ce tableau dans un grand tableau de tableaux avec tous les chapitres
                 $repositoryChapStandard = $doctrine->getRepository(ChapStandard::class);
                 $chapStandard = $repositoryChapStandard->findOneBy(['chapitre' => $chapitre]);
-                $repositorySortieStandard = $doctrine->getRepository(SortieStandard::class);
-                $sorties = $repositorySortieStandard->findBy(['chapStandard' => $chapStandard]);
+                $sorties = $chapStandard->getSorties();
             }
             elseif($chapitre->getTypePage() == "Combat"){
                 $repositoryChapCombat = $doctrine->getRepository(ChapCombat::class);
                 $chapCombat = $repositoryChapCombat->findOneBy(['chapitre' => $chapitre]);
-                $repositorySortieCombat = $doctrine->getRepository(SortieCombat::class);
-                $sorties = $repositorySortieCombat->findBy(['chapCombat' => $chapCombat]);
+                $sorties = $chapCombat->getSorties();
             }
             elseif($chapitre->getTypePage() == "Condition"){
                 $repositoryChapCondition = $doctrine->getRepository(ChapCondition::class);
                 $chapCondition = $repositoryChapCondition->findOneBy(['chapitre' => $chapitre]);
-                $repositorySortieCondition = $doctrine->getRepository(SortieCondition::class);
-                $sorties = $repositorySortieCondition->findBy(['chapCondition' => $chapCondition]);
+                $sorties = $chapCondition->getSorties();
             }
 
             array_push($tableauChapitre, $sorties);

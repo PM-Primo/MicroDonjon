@@ -39,20 +39,17 @@ class PathChecker
             if($type == 'Standard'){
                 $repositoryChapStandard = $this->doctrine->getRepository(ChapStandard::class);
                 $chapStandard = $repositoryChapStandard->findOneBy(['chapitre' => $chapEnCours]);
-                $repositorySortieStandard = $this->doctrine->getRepository(SortieStandard::class);
-                $sortiesAutorisees = $repositorySortieStandard->findBy(['chapStandard' => $chapStandard]);
+                $sortiesAutorisees = $chapStandard->getSorties();
             }
             elseif($type == 'Combat'){
                 $repositoryChapCombat = $this->doctrine->getRepository(ChapCombat::class);
                 $chapCombat = $repositoryChapCombat->findOneBy(['chapitre' => $chapEnCours]);
-                $repositorySortieCombat = $this->doctrine->getRepository(SortieCombat::class);
-                $sortiesAutorisees = $repositorySortieCombat->findBy(['chapCombat' => $chapCombat]);        
+                $sortiesAutorisees = $chapCombat->getSorties();       
             }
             elseif($type == 'Condition'){
                 $repositoryChapCondition = $this->doctrine->getRepository(ChapCondition::class);
                 $chapCondition = $repositoryChapCondition->findOneBy(['chapitre' => $chapEnCours]);
-                $repositorySortieCondition = $this->doctrine->getRepository(SortieCondition::class);
-                $sortiesAutorisees = $repositorySortieCondition->findBy(['chapCondition' => $chapCondition]);
+                $sortiesAutorisees = $chapCondition->getSorties();
             }
 
             $chapSorties = [];
