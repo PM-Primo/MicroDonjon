@@ -18,6 +18,20 @@
         {{ form_row(formAddChapCondition.zone) }}
         {{ form_row(formAddChapCondition.itemCondition) }}
 
+        <br>
+        Sorties :
+        <br><br>
+
+        <div id="listeSorties" data-prototype="{{ form_widget(formAddChapCondition.sorties.vars.prototype)| e('html_attr') }}">
+            {% for sortie in formAddChapCondition.sorties %}
+                <div class="card">
+                    {{ form_row(sortie) }}
+                </div>
+                <br>
+            {% endfor %}
+            <a id="addSortie" href="#" class="">Ajouter une sortie</a><br><br>
+        </div>
+
         {{ form_row(formAddChapCondition.submit) }}
 
     {{ form_end(formAddChapCondition) }}

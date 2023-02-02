@@ -30,7 +30,7 @@ class ChapCondition
     private $texteSiFaux;
 
     /**
-     * @ORM\OneToMany(targetEntity=SortieCondition::class, mappedBy="chapCondition", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity=SortieCondition::class, mappedBy="chapCondition", orphanRemoval=true, cascade={"persist"} )
      */
     private $sorties;
 
