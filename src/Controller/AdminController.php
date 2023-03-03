@@ -322,9 +322,9 @@ class AdminController extends AbstractController
     }
 
     /**
-     * @Route("/add/sortie/{id}", name="add_sortie")
+     * @Route("/delete/chapitre/{id}", name="delete")
      */
-    public function addSortie(ManagerRegistry $doctrine, Chapitre $chapitre): Response
+    public function delete(ManagerRegistry $doctrine, Chapitre $chapitre): Response
     {
         
     }

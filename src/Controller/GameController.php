@@ -327,35 +327,69 @@ class GameController extends AbstractController
         $totalJoueur = $lancersDes[0] + $lancersDes[1] + $this->getUser()->getAttaque();
         $totalMonstre = $lancersDes[2] + $lancersDes[3] + $combat->getMonstres()->getAttaqueMonstre();
 
+        $itemRepository = $doctrine->getRepository(Item::class);
 
-        if($totalJoueur>$totalMonstre){
-            if($lancersDes[0] + $lancersDes[1]>=11){
-                $texteCombat = "Coup Critique ! Vous infligez 3 dégâts à la créature";
-                $combat->setPVactuelsMonstre($combat->getPVactuelsMonstre() - 3);
-                $entityManager = $doctrine->getManager();
-                $entityManager->persist($combat);
-                $entityManager->flush();
+        $inventaire = $this->getUser()->getInventaire();
+        $bottes = $itemRepository->findOneBy(['id' => '14']);
+        $cape = $itemRepository->findOneBy(['id' => '15']);
+
+        if($totalJoueur>$totalMonstre){ //Le joueur inflige des dégâts à la créature
+            if($lancersDes[0] + $lancersDes[1]>=11){ // Ces dégâts sont critiques
+                if($inventaire->contains($bottes) && rand(1, 6) == 6 ){ //Ces dégâts sont amplifiés par les botts
+                    $texteCombat = "Les bottes de vivacité vous permettent d'infliger un second coup à la suite d'un coup critique ! Vous infligez 5 dégats à la créature";
+                    $combat->setPVactuelsMonstre($combat->getPVactuelsMonstre() - 5);
+                    $entityManager = $doctrine->getManager();
+                    $entityManager->persist($combat);
+                    $entityManager->flush();
+                }
+                else{ // Dégâts critiques non amplifiés par les bottes
+                    $texteCombat = "Coup Critique ! Vous infligez 3 dégâts à la créature";
+                    $combat->setPVactuelsMonstre($combat->getPVactuelsMonstre() - 3);
+                    $entityManager = $doctrine->getManager();
+                    $entityManager->persist($combat);
+                    $entityManager->flush();
+                }
             }
             else{                
-                $texteCombat = "Vous infligez 2 dégâts à la créature";
-                $combat->setPVactuelsMonstre($combat->getPVactuelsMonstre() - 2);
-                $entityManager = $doctrine->getManager();
-                $entityManager->persist($combat);
-                $entityManager->flush();
+                if($inventaire->contains($bottes) && rand(1, 6) == 6 ){ //Dégâts normaux amplifiés par les bottes
+                    $texteCombat = "Les bottes de vivacité vous permettent d'infliger deux coups  d'affilée ! Vous infligez 4 dégats à la créature";
+                    $combat->setPVactuelsMonstre($combat->getPVactuelsMonstre() - 4);
+                    $entityManager = $doctrine->getManager();
+                    $entityManager->persist($combat);
+                    $entityManager->flush();
+                }
+                else{ // Dégâts normaux
+                    $texteCombat = "Vous infligez 2 dégâts à la créature";
+                    $combat->setPVactuelsMonstre($combat->getPVactuelsMonstre() - 2);
+                    $entityManager = $doctrine->getManager();
+                    $entityManager->persist($combat);
+                    $entityManager->flush();
+                }
             }
         }
-        elseif($totalJoueur<$totalMonstre){
-            if($lancersDes[0] + $lancersDes[1] <= 3){
-                $texteCombat = "Blessure critique ! La créature vous inflige 3 dégâts";
-                $statsManager->changePV(-3);
+        elseif($totalJoueur<$totalMonstre){ //La créature inflige des dégâts au joueur
+            if($lancersDes[0] + $lancersDes[1] <= 3){ // Dégâts critiques
+                if($inventaire->contains($cape) && rand(1, 6) == 1 ){ // Dégâts critiques atténués par la capt
+                    $texteCombat = "Désorientée par la cape trompe-l'oeil, la créature ne vous inflige qu'un point de dégât";
+                    $statsManager->changePV(-1);   
+                }
+                else{ // Dégâts critiques non atténués
+                    $texteCombat = "Blessure critique ! La créature vous inflige 3 dégâts";
+                    $statsManager->changePV(-3);
+                }
             }
             else{
-                $texteCombat = "La créature vous inflige 2 dégâts";
-                $statsManager->changePV(-2);
+                if($inventaire->contains($cape) && rand(1, 6) == 1 ){ // Dégâts normaux annulés par l'attaque
+                    $texteCombat = "La créature est désorientée par la cape trompe-l'oeil, vous esquivez son attaque";
+                }
+                else{ // Dégâts normaux
+                    $texteCombat = "La créature vous inflige 2 dégâts";
+                    $statsManager->changePV(-2);
+                }
             }
         }
         else{
-            $texteCombat = "Vous et la créature esquivez mutuellement vos attaques";
+            $texteCombat = "La créature et vous esquivez mutuellement vos attaques";
         }
 
         return $this->render('game/combat.html.twig', [
