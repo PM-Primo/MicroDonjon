@@ -6,6 +6,7 @@
         <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
         {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
         {% block stylesheets %}
+            <link rel="stylesheet" href="{{asset('css/styles.css')}}">
             {{ encore_entry_link_tags('app') }}
         {% endblock %}
     </head>
@@ -24,28 +25,31 @@
             {% endif %}
         </nav>
         <main>
-            {% block body %}{% endblock %}
+            <div class="game__main-wrapper">
+                <div class="game__right-page">
+                    {% block body %}{% endblock %}
+                </div>
+            
+                {% if app.user %}
+                    <div class="game__left-page">
+                        PV : {{app.user.PVactuels}} / {{app.user.PVmax}}<br>
+                        Or : {{app.user.gold}}<br>
+                        Attaque : {{app.user.attaque}}<br>
+                    
+                        Inventaire : 
+                        {% for item in app.user.inventaire %}
+                            {{item}} / 
+                        {% endfor %}
+            
+                        <br><br>Progression : <br>
+                        {% for zone in app.user.visites %}
+                            {{zone}} / 
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
         </main>
-        
-        {% if app.user %}
-            {# Emplacement provisoire pour l'inventaire/stats #}
-            <br><br>
-            PV : {{app.user.PVactuels}} / {{app.user.PVmax}}<br>
-            Or : {{app.user.gold}}<br>
-            Attaque : {{app.user.attaque}}<br>
-        
-            Inventaire : 
-            {% for item in app.user.inventaire %}
-                {{item}} / 
-            {% endfor %}
 
-            {# Emplacement provisoire pour le stack progression #}
-            <br><br>Progression : <br>
-            {% for zone in app.user.visites %}
-                {{zone}} / 
-            {% endfor %}
-        {% endif %}
-    
         {% block javascripts %}
             <script
                 src="https://code.jquery.com/jquery-3.6.0.min.js"
