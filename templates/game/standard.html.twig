@@ -9,19 +9,24 @@
 
 <div class="game__right-page-content">
     
-    <h1>{{chapitre.zone}}</h1>
+    <div class="game__chapter-header">
+        <div class="game__chap-number">Chapitre {{ random(1,400)}}</div>
+        <h1>{{chapitre.zone}}</h1>
+    </div>
 
     <p>{{chapStandard.texteChapitre | raw}}</p>
 
     {% if app.user.PVactuels > 0 %}
-        <div class="game__choices">
+        <ul class="game__choices">
             {% for sortie in chapStandard.sorties %}
-                <a href="{{path("routing", {'id': sortie.chapitre.id})}}"  class="links__choice">{{sortie.texteLien}}</a><br><br>
+                <li><a href="{{path("routing", {'id': sortie.chapitre.id})}}"  class="links__choice">{{sortie.texteLien}}</a></li>
             {% endfor %}
-        </div>
+        </ul>
     {% else %}
-        Hélas, vos blessures risquent de mettre un terme à vos aventures. Votre vision se trouble.<br><br>
-        <a href="{{path("game_over")}}" class="links__choice">Vous vous sentez défaillir.</a>
+        Hélas, vos blessures risquent de mettre un terme à vos aventures. Votre vision se trouble.
+        <ul class="game__choices">
+            <li><a href="{{path("game_over")}}" class="links__choice">Vous vous sentez défaillir.</a></li>
+        </ul>
     {% endif %}
 
 </div>

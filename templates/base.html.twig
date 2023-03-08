@@ -24,11 +24,17 @@
                         Or : {{app.user.gold}}<br>
                         
                         Inventaire : 
+                        <div class="game__item-imgbox">
+                            <img src="{{asset("img/items/00_bourse.png")}}" alt="Bourse" class="game__item-image game__weapon">
+                            <div class="game__info-item">
+                                {{app.user.gold}}
+                            </div>
+                        </div>
                         {% for item in app.user.inventaire %}
                             <div class="game__item-imgbox">
                                 {% if item.id == 1 or item.id == 10 %}
                                     <img src="{{asset(item.imageItem)}}" alt="{{item}}" class="game__item-image game__weapon">
-                                    <div class="game__info-weapon">
+                                    <div class="game__info-item">
                                         {{app.user.attaque}}
                                     </div>
                                 {% else %}

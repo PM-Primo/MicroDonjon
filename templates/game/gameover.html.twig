@@ -16,8 +16,9 @@
             Vous vous en voulez de n'avoir pas su délivrer les terres d'Ängerjalg de la malédiction qui les étreint.<br>
             Vous vous allongez sur le sol froid et poussiéreux du donjon et attendez votre heure.<br>
         </p>
-        
-        <a href="{{path("reset")}}" class="links__choice">Mais peut-être un.e autre aventurier.ère reprendra votre flambeau ?</a>
+        <ul class="game__choices">
+            <li><a href="{{path("reset")}}" class="links__choice">Mais peut-être un.e autre aventurier.ère reprendra votre flambeau ?</a></li>
+        </ul>
     {% else %}
         <h1>- Game Over ? {{boisson}} -</h1>
 
@@ -25,8 +26,10 @@
             Vous sentez instantanément la vitalité regagner votre corps.
             Vous êtes prêt.e à repartir au combat !
         </p>
-        
-        <a href="{{path("routing", {'id': app.user.chapitreEnCours})}}" class="links__choice">C'est reparti !</a><br>    
+
+        <ul class="game__choices">
+            <li><a href="{{path("routing", {'id': app.user.chapitreEnCours})}}" class="links__choice">C'est reparti !</a></li>
+        </ul>
     {% endif %}
 
 </div>

@@ -9,14 +9,18 @@
 
 <div class="game__right-page-content">
 
-    <h1>- Fonds insuffisants -</h1>
+    <div class="game__chapter-header">
+        <div class="game__chap-number">Chapitre {{ random(1,400)}}</div>
+        <h1>{{chapitre.zone}}</h1>
+    </div>
 
     <p>Vous ouvrez votre bourse et réalisez avec malheur que vos finances ne sont pas à la hauteur de vos ambitions.<br>
     Il vous manque, hélas, {{manque}} pièces d'or <br>
     Vous vous ravisez et choisissez une option moins onéreuse.</p>
     <br>
-    <a href="{{path("routing", {'id': app.user.chapitreEnCours})}}" class="links__choice">Choisir une option moins coûteuse</a>
-
+    <ul class="game__choices">
+        <li><a href="{{path("routing", {'id': app.user.chapitreEnCours})}}" class="links__choice">Choisir une option moins coûteuse</a></li>
+    </ul>
 
 </div>
 {% endblock %}

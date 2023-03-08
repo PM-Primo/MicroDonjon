@@ -8,7 +8,10 @@
 </style>
 
 <div class="game__right-page-content">
-    <h1>- {{chapitre.zone}} -</h1>
+    <div class="game__chapter-header">
+        <div class="game__chap-number">Chapitre {{ random(1,400)}}</div>
+        <h1>{{chapitre.zone}}</h1>
+    </div>
 
     <p>{{chapCombat.texteInitial | raw}}</p>
 
@@ -32,16 +35,19 @@
 
 
     {% if app.user.PVactuels <= 0 %}
-        Le dernier coup porté par la créature vous fait vaciller. Votre vision se trouble.<br><br>
-        <a href="{{path("game_over")}}">Vous vous sentez défaillir.</a><br><br>
+        Le dernier coup porté par la créature vous fait vaciller. Votre vision se trouble.
+        <ul class="game__choices">
+            <li><a href="{{path("game_over")}}">Vous vous sentez défaillir.</a></li>
+        </ul>
     {% endif %}
 
     {% if combat.PVactuelsMonstre <= 0 %}
         <p>{{chapCombat.texteVictoire | raw}}</p>
-
-        {% for sortie in chapCombat.sorties %}
-            <a href="{{path("routing", {'id': sortie.chapitre.id})}}" class="links__choice">{{sortie.texteLien}}</a><br><br>
-        {% endfor %}    
+        <ul class="game__choices">
+            {% for sortie in chapCombat.sorties %}
+                <li><a href="{{path("routing", {'id': sortie.chapitre.id})}}" class="links__choice">{{sortie.texteLien}}</a></li>
+            {% endfor %} 
+        </ul>  
     {% endif %}
 
 </div>

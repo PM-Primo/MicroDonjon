@@ -8,24 +8,31 @@
 </style>
 
 <div class="game__right-page-content">
-    <h1>- {{chapitre.zone}} -</h1>
+    <div class="game__chapter-header">
+        <div class="game__chap-number">Chapitre {{ random(1,400)}}</div>
+        <h1>{{chapitre.zone}}</h1>
+    </div>
 
     {% if condition %}
         <p>{{chapCondition.texteSiVrai | raw}}</p>
 
         {% for sortie in chapCondition.sorties %}
-            {% if sortie.conditionVrai %}
-                <a href="{{path("routing", {'id': sortie.chapitre.id})}}" class="links__choice">{{sortie.texteLien}}</a><br><br>
-            {% endif %}
+            <ul class="game__choices">
+                {% if sortie.conditionVrai %}
+                    <li><a href="{{path("routing", {'id': sortie.chapitre.id})}}" class="links__choice">{{sortie.texteLien}}</a></li>
+                {% endif %}
+            </ul>
         {% endfor %}
 
     {% else %}
         <p>{{chapCondition.texteSiFaux | raw}}</p>
         
         {% for sortie in chapCondition.sorties %}
-            {% if not sortie.conditionVrai %}
-                <a href="{{path("routing", {'id': sortie.chapitre.id})}}" class="links__choice">{{sortie.texteLien}}</a><br><br>
-            {% endif %}
+            <ul class="game__choices">
+                {% if not sortie.conditionVrai %}
+                    <li><a href="{{path("routing", {'id': sortie.chapitre.id})}}" class="links__choice">{{sortie.texteLien}}</a></li>
+                {% endif %}
+            </ul>
         {% endfor %}   
     {% endif %}
     
