@@ -25,7 +25,7 @@
                         
                         Inventaire : 
                         {% for item in app.user.inventaire %}
-                        {{item}} / 
+                            <img src="{{asset(item.imageItem)}}" alt="{{item}}" class="game__item-image">
                         {% endfor %}
                         
                         <br><br>Progression : <br>

@@ -121,3 +121,8 @@ a{
 .links__choice:hover{
     color:var(--light-green)
 }
+
+.game__item-image{   
+    height: 100px;
+    width: 100px;
+}
