@@ -256,7 +256,7 @@ class GameController extends AbstractController
         $user->setPVmax(100);
         $user->setGold(0);
         $user->setAttaque(10);
-        $user->setChapitreEnCours(null);       
+        $user->setChapitreEnCours(null);   
 
         foreach($user->getInventaire() as $item){
             $user->removeInventaire($item);
@@ -270,6 +270,12 @@ class GameController extends AbstractController
         foreach($user->getCombats() as $combat){
             $entityManager->remove($combat, $flush=true);
         }
+
+        $repository = $doctrine->getRepository(Item::class);
+        $dague = $repository->findOneBy(['id' => '1']);
+        $armure_cuir = $repository->findOneBy(['id' => '2']);
+        $user->addInventaire($dague);
+        $user->addInventaire($armure_cuir);
         
         $entityManager->persist($user);
         $entityManager->flush();

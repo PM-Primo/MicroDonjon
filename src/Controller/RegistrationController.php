@@ -28,7 +28,7 @@ class RegistrationController extends AbstractController
     /**
      * @Route("/register", name="app_register")
      */
-    public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager): Response
+    public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager, ManagerRegistry $doctrine): Response
     {
         $user = new User();
         $form = $this->createForm(RegistrationFormType::class, $user);
@@ -46,6 +46,13 @@ class RegistrationController extends AbstractController
             $user->setPVactuels(100);
             $user->setGold(0);
             $user->setAttaque(10);
+
+            $repository = $doctrine->getRepository(Item::class);
+            $dague = $repository->findOneBy(['id' => '1']);
+            $armure_cuir = $repository->findOneBy(['id' => '2']);
+            $user->addInventaire($dague);
+            $user->addInventaire($armure_cuir);
+
             $entityManager->persist($user);
             $entityManager->flush();
 
