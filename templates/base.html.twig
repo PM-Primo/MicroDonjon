@@ -19,10 +19,7 @@
                     
                     <h1>MicroDonjon</h1>
 
-                    {% if app.user %}
-                        PV : {{app.user.PVactuels}} / {{app.user.PVmax}}<br>
-                        
-                        Inventaire : 
+                    {% if app.user %}                        
                         <div class="game__item-imgbox">
                             <img src="{{asset("img/items/00_bourse.png")}}" alt="Bourse" class="game__item-image game__weapon">
                             <div class="game__info-item">
@@ -80,8 +77,8 @@
                                 {% endif %}                            
                             {% endif %}
                         {% endfor %}
-
                     </div>
+                    <span class="game_hp-counter"><i class="fa-regular fa-heart"></i>  :  {{app.user.PVactuels}}  /  {{app.user.PVmax}}</span>
                     {% block body %}{% endblock %}
                 </div>
 
