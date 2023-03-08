@@ -11,43 +11,50 @@
         {% endblock %}
     </head>
     <body>
-        <nav>
-            <h1>MicroDonjon</h1>
-            <a href="{{path("app_home")}}" class="menu__link">Home</a>
-            {% if app.user %}
-            {% if is_granted('ROLE_ADMIN') %}
-                <a href="{{path("admin_editor")}}" class="menu__link">Éditeur</a>
-            {% endif %}
-                <a href="{{path("app_logout")}}" class="menu__link">Se déconnecter</a>
-            {% else %}
-                <a href="{{path("app_login")}}" class="menu__link">Se connecter</a>
-                <a href="{{path("app_register")}}" class="menu__link">S'inscrire</a>
-            {% endif %}
-        </nav>
         <main>
             <div class="game__main-wrapper">
-                <div class="game__right-page">
-                    {% block body %}{% endblock %}
-                </div>
-            
-                {% if app.user %}
-                    <div class="game__left-page">
+                
+                <div class="game__left-page">
+                    
+                    <h1>MicroDonjon</h1>
+
+                    {% if app.user %}
                         PV : {{app.user.PVactuels}} / {{app.user.PVmax}}<br>
                         Or : {{app.user.gold}}<br>
                         Attaque : {{app.user.attaque}}<br>
-                    
+                        
                         Inventaire : 
                         {% for item in app.user.inventaire %}
-                            {{item}} / 
+                        {{item}} / 
                         {% endfor %}
-            
+                        
                         <br><br>Progression : <br>
                         {% for zone in app.user.visites %}
-                            {{zone}} / 
+                        {{zone}} / 
                         {% endfor %}
-                    </div>
-                {% endif %}
+                    {% endif %}
+
+                    <nav>
+                        <a href="{{path("app_home")}}" class="menu__link">Home</a>
+                        {% if app.user %}
+                        {% if is_granted('ROLE_ADMIN') %}
+                            <a href="{{path("admin_editor")}}" class="menu__link">Éditeur</a>
+                        {% endif %}
+                            <a href="{{path("app_logout")}}" class="menu__link">Se déconnecter</a>
+                        {% else %}
+                            <a href="{{path("app_login")}}" class="menu__link">Se connecter</a>
+                            <a href="{{path("app_register")}}" class="menu__link">S'inscrire</a>
+                        {% endif %}
+                    </nav>
+
+                </div>
+                
+                <div class="game__right-page">
+                    {% block body %}{% endblock %}
+                </div>
+
             </div>
+
         </main>
 
         {% block javascripts %}

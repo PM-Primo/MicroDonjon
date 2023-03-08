@@ -7,7 +7,7 @@
 
 </style>
 
-<div class="example-wrapper">
+<div class="game__right-page-content">
 
     {% if not boire %}
         <h1>- Game Over -</h1>
@@ -17,7 +17,7 @@
             Vous vous allongez sur le sol froid et poussiéreux du donjon et attendez votre heure.<br>
         </p>
         
-        <a href="{{path("reset")}}">Mais peut-être un.e autre aventurier.ère reprendra votre flambeau ?</a>
+        <a href="{{path("reset")}}" class="links__choice">Mais peut-être un.e autre aventurier.ère reprendra votre flambeau ?</a>
     {% else %}
         <h1>- Game Over ? {{boisson}} -</h1>
 
@@ -26,7 +26,7 @@
             Vous êtes prêt.e à repartir au combat !
         </p>
         
-        <a href="{{path("routing", {'id': app.user.chapitreEnCours})}}">C'est reparti !</a><br>    
+        <a href="{{path("routing", {'id': app.user.chapitreEnCours})}}" class="links__choice">C'est reparti !</a><br>    
     {% endif %}
 
 </div>
