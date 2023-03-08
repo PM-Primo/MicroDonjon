@@ -23,9 +23,9 @@
     /*========== Font and typography ==========*/
     --body-font: "Spectral", serif;
     --title-font: "Barabbas", sans-serif;
-    --biggest-font-size: 2.25rem;
-    --h1-font-size: 1.5rem;
-    --h2-font-size: 1.25rem;
+    --biggest-font-size: 4rem;
+    --h1-font-size: 3rem;
+    --h2-font-size: 2rem;
     --normal-font-size: .938rem;
     --small-font-size: .813rem;
     --smaller-font-size: .75rem;
@@ -53,5 +53,71 @@
 }
 
 html {
-    scroll-behavior: smooth;
+    height: 100%;
+}
+
+body {
+    font-family: var(--body-font);
+    font-size: var(--normal-font-size);
+    color: black;
+    height: 100%;
+    /* transition: background 0.4s; for dark mode animation */
+}
+
+main{
+    height:100%
+}
+
+h1, h2, h3 {
+    color: black;
+    text-align: center;
+    font-family: var(--title-font);
+    /* font-weight: var(--font-bold); */
+}
+
+h1{
+    font-size: var(--h1-font-size)
+}
+
+a{
+    text-decoration: none;
+}
+
+/*==============   GAME BASE    ==================*/
+
+
+.game__main-wrapper{
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    height: 100%;
+    /* height: 100dvh; */
+}
+
+.game__left-page{
+    width: 50%;
+    background-color: var(--dark-brown);
+}
+
+.game__right-page{
+    width: 50%;
+    background-color: var(--beige);
+    overflow-y: scroll;
+    padding: 1.8rem;
+}
+
+.game__right-page-content{   
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    /* align-items: center ; */
+}
+
+.links__choice{
+    color: var(--dark-green);
+}
+
+.links__choice:hover{
+    color:var(--light-green)
 }
