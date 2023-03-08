@@ -15,26 +15,20 @@
 
     {% if condition %}
         <p>{{chapCondition.texteSiVrai | raw}}</p>
-
-        {% for sortie in chapCondition.sorties %}
-            <ul class="game__choices">
-                {% if sortie.conditionVrai %}
-                    <li><a href="{{path("routing", {'id': sortie.chapitre.id})}}" class="links__choice">{{sortie.texteLien}}</a></li>
-                {% endif %}
-            </ul>
-        {% endfor %}
-
     {% else %}
         <p>{{chapCondition.texteSiFaux | raw}}</p>
-        
-        {% for sortie in chapCondition.sorties %}
-            <ul class="game__choices">
-                {% if not sortie.conditionVrai %}
-                    <li><a href="{{path("routing", {'id': sortie.chapitre.id})}}" class="links__choice">{{sortie.texteLien}}</a></li>
-                {% endif %}
-            </ul>
-        {% endfor %}   
+          
     {% endif %}
+
+    <ul class="game__choices">
+        {% for sortie in chapCondition.sorties %}
+            {% if (sortie.conditionVrai) and condition %}
+                <li><a href="{{path("routing", {'id': sortie.chapitre.id})}}" class="links__choice">{{sortie.texteLien}}</a></li>
+            {% elseif (not sortie.conditionVrai) and (not condition) %}
+                <li><a href="{{path("routing", {'id': sortie.chapitre.id})}}" class="links__choice">{{sortie.texteLien}}</a></li>
+            {% endif %}
+        {% endfor %}
+    </ul>
     
     
 </div>
