@@ -16,10 +16,12 @@
 
     /*========== Colors ==========*/
     --dark-brown: #8F736B;
-    --light-brown: #DBC2BA;
+    --light-brown: #e8d4ce;
     --beige: #FFF5F2;
     --dark-green: #5D8F80;
     --light-green: #BADBD2;
+    --light-red: rgb(255, 144, 144);
+    --dark-red: rgb(255, 103, 103);
 
 
     /*========== Font and typography ==========*/
@@ -111,11 +113,13 @@ ul{
     width: 50%;
     background-color: var(--beige);
     overflow-y: auto;
+    display: flex;
+    flex-direction: column;
 }
 
 .game__right-page-content{  
-    padding: 1.8rem 4rem 1.8rem 4rem; 
-    height: 80%;
+    padding: 5% 12% 5% 12%; 
+    flex-grow: 1;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -132,10 +136,29 @@ ul{
 
 .links__choice{
     color: var(--dark-green);
+    position: relative;
+    line-height: 185%;
 }
 
-.links__choice:hover{
+/* .links__choice:hover{
     color:var(--light-green)
+} */
+
+.links__choice::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: var(--dark_green);
+    transition: transform 0.4s;
+    transform-origin: top left;
+}
+
+.links__choice:hover::after {
+    transform: scaleX(1);
 }
 
 .game__item-imgbox{   
@@ -196,11 +219,11 @@ ul{
 }
 
 .game__hp-odd{
-    background-color: rgb(255, 144, 144);
+    background-color: var(--light-red);
 }
 
 .game__hp-even{
-    background-color: rgb(255, 103, 103);
+    background-color: var(--dark-red);
 }
 
 .game_hp-counter{
@@ -212,5 +235,57 @@ ul{
 }
 
 .fa-heart{
-    color: rgb(255, 103, 103);
+    color:var(--dark-red);
+}
+
+.game__getItem{
+    background-color: var(--light-brown);
+    /* border: 2px solid var(--dark-brown); */
+    border-radius: 1.25rem;
+    padding: 2rem ;
+    width: max-content;
+    align-self: center ;
+    font-family: var(--title-font);
+    font-size: var(--h2-font-size);
+    color: var(--dark-brown);
+}
+
+.game__getItem-item{
+    text-transform: capitalize;
+    text-decoration: underline;
+}
+
+.navbar{
+    position: absolute;
+    top: 1.5rem;
+    left: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: .35;
+}
+
+.menu__link{
+    color:var(--light-brown);
+    font-family: var(--chapter-font);
+    text-transform: uppercase;
+    font-weight: 500;
+    position:relative;
+    width: max-content;
+}
+
+.menu__link::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: var(--light-brown);
+    transition: transform 0.4s;
+    transform-origin: top left;
+}
+
+.menu__link:hover::after {
+    transform: scaleX(1);
 }
