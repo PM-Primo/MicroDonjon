@@ -135,24 +135,21 @@ ul{
 }
 
 .links__choice{
-    color: var(--dark-green);
+    color: var(--dark-brown);
     position: relative;
     line-height: 185%;
 }
 
-/* .links__choice:hover{
-    color:var(--light-green)
-} */
 
 .links__choice::after {
     content: '';
     position: absolute;
     width: 100%;
     transform: scaleX(0);
-    height: 2px;
+    height: 1px;
     bottom: 0;
     left: 0;
-    background-color: var(--dark_green);
+    background-color: var(--dark-brown);
     transition: transform 0.4s;
     transform-origin: top left;
 }
