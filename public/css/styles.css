@@ -92,7 +92,8 @@ ul{
     list-style-type: none
 }
 
-/*==============   GAME BASE    ==================*/
+/*==============   MAIN WRAPPERS    ==================*/
+
 
 
 .game__main-wrapper{
@@ -106,7 +107,7 @@ ul{
 .game__left-page{
     width: 50%;
     background-color: var(--dark-brown);
-    padding: 1.8rem;
+    padding: 1.75% 4% 1.8rem 4%;
 }
 
 .game__right-page{
@@ -126,6 +127,8 @@ ul{
     /* align-items: center ; */
 }
 
+/* ======== CHAPTER N° ============ */
+
 .game__chap-number{
     font-family: var(--chapter-font);
     text-transform: uppercase;
@@ -133,6 +136,8 @@ ul{
     text-align: center;
 
 }
+
+/* ========== CHOICE LINKS ============= */
 
 .links__choice{
     color: var(--dark-brown);
@@ -158,10 +163,20 @@ ul{
     transform: scaleX(1);
 }
 
+/* =========== INVENTORY ============== */
+
+.game__inventory-grid{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width : 100%;
+    gap: 15px 4%;
+    padding-top: 2rem;
+}
+
 .game__item-imgbox{   
-    height: 100px;
-    width: 100px;
-    overflow: hidden;
+    width: 22%;
+    /* overflow: hidden; */
     position: relative;
 }
 
@@ -169,14 +184,14 @@ ul{
     width: 100% ;
 }
 
-.game__weapon{
+/* .game__weapon{
     transition: 400ms cubic-bezier(0.445, 0.05, 0.55, 0.95);
-}
+} */
 
-.game__item-imgbox:hover .game__weapon{
+/* .game__item-imgbox:hover .game__weapon{
     opacity: 40%;
-}
-
+} */
+/* 
 .game__info-item{
     position: absolute;
     top: 0;
@@ -193,14 +208,31 @@ ul{
     align-items: center;
     transform: translateX(-120%);
     transition: opacity.4s, visibility .4s, transform .6s cubic-bezier(0.075, 0.82, 0.165, 1);
-}
+} */
 
 .game__item-imgbox:hover .game__info-item{
     visibility: visible;
     opacity: 1;
     transform: translateX(0);
-
 }
+
+.game__macaron{
+    position:absolute;
+    top: -10%;
+    right: -10%;
+    width: 40%;
+    height: 40%;
+    background-color: var(--light-brown);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--title-font);
+    font-size: 150%;
+    border-radius: 100%;
+    color: black;
+}
+
+/* =========== HP BAR ============== */
 
 .game__hp-bar{
     display: flex;
@@ -234,6 +266,8 @@ ul{
 .fa-heart{
     color:var(--dark-red);
 }
+
+/* =================== BOXES ================== */
 
 .game__box{
     border-radius: 1.25rem;
@@ -274,6 +308,8 @@ ul{
     color: rgb(54, 54, 54);   
 }
 
+
+/* =========== NAVBAR ================== */
 
 .navbar{
     position: absolute;

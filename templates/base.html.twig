@@ -33,9 +33,13 @@
                     <h1>MicroDonjon</h1>
 
                     {% if app.user %}                        
+                    <div class="game__inventory-grid">
                         <div class="game__item-imgbox">
                             <img src="{{asset("img/items/00_bourse.png")}}" alt="Bourse" class="game__item-image game__weapon">
-                            <div class="game__info-item">
+                            {# <div class="game__info-item">
+                                {{app.user.gold}}
+                            </div> #}
+                            <div class="game__macaron">
                                 {{app.user.gold}}
                             </div>
                         </div>
@@ -43,7 +47,10 @@
                             <div class="game__item-imgbox">
                                 {% if item.id == 1 or item.id == 10 %}
                                     <img src="{{asset(item.imageItem)}}" alt="{{item}}" class="game__item-image game__weapon">
-                                    <div class="game__info-item">
+                                    {# <div class="game__info-item">
+                                        {{app.user.attaque}}
+                                    </div> #}
+                                    <div class="game__macaron">
                                         {{app.user.attaque}}
                                     </div>
                                 {% else %}
@@ -51,6 +58,7 @@
                                 {% endif %}
                             </div>
                         {% endfor %}
+                    </div>
                         
                         <br><br>Progression : <br>
                         {% for zone in app.user.visites %}
