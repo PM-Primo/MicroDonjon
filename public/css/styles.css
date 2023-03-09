@@ -287,6 +287,17 @@ ul{
     color: var(--dark-green);   
 }
 
+.game__getAttack{
+    background: linear-gradient(45deg, rgba(255,181,181,1) 0%, rgba(255,212,111,1) 20%, rgba(193,255,104,1) 40%, rgba(96,240,231,1) 60%, rgba(133,136,225,1) 80%, rgba(171,150,178,1) 100%);
+    border-radius: 1.25rem;
+    padding: 2rem ;
+    width: max-content;
+    align-self: center ;
+    font-family: var(--title-font);
+    font-size: var(--h2-font-size);
+    color: rgb(54, 54, 54);   
+}
+
 
 .navbar{
     position: absolute;
