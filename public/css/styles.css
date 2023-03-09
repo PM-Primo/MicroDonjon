@@ -265,6 +265,28 @@ ul{
     color: black;   
 }
 
+.game__loseHP{
+    background-color: var(--light-red);
+    border-radius: 1.25rem;
+    padding: 2rem ;
+    width: max-content;
+    align-self: center ;
+    font-family: var(--title-font);
+    font-size: var(--h2-font-size);
+    color: rgb(168, 0, 0);   
+}
+
+.game__getHP{
+    background-color: var(--light-green);
+    border-radius: 1.25rem;
+    padding: 2rem ;
+    width: max-content;
+    align-self: center ;
+    font-family: var(--title-font);
+    font-size: var(--h2-font-size);
+    color: var(--dark-green);   
+}
+
 
 .navbar{
     position: absolute;
