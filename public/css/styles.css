@@ -240,7 +240,6 @@ ul{
 
 .game__getItem{
     background-color: var(--light-brown);
-    /* border: 2px solid var(--dark-brown); */
     border-radius: 1.25rem;
     padding: 2rem ;
     width: max-content;
@@ -254,6 +253,18 @@ ul{
     text-transform: capitalize;
     text-decoration: underline;
 }
+
+.game__getGold{
+    background: linear-gradient(45deg, rgba(255,233,181,1) 15%, rgba(255,212,111,1) 54%, rgba(255,175,61,1) 100%);
+    border-radius: 1.25rem;
+    padding: 2rem ;
+    width: max-content;
+    align-self: center ;
+    font-family: var(--title-font);
+    font-size: var(--h2-font-size);
+    color: black;   
+}
+
 
 .navbar{
     position: absolute;
