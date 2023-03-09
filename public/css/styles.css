@@ -110,7 +110,7 @@ ul{
 .game__right-page{
     width: 50%;
     background-color: var(--beige);
-    overflow-y: scroll;
+    overflow-y: auto;
 }
 
 .game__right-page-content{  
