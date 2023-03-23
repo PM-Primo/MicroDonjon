@@ -176,7 +176,7 @@ ul{
 .game__progession_box{
     display: flex;
     flex-direction: column;
-    width: 25%;
+    width: 30%;
     height: 100%;
 }
 
@@ -205,7 +205,7 @@ ul{
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    width : 75%;
+    width : 70%;
     gap: 15px 3%;
     margin-left: 2rem;
     align-content: flex-start;
