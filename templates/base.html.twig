@@ -32,38 +32,51 @@
                     
                     <h1>MicroDonjon</h1>
 
-                    {% if app.user %}                        
-                    <div class="game__inventory-grid">
-                        <div class="game__item-imgbox">
-                            <img src="{{asset("img/items/00_bourse.png")}}" alt="Bourse" class="game__item-image game__weapon">
-                            {# <div class="game__info-item">
-                                {{app.user.gold}}
-                            </div> #}
-                            <div class="game__macaron">
-                                {{app.user.gold}}
-                            </div>
-                        </div>
-                        {% for item in app.user.inventaire %}
-                            <div class="game__item-imgbox">
-                                {% if item.id == 1 or item.id == 10 %}
-                                    <img src="{{asset(item.imageItem)}}" alt="{{item}}" class="game__item-image game__weapon">
-                                    {# <div class="game__info-item">
-                                        {{app.user.attaque}}
-                                    </div> #}
-                                    <div class="game__macaron">
-                                        {{app.user.attaque}}
+                    {% if app.user %}
+                    <div class="game__left-page-content">
+                        <div class="game__progession_box">
+                            {% set counter = 1 %}
+                            {% for zone in app.user.visites %}
+                                {% if counter is odd %}                                
+                                    <div class="game__zone game__zone-odd">
+                                        {{zone}}
                                     </div>
                                 {% else %}
-                                    <img src="{{asset(item.imageItem)}}" alt="{{item}}" class="game__item-image">
+                                    <div class="game__zone game__zone-even">
+                                        {{zone}}
+                                    </div>
                                 {% endif %}
+                                {% set counter = counter + 1 %}
+                            {% endfor %}
+                        </div>
+                        <div class="game__inventory-grid">
+                            <div class="game__item-imgbox">
+                                <img src="{{asset("img/items/00_bourse.png")}}" alt="Bourse" class="game__item-image game__weapon">
+                                {# <div class="game__info-item">
+                                    {{app.user.gold}}
+                                </div> #}
+                                <div class="game__macaron">
+                                    {{app.user.gold}}
+                                </div>
                             </div>
-                        {% endfor %}
+                            {% for item in app.user.inventaire %}
+                                <div class="game__item-imgbox">
+                                    {% if item.id == 1 or item.id == 10 %}
+                                        <img src="{{asset(item.imageItem)}}" alt="{{item}}" class="game__item-image game__weapon">
+                                        {# <div class="game__info-item">
+                                            {{app.user.attaque}}
+                                        </div> #}
+                                        <div class="game__macaron">
+                                            {{app.user.attaque}}
+                                        </div>
+                                    {% else %}
+                                        <img src="{{asset(item.imageItem)}}" alt="{{item}}" class="game__item-image">
+                                    {% endif %}
+                                </div>
+                            {% endfor %}
+                        </div>    
                     </div>
-                        
-                        <br><br>Progression : <br>
-                        {% for zone in app.user.visites %}
-                        {{zone}} / 
-                        {% endfor %}
+                    
                     {% endif %}
 
                 </div>

@@ -107,7 +107,15 @@ ul{
 .game__left-page{
     width: 50%;
     background-color: var(--dark-brown);
-    padding: 1.75% 4% 1.8rem 4%;
+    padding: 1.75% 2% 1.8rem 0px;
+}
+
+.game__left-page-content{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 90%;
+    padding-top: 3%;
 }
 
 .game__right-page{
@@ -163,19 +171,48 @@ ul{
     transform: scaleX(1);
 }
 
+/* =========== PROGRESSION STACK ============== */
+
+.game__progession_box{
+    display: flex;
+    flex-direction: column;
+    width: 25%;
+    height: 100%;
+}
+
+.game__zone{
+    width: 100%;
+    height: 5%;
+    color: var(--dark-brown);
+    text-align: center;
+    font-family: var(--title-font);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.game__zone-odd{
+    background-color: var(--light-brown);
+}
+
+.game__zone-even{
+    background-color: var(--beige);
+}
+
 /* =========== INVENTORY ============== */
 
 .game__inventory-grid{
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    width : 100%;
-    gap: 15px 4%;
-    padding-top: 2rem;
+    width : 75%;
+    gap: 15px 3%;
+    margin-left: 2rem;
 }
 
 .game__item-imgbox{   
-    width: 22%;
+    width: 31%;
+    height: fit-content;
     /* overflow: hidden; */
     position: relative;
 }
@@ -218,10 +255,10 @@ ul{
 
 .game__macaron{
     position:absolute;
-    top: -10%;
-    right: -10%;
-    width: 40%;
-    height: 40%;
+    top: -5%;
+    right: -5%;
+    width: 33%;
+    height: 33%;
     background-color: var(--light-brown);
     display: flex;
     align-items: center;

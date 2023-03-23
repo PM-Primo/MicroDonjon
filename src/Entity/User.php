@@ -77,6 +77,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     /**
      * @ORM\ManyToMany(targetEntity=Zone::class, inversedBy="visiteurs")
+     * @ORM\OrderBy({"orderZone" = "ASC"})
      */
     private $visites;
 

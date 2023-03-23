@@ -44,6 +44,11 @@ class Zone
      */
     private $chapitres;
 
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $orderZone;
+
     public function __construct()
     {
         $this->visiteurs = new ArrayCollection();
@@ -151,6 +156,18 @@ class Zone
     public function __toString(): string
     {
         return $this->nomZone;
+    }
+
+    public function getOrderZone(): ?int
+    {
+        return $this->orderZone;
+    }
+
+    public function setOrderZone(?int $orderZone): self
+    {
+        $this->orderZone = $orderZone;
+
+        return $this;
     }
 
 }
