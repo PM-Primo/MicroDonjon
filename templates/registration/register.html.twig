@@ -1,13 +1,13 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Register{% endblock %}
+{% block title %}MicroDonjon - S'inscrire{% endblock %}
 
 {% block body %}
     {% for flash_error in app.flashes('verify_email_error') %}
         <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
     {% endfor %}
 
-    <h1>S'inscrire</h1>
+    <h2>S'inscrire</h2>
 
     {{ form_start(registrationForm) }}
         {{ form_row(registrationForm.email) }}

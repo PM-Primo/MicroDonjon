@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}MicroDonjon{% endblock %}
+{% block title %}MicroDonjon - {{chapitre.zone}}{% endblock %}
 
 {% block body %}
 <style>
@@ -10,7 +10,7 @@
 <div class="game__right-page-content">
     <div class="game__chapter-header">
         <div class="game__chap-number">Chapitre {{ random(1,400)}}</div>
-        <h1>{{chapitre.zone}}</h1>
+        <h2>{{chapitre.zone}}</h2>
     </div>
 
     {% if condition %}

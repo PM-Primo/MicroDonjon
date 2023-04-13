@@ -2,7 +2,10 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}MicroDonjon{% endblock %}</title>
+        <meta name="description" content="MicroDonjon est un jeu textuel s'inspirant librement et avec nostalgie des 
+        Livres Dont Vous Êtes Le Héros des années 80/90 dans un univers d'Heroïc Fantasy">
+        <title>{% block title %}{% endblock %}</title>
+        {% block noindex %}{% endblock noindex %}
         <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
         {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
         {% block stylesheets %}

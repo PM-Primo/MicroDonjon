@@ -1,6 +1,7 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}MicroDonjon{% endblock %}
+{% block title %}MicroDonjon - {{chapitre.zone}}{% endblock %}
+{% block noindex %}<meta name="robots" content="noindex">{% endblock %}
 
 {% block body %}
 <style>
@@ -11,7 +12,7 @@
 
     <div class="game__chapter-header">
         <div class="game__chap-number">Chapitre {{ random(1,400)}}</div>
-        <h1>{{chapitre.zone}}</h1>
+        <h2>{{chapitre.zone}}</h2>
     </div>
 
     <p>Vous ouvrez votre bourse et réalisez avec malheur que vos finances ne sont pas à la hauteur de vos ambitions.<br>

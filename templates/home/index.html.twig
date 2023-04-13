@@ -8,8 +8,13 @@
 </style>
 
 <div class="example-wrapper">
-    <h1>Bienvenue sur MicroDonjon</h1>
+    <h2>Bienvenue sur MicroDonjon</h2>
 
+    <p class="intro-text">
+        MicroDonjon est un <strong>jeu textuel</strong> s'inspirant librement et avec nostalgie des <strong>Livres Dont Vous Êtes 
+        Le Héros</strong> des années 80/90. Enfilez votre armure, affutez votre dague et embarquez dans un univers 
+        d'<strong>Heroïc Fantasy</strong>. Les mystères du donjon d'Ängerjalg vous attendent !
+    </p>
 
     {% if app.user %}
         {% if app.user.chapitreEnCours %}
@@ -19,7 +24,7 @@
             <a href="{{path("routing", {'id': 1})}}">Commencer une nouvelle partie</a>
         {% endif %}
 
-        {% else %}
+    {% else %}
         <a href="{{path("app_login")}}" class="menu__link">Se connecter</a> - 
         <a href="{{path("app_register")}}" class="menu__link">S'inscrire</a>
     {% endif %}

@@ -1,6 +1,7 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}MicroDonjon{% endblock %}
+{% block title %}MicroDonjon - Raccourci{% endblock %}
+{% block noindex %}<meta name="robots" content="noindex">{% endblock %}
 
 {% block body %}
 <style>
@@ -12,7 +13,7 @@
 
     <div class="game__chapter-header">
         <div class="game__chap-number">Chapitre {{ random(1,400)}}</div>
-        <h1>{{chapitre.zone}}</h1>
+        <h2>Raccourci</h2>
     </div>
 
     <p>Vous avez essayé de prendre un raccourci. <br>
