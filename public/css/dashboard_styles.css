@@ -18,7 +18,7 @@
     --light-brown: #e8d4ce;
     --beige: #FFF5F2;
     --dark-green: #5D8F80;
-    --light-green: #BADBD2;
+    --light-green: #7bceb8;
     --light-red: rgb(255, 144, 144);
     --dark-red: rgb(255, 103, 103);
 
@@ -168,6 +168,29 @@ ul{
 
 .editor__edit-icons a:hover{
     color: var(--dark-red);
+}
+
+.editor_add-chapter{
+    background-color: var(--dark-green);
+    width: 100%;
+    padding: .25rem 1rem .25rem 1rem;
+    color: var(--beige);
+    font-family: var(--chapter-font);
+    text-transform: uppercase;
+    font-weight: 500;
+    border-radius: 1rem;
+}
+
+.editor_add-chapter:hover{
+    background-color: var(--light-green);
+}
+
+.editor__btn-box{
+    display: flex;
+    flex-direction: column;
+    width: max-content;
+    gap: 6px;
+    margin-left: 2rem
 }
 
 @media screen and (max-width: 768px){
