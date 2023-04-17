@@ -13,6 +13,11 @@
     <div class="editor__show-title-block">
         <h2 class="editor__show-title">{{chapitre.id}} : {{chapitre.titreChapitre}}</h2>
         <div class="editor__show-monospace">Chapitre {{chapitre.typePage}}</div>
+        <div class="editor__title-edit-icons">
+            <a href="{{path("edit_routing", {'id': chapitre.id})}}" class="editor__edit-icon"><i class="fa-solid fa-pen-to-square"></i></a> 
+            &nbsp
+            <a href="{{path("delete", {'id': chapitre.id})}}" class="editor__delete-icon"><i class="fa-solid fa-trash"></i></a>   
+        </div>
     </div>
 
     <div>
@@ -32,7 +37,7 @@
 
         <div class="editor__show-text-wrapper">
             {% for sortie in chapCondition.sorties %}
-                <a href="{{path("show", {'id': sortie.chapitre.id})}}" class="editor__show-exits"><i class="fa-solid fa-play"></i> [{{sortie.chapitre.id}}] : {{sortie.texteLien}}</a>
+                <a href="{{path("show", {'id': sortie.chapitre.id})}}" class="editor__show-exits"><i class="fa-solid fa-play"></i>&nbsp&nbsp[{{sortie.chapitre.id}}] : {{sortie.texteLien}}</a>
                 {% if sortie.conditionVrai %}
                     <i>(condition vérifiée)</i>
                 {% else %}

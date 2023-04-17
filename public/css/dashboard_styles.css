@@ -33,6 +33,7 @@
     --normal-font-size: .938rem;
     --small-font-size: .813rem;
     --icons-font-size: 1.8rem;
+    --medium-icons-font-size: 1.5rem;
 
 
     /*========== Font weight ==========*/
@@ -279,6 +280,24 @@ ul{
 .editor__show-exits:hover::after {
     transform: scaleX(1);
 }
+
+.editor__title-edit-icons{
+    text-align: center;
+}
+
+.editor__title-edit-icons a{
+    font-size: var(--medium-icons-font-size);
+    color: var(--dark-brown);
+}
+
+.editor__title-edit-icons .editor__edit-icon:hover{
+    color: var(--dark-green);
+}
+
+.editor__title-edit-icons .editor__delete-icon:hover{
+    color: var(--dark-red);
+}
+
 
 /* ======== MEDIA QUERIES =========*/
 
