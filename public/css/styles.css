@@ -442,10 +442,6 @@ ul{
 /* ======= EDITEUR =========*/
 
 .editor__main-wrapper{
-    /* display: flex;
-    flex-direction: row;
-    align-items: stretch;
-    height: 100%; */
     background-color: var(--light-brown);
 }
 
@@ -484,6 +480,24 @@ ul{
     transform: scaleX(1);
 }
 
+.editor__cards-wrapper{
+    margin: 1.5rem 0 5rem 0;
+    padding-bottom: 5rem;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap : .75rem;
+    justify-content: center;
+}
+
+.editor__cards{
+    width: 20rem;
+    background-color: var(--beige) ;
+    box-shadow: 0 2px 8px hsla(13, 14%, 49%, .2);
+    border-radius: 1.5rem;
+    padding: .4rem .4rem .4rem 1rem;
+    position: relative;
+}
 
 
 /* ======= JS TOGGLE =======*/

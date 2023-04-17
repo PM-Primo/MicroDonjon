@@ -12,19 +12,19 @@
     
     <div class="editor__cards-wrapper">
         {% for tableauChapitre in tableauTotal %}
-            <a href="{{path("show", {'id': tableauChapitre[0].id})}}">Chapitre n° {{tableauChapitre[0].id}}</a><br>
-            Titre : {{tableauChapitre[0].titreChapitre}}<br>
-            Type : {{tableauChapitre[0].typePage}}<br>
-            Zone : {{tableauChapitre[0].zone}}<br>
-            Sorties : 
-            {% for sortie in tableauChapitre[1] %}
-                {{sortie.chapitre.id}} / 
-            {% endfor %}
-            <br>
-            <a href="{{path("edit_routing", {'id': tableauChapitre[0].id})}}">Éditer</a> / 
-            <a href="{{path("delete", {'id': tableauChapitre[0].id})}}">Supprimer</a>
-
-            <br><br>    
+            <div class="editor__cards">
+                <a href="{{path("show", {'id': tableauChapitre[0].id})}}" class="editor__menu-link">Chapitre n° {{tableauChapitre[0].id}}</a><br>
+                Titre : {{tableauChapitre[0].titreChapitre}}<br>
+                Type : {{tableauChapitre[0].typePage}}<br>
+                Zone : {{tableauChapitre[0].zone}}<br>
+                Sorties : 
+                {% for sortie in tableauChapitre[1] %}
+                    {{sortie.chapitre.id}} / 
+                {% endfor %}
+                <br>
+                <a href="{{path("edit_routing", {'id': tableauChapitre[0].id})}}">Éditer</a> / 
+                <a href="{{path("delete", {'id': tableauChapitre[0].id})}}">Supprimer</a>   
+            </div>
         {% endfor %}
 
     </div>
