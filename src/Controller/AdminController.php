@@ -326,7 +326,35 @@ class AdminController extends AbstractController
      */
     public function delete(ManagerRegistry $doctrine, Chapitre $chapitre): Response
     {
+        $entityManager = $doctrine->getManager();
+        $type = $chapitre->getTypePage();
         
+        switch ($type) {
+            case 'Standard':
+                $repositoryStandard = $doctrine->getRepository(ChapStandard::class);
+                $chapStandard = $repositoryStandard->findOneBy(['chapitre' => $chapitre]);
+                $entityManager->remove($chapStandard);
+                $entityManager->flush();
+            break;
+
+            case 'Combat':
+                $repositoryCombat = $doctrine->getRepository(ChapCombat::class);
+                $chapCombat = $repositoryCombat->findOneBy(['chapitre' => $chapitre]);
+                $entityManager->remove($chapCombat);
+                $entityManager->flush();            
+            break;
+
+            case 'Condition':
+                $repositoryCondition = $doctrine->getRepository(ChapCondition::class);
+                $chapCondition = $repositoryCondition->findOneBy(['chapitre' => $chapitre]);
+                $entityManager->remove($chapCondition);
+                $entityManager->flush();
+            break;
+
+        }
+
+        return $this->redirectToRoute('admin_editor');
+
     }
 
 }

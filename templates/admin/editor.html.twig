@@ -24,7 +24,8 @@
             {{sortie.chapitre.id}} / 
         {% endfor %}
         <br>
-        <a href="{{path("edit_routing", {'id': tableauChapitre[0].id})}}">Éditer</a>
+        <a href="{{path("edit_routing", {'id': tableauChapitre[0].id})}}">Éditer</a> / 
+        <a href="{{path("delete", {'id': tableauChapitre[0].id})}}">Supprimer</a>
 
         <br><br>    
     {% endfor %}
