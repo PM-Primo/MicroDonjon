@@ -92,11 +92,17 @@ ul{
     list-style-type: none
 }
 
+/*========= BASE ============*/
+
+.dashboard__logo{
+    padding-top: 1.5rem;
+}
 
 /* ======= EDITEUR =========*/
 
 .editor__main-wrapper{
     background-color: var(--light-brown);
+    min-height: 100%;
 }
 
 .editor__navbar{
