@@ -22,8 +22,10 @@
                     {{sortie.chapitre.id}} / 
                 {% endfor %}
                 <br>
-                <a href="{{path("edit_routing", {'id': tableauChapitre[0].id})}}">Éditer</a> / 
-                <a href="{{path("delete", {'id': tableauChapitre[0].id})}}">Supprimer</a>   
+                <div class="editor__edit-icons">
+                    <a href="{{path("edit_routing", {'id': tableauChapitre[0].id})}}"><i class="fa-solid fa-pen-to-square"></i></a> 
+                    <a href="{{path("delete", {'id': tableauChapitre[0].id})}}"><i class="fa-solid fa-trash"></i></a>   
+                </div>
             </div>
         {% endfor %}
 

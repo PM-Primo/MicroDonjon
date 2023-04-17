@@ -499,6 +499,17 @@ ul{
     position: relative;
 }
 
+.editor__edit-icons{
+    position: absolute;
+    top: 3%;
+    right: 4.5%;
+    display: flex;
+}
+
+.editor__edit-icons a{
+    color: var(--dark-brown);
+}
+
 
 /* ======= JS TOGGLE =======*/
 
