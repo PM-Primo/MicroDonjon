@@ -1,0 +1,177 @@
+/*==============   FONTS    ==================*/
+@import url('https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
+@font-face {
+    font-family: 'Barabbas';
+    src: url('../fonts/Barabbas-Display.woff') format('woff'),
+        url('../fonts/Barabbas-Display.woff2') format('woff');
+        font-weight: normal;
+    font-style: normal;
+}
+
+/*==============   VARIABLES    ==================*/
+:root{
+    --header-height: 3.5rem;
+
+    /*========== Colors ==========*/
+    --dark-brown: #8F736B;
+    --light-brown: #e8d4ce;
+    --beige: #FFF5F2;
+    --dark-green: #5D8F80;
+    --light-green: #BADBD2;
+    --light-red: rgb(255, 144, 144);
+    --dark-red: rgb(255, 103, 103);
+
+
+    /*========== Font and typography ==========*/
+    --body-font: "Spectral", serif;
+    --title-font: "Barabbas", sans-serif;
+    --chapter-font: "IBM Plex Mono", serif;
+    --biggest-font-size: 4rem;
+    --h1-font-size: 3rem;
+    --h2-font-size: 1.35rem;
+    --normal-font-size: .938rem;
+    --small-font-size: .813rem;
+    --icons-font-size: 1.8rem;
+
+
+    /*========== Font weight ==========*/
+    --font-medium: 400;
+    --font-bold: 600;
+   
+}
+
+/*==============   BASE    ==================*/
+
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+
+    -moz-osx-font-smoothing: grayscale; 
+    text-rendering: optimizeLegibility; 
+    -webkit-font-smoothing: antialiased; 
+    -moz-font-smoothing: antialiased; 
+    font-smoothing: antialiased; 
+    font-smooth: never;
+    -moz-font-smooth: never;
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    font-family: var(--body-font);
+    font-size: var(--normal-font-size);
+    color: black;
+    height: 100%;
+    /* transition: background 0.4s; for dark mode animation */
+}
+
+main{
+    height:100%
+}
+
+h1, h2, h3 {
+    color: black;
+    text-align: center;
+    font-family: var(--title-font);
+    /* font-weight: var(--font-bold); */
+}
+
+h1, h2{
+    font-size: var(--h1-font-size)
+}
+
+a{
+    text-decoration: none;
+}
+
+ul{
+    list-style-type: none
+}
+
+
+/* ======= EDITEUR =========*/
+
+.editor__main-wrapper{
+    background-color: var(--light-brown);
+}
+
+.editor__navbar{
+    position: absolute;
+    top: 1.5rem;
+    left: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: .35;
+}
+
+.editor__menu-link{
+    color:var(--dark-brown);
+    font-family: var(--chapter-font);
+    text-transform: uppercase;
+    font-weight: 500;
+    position:relative;
+    width: max-content;
+}
+
+.editor__menu-link::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: var(--dark-brown);
+    transition: transform 0.4s;
+    transform-origin: top left;
+}
+
+.editor__menu-link:hover::after {
+    transform: scaleX(1);
+}
+
+.editor__cards-wrapper{
+    margin: 1.5rem 0 5rem 0;
+    padding-bottom: 5rem;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap : .75rem;
+    justify-content: center;
+}
+
+.editor__cards{
+    width: 20rem;
+    background-color: var(--beige) ;
+    box-shadow: 0 2px 8px hsla(13, 14%, 49%, .2);
+    border-radius: 1.5rem;
+    padding: .4rem .4rem .4rem 1rem;
+    position: relative;
+}
+
+.editor__edit-icons{
+    position: absolute;
+    top: 3%;
+    right: 5%;
+    display: flex;
+    gap: .5rem;
+    font-size: 1.15rem;
+}
+
+.editor__edit-icons a{
+    color: var(--dark-brown);
+}
+
+.editor__edit-icons a:hover{
+    color: var(--dark-red);
+}
+
+@media screen and (max-width: 768px){
+
+
+
+}
