@@ -68,8 +68,6 @@ class PathChecker
         else{
             $check = true;
         }
-
         return $check;
-
     }
 }

@@ -59,15 +59,14 @@ class GameController extends AbstractController
     public function displayStandard(ManagerRegistry $doctrine, Chapitre $chapitre, StatsManager $statsManager, PathChecker $pathChecker): Response
     {
 
-        $repository = $doctrine->getRepository(ChapStandard::class);
-        $entityManager = $doctrine->getManager();
-
-        $chapStandard = $repository->findOneBy(['chapitre' => $chapitre]);
-
         $check = $pathChecker->checkPath($chapitre);
         if(!$check){
             return $this->render('game/tricheur.html.twig');
         }
+
+        $repository = $doctrine->getRepository(ChapStandard::class);
+        $entityManager = $doctrine->getManager();
+        $chapStandard = $repository->findOneBy(['chapitre' => $chapitre]);
 
 
         //On vérifie que le joueur n'est pas déjà passé par ce chapitre pour appliquer les effets
@@ -116,11 +115,9 @@ class GameController extends AbstractController
 
             //Si des PV doivent être récupérés/perdus
             if($chapStandard->getModifPV()){
-
                 $modifPV = $chapStandard->getModifPV();
                 $statsManager->changePV($modifPV);
-                //On fait la modif de PV depuis un Service pour éviter de répéter le code dans Combat + Boire potion etc.
-
+                //On fait la modification de PV depuis un Service pour éviter de répéter le code dans Combat + Boire potion etc.
             }
 
             //Si l'attaque doit être modifiée
@@ -208,7 +205,6 @@ class GameController extends AbstractController
 
         $repository = $doctrine->getRepository(ChapCondition::class);
         $entityManager = $doctrine->getManager();
-
         $chapCondition = $repository->findOneBy(['chapitre' => $chapitre]);
 
         $check = $pathChecker->checkPath($chapitre);
@@ -240,7 +236,6 @@ class GameController extends AbstractController
             'chapCondition' => $chapCondition,
             'condition' => $condition
         ]);
-
     }
 
     /**
