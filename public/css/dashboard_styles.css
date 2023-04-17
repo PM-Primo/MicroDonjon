@@ -29,7 +29,7 @@
     --chapter-font: "IBM Plex Mono", serif;
     --biggest-font-size: 4rem;
     --h1-font-size: 3rem;
-    --h2-font-size: 1.35rem;
+    --h2-font-size: 2.1rem;
     --normal-font-size: .938rem;
     --small-font-size: .813rem;
     --icons-font-size: 1.8rem;
@@ -95,7 +95,32 @@ ul{
 /*========= BASE ============*/
 
 .dashboard__logo{
-    padding-top: 1.5rem;
+    padding: 1.5rem 0 1.5rem 0;
+}
+
+.editor__back-btn{
+    color: var(--dark-brown);
+    font-family: var(--chapter-font);
+    text-transform: uppercase;
+    font-weight: 500;
+    position:relative;
+}
+
+.editor__back-btn::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: var(--dark-brown);
+    transition: transform 0.4s;
+    transform-origin: top left;
+}
+
+.editor__back-btn:hover::after {
+    transform: scaleX(1);
 }
 
 /* ======= EDITEUR =========*/
@@ -198,6 +223,64 @@ ul{
     gap: 6px;
     margin-left: 2rem
 }
+
+
+/* ======== SHOW =========*/
+
+.editor__show-wrapper{
+    margin-inline: 20%; 
+    padding-bottom: 3rem;
+}
+
+.editor__show-title{
+    font-size: var(--h2-font-size);
+}
+
+.editor__show-monospace{
+    font-family: var(--chapter-font);
+    text-transform: uppercase;
+    font-weight: 500;
+    border-radius: 1rem;
+    text-align: center;
+}
+
+.editor__show-title-block{
+    margin-bottom: 2.5rem;
+}
+
+.editor__show-text-wrapper{
+    background-color: var(--beige);
+    border-radius: 1.25rem;
+    padding: 1rem;
+    text-align: justify;
+    margin-bottom: 1.5rem;
+}
+
+.editor__show-exits{
+    color: var(--dark-brown);
+    position: relative;
+    line-height: 185%;
+}
+
+
+.editor__show-exits::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 1px;
+    bottom: 0;
+    left: 0;
+    background-color: var(--dark-brown);
+    transition: transform 0.4s;
+    transform-origin: top left;
+}
+
+.editor__show-exits:hover::after {
+    transform: scaleX(1);
+}
+
+/* ======== MEDIA QUERIES =========*/
 
 @media screen and (max-width: 768px){
 

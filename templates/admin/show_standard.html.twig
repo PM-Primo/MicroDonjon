@@ -3,57 +3,72 @@
 {% block title %}MicroDonjon{% endblock %}
 
 {% block body %}
-<style>
 
-</style>
+<div class="editor__show-wrapper">
 
-<div class="example-wrapper">
-    <h1>[{{chapitre.id}}] : {{chapitre.titreChapitre}}</h1>
-    <h2>Chapitre {{chapitre.typePage}}</h2>
+    <a href="{{path("admin_editor")}}" class="editor__back-btn">
+        <i class="fa-solid fa-circle-arrow-left"></i> Liste des chapitres
+    </a>
+    
+    <div class="editor__show-title-block">
+        <h2 class="editor__show-title">{{chapitre.id}} : {{chapitre.titreChapitre}}</h2>
+        <div class="editor__show-monospace">Chapitre {{chapitre.typePage}}</div>
+    </div>
 
     <div>
-        Zone : {{chapitre.Zone}}<br><br>
-        Texte du chapitre : {{chapStandard.texteChapitre | raw}}<br><br>
-        Modificateur de monnaie : 
-        {% if chapStandard.modifGold %}
-            {{chapStandard.modifGold}}
-        {% else %}
-            <i>Aucun</i>
-        {% endif %}
-        <br>
-        Modificateur de PV : 
-        {% if chapStandard.modifPV %}
-            {{chapStandard.modifPV}}
-        {% else %}
-            <i>Aucun</i>
-        {% endif %}
-        <br>
-        Modificateur de la stat d'attaque : 
-        {% if chapStandard.modifAttaque %}
-            {{chapStandard.modifAttaque}}
-        {% else %}
-            <i>Aucun</i>
-        {% endif %}
-        <br>
-        Objet à récupérer : 
-        {% if chapStandard.itemPrendre %}
-            {{chapStandard.itemPrendre}}
-        {% else %}
-            <i>Aucun</i>
-        {% endif %}
-        <br>
-        Objet à perdre : 
-        {% if chapStandard.itemPerdre %}
-            {{chapStandard.itemPerdre}}
-        {% else %}
-            <i>Aucun</i>
-        {% endif %}
-        <br><br>
-        Sorties disponibles : <br>
 
-        {% for sortie in chapStandard.sorties %}
-            [{{sortie.chapitre.id}}] : {{sortie.texteLien}}<br>
-        {% endfor %}
+        <span class="editor__show-monospace">Zone</span> : {{chapitre.Zone}}<br><br>
+        <span class="editor__show-monospace">Texte du chapitre</span> : 
+        <div class="editor__show-text-wrapper">
+            {{chapStandard.texteChapitre | raw}}
+        </div>
+
+        <span class="editor__show-monospace">Effets du chapitre</span> :<br>
+        
+        <div class="editor__show-text-wrapper">
+        
+            Modificateur de monnaie : 
+            {% if chapStandard.modifGold %}
+                {{chapStandard.modifGold}} pièces d'or
+            {% else %}
+                <i>Aucun</i>
+            {% endif %}
+            <br>
+            Modificateur de PV : 
+            {% if chapStandard.modifPV %}
+                {{chapStandard.modifPV}} PV
+            {% else %}
+                <i>Aucun</i>
+            {% endif %}
+            <br>
+            Modificateur de la stat d'attaque : 
+            {% if chapStandard.modifAttaque %}
+                {{chapStandard.modifAttaque}} points d'attaque
+            {% else %}
+                <i>Aucun</i>
+            {% endif %}
+            <br>
+            Objet à récupérer : 
+            {% if chapStandard.itemPrendre %}
+                {{chapStandard.itemPrendre}}
+            {% else %}
+                <i>Aucun</i>
+            {% endif %}
+            <br>
+            Objet à ôter : 
+            {% if chapStandard.itemPerdre %}
+                {{chapStandard.itemPerdre}}
+            {% else %}
+                <i>Aucun</i>
+            {% endif %}
+        </div>
+
+        <span class="editor__show-monospace">Sorties disponibles</span> : <br>
+        <div class="editor__show-text-wrapper">
+            {% for sortie in chapStandard.sorties %}
+                <a href="{{path("show", {'id': sortie.chapitre.id})}}" class="editor__show-exits"><i class="fa-solid fa-play"></i> [{{sortie.chapitre.id}}] : {{sortie.texteLien}}</a><br>
+            {% endfor %}
+        </div>
 
 
 
