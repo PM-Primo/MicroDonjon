@@ -439,6 +439,53 @@ ul{
     }
 }
 
+/* ======= EDITEUR =========*/
+
+.editor__main-wrapper{
+    /* display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    height: 100%; */
+    background-color: var(--light-brown);
+}
+
+.editor__navbar{
+    position: absolute;
+    top: 1.5rem;
+    left: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: .35;
+}
+
+.editor__menu-link{
+    color:var(--dark-brown);
+    font-family: var(--chapter-font);
+    text-transform: uppercase;
+    font-weight: 500;
+    position:relative;
+    width: max-content;
+}
+
+.editor__menu-link::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: var(--dark-brown);
+    transition: transform 0.4s;
+    transform-origin: top left;
+}
+
+.editor__menu-link:hover::after {
+    transform: scaleX(1);
+}
+
+
+
 /* ======= JS TOGGLE =======*/
 
 .game__left-page__toggle-open{

@@ -1,34 +1,31 @@
-{% extends 'base.html.twig' %}
+{% extends 'dashboard.html.twig' %}
 
 {% block title %}MicroDonjon{% endblock %}
 
 {% block body %}
-<style>
 
-</style>
-
-<div class="example-wrapper">
     <h1>Éditeur de chapitres</h1>
 
     <a href="{{path("add_standard")}}">Nouveau chapitre standard</a><br>
     <a href="{{path("add_combat")}}">Nouveau chapitre combat</a><br>
     <a href="{{path("add_condition")}}">Nouveau chapitre condition</a><br><br>
+    
+    <div class="editor__cards-wrapper">
+        {% for tableauChapitre in tableauTotal %}
+            <a href="{{path("show", {'id': tableauChapitre[0].id})}}">Chapitre n° {{tableauChapitre[0].id}}</a><br>
+            Titre : {{tableauChapitre[0].titreChapitre}}<br>
+            Type : {{tableauChapitre[0].typePage}}<br>
+            Zone : {{tableauChapitre[0].zone}}<br>
+            Sorties : 
+            {% for sortie in tableauChapitre[1] %}
+                {{sortie.chapitre.id}} / 
+            {% endfor %}
+            <br>
+            <a href="{{path("edit_routing", {'id': tableauChapitre[0].id})}}">Éditer</a> / 
+            <a href="{{path("delete", {'id': tableauChapitre[0].id})}}">Supprimer</a>
 
-    {% for tableauChapitre in tableauTotal %}
-        <a href="{{path("show", {'id': tableauChapitre[0].id})}}">Chapitre n° {{tableauChapitre[0].id}}</a><br>
-        Titre : {{tableauChapitre[0].titreChapitre}}<br>
-        Type : {{tableauChapitre[0].typePage}}<br>
-        Zone : {{tableauChapitre[0].zone}}<br>
-        Sorties : 
-        {% for sortie in tableauChapitre[1] %}
-            {{sortie.chapitre.id}} / 
+            <br><br>    
         {% endfor %}
-        <br>
-        <a href="{{path("edit_routing", {'id': tableauChapitre[0].id})}}">Éditer</a> / 
-        <a href="{{path("delete", {'id': tableauChapitre[0].id})}}">Supprimer</a>
 
-        <br><br>    
-    {% endfor %}
-
-</div>
+    </div>
 {% endblock %}
