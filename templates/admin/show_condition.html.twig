@@ -5,29 +5,42 @@
 {% block body %}
 
 
-<div class="example-wrapper">
-    <h1>[{{chapitre.id}}] : {{chapitre.titreChapitre}}</h1>
-    <h2>Chapitre {{chapitre.typePage}}</h2>
+<div class="editor__show-wrapper">
+    <a href="{{path("admin_editor")}}" class="editor__back-btn">
+        <i class="fa-solid fa-circle-arrow-left"></i> Liste des chapitres
+    </a>
+
+    <div class="editor__show-title-block">
+        <h2 class="editor__show-title">{{chapitre.id}} : {{chapitre.titreChapitre}}</h2>
+        <div class="editor__show-monospace">Chapitre {{chapitre.typePage}}</div>
+    </div>
 
     <div>
-        Zone : {{chapitre.Zone}}<br><br>
-        Texte (condition vérifiée) : {{chapCondition.texteSiVrai | raw}}<br><br>
-        Texte (condition non vérifiée) : {{chapCondition.texteSiFaux | raw}}<br><br>
-        Objet condition : {{chapCondition.itemCondition}}
+        <span class="editor__show-monospace">Zone</span> : {{chapitre.Zone}}<br><br>
+        <span class="editor__show-monospace">Texte <i>(condition vérifiée)</i></span> : 
+        <div class="editor__show-text-wrapper">
+            {{chapCondition.texteSiVrai | raw}}
+        </div>
+        <span class="editor__show-monospace">Texte <i>(condition non vérifiée)</i></span> : 
+        <div class="editor__show-text-wrapper">
+            {{chapCondition.texteSiFaux | raw}}
+        </div>
+
+        <span class="editor__show-monospace">Objet de la condition</span> : {{chapCondition.itemCondition}}
         <br><br>
-        Sorties disponibles : <br>
+        <span class="editor__show-monospace">Sorties disponibles</span> : <br>
 
-        {% for sortie in chapCondition.sorties %}
-            [{{sortie.chapitre.id}}] : {{sortie.texteLien}} 
-
-            {% if sortie.conditionVrai %}
-                (condition vérifiée)
-            {% else %}
-                (condition non vérifiée)
-            {% endif %}
-
-            <br>
-        {% endfor %}
+        <div class="editor__show-text-wrapper">
+            {% for sortie in chapCondition.sorties %}
+                <a href="{{path("show", {'id': sortie.chapitre.id})}}" class="editor__show-exits"><i class="fa-solid fa-play"></i> [{{sortie.chapitre.id}}] : {{sortie.texteLien}}</a>
+                {% if sortie.conditionVrai %}
+                    <i>(condition vérifiée)</i>
+                {% else %}
+                    <i>(condition non vérifiée)</i>
+                {% endif %}
+                <br>
+            {% endfor %}
+        </div>
 
     </div>
 
