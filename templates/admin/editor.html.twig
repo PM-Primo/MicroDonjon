@@ -17,9 +17,18 @@
                 Titre : {{tableauChapitre[0].titreChapitre}}<br>
                 Type : {{tableauChapitre[0].typePage}}<br>
                 Zone : {{tableauChapitre[0].zone}}<br>
-                Sorties : 
+                {% if tableauChapitre[1]|length <= 1 %}
+                    Sortie :
+                {% else %}
+                    Sorties : 
+                {% endif %}
+
                 {% for sortie in tableauChapitre[1] %}
-                    {{sortie.chapitre.id}} / 
+
+                    {{sortie.chapitre.id}}
+                    {% if not loop.last %}
+                         / 
+                    {% endif %}
                 {% endfor %}
                 <br>
                 <div class="editor__edit-icons">
