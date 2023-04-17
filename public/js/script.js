@@ -1,5 +1,3 @@
-console.log("ok") //Utile pour vérifier que le fichier JS communique bien avec le reste du site
-
 var $collectionHolder
 
 // $addNewItem = $('<a href="#" class="">Ajouter une sortie</a><br><br>');
@@ -66,4 +64,20 @@ function addNewForm() {
     addRemoveButton($card);
     
     $addNewItem.before($card);
+}
+
+const toggleOpenIcon = document.querySelector("#toggle-open-icon");
+const toggleCloseIcon = document.querySelector("#toggle-close-icon");
+const leftPage = document.querySelector("#game__left-page");
+const rightPage = document.querySelector("#game__right-page");
+
+toggleOpenIcon.addEventListener("click", toggleOpen);
+toggleCloseIcon.addEventListener("click", toggleClose);
+
+function toggleOpen(){
+    leftPage.classList.add("game__left-page__toggle-open");
+}
+
+function toggleClose(){
+    leftPage.classList.remove("game__left-page__toggle-open");
 }

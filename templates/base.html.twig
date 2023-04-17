@@ -18,7 +18,7 @@
         <main>
             <div class="game__main-wrapper">
                 
-                <div class="game__left-page">
+                <div class="game__left-page" id="game__left-page">
 
                     <nav class="navbar">
                         <a href="{{path("app_home")}}" class="menu__link">Home</a>
@@ -34,6 +34,8 @@
                     </nav>
                     
                     <h1>MicroDonjon</h1>
+
+                    <div class="toggle-close-icon" id="toggle-close-icon"><i class="fa-regular fa-circle-xmark"></i></div>
 
                     {% if app.user %}
                     <div class="game__left-page-content">
@@ -84,7 +86,7 @@
 
                 </div>
                 
-                <div class="game__right-page">
+                <div class="game__right-page" id="game__right-page">
                     {% if app.user %}
                         <div class="game__hp-bar">
                             {% for i in 1..app.user.PVactuels %}
@@ -105,6 +107,7 @@
                         </div>
                         <span class="game_hp-counter"><i class="fa-regular fa-heart"></i>  :  {{app.user.PVactuels}}  /  {{app.user.PVmax}}</span>
                     {% endif %}
+                    <div class="toggle-open-icon" id="toggle-open-icon"><i class="fa-solid fa-bars"></i></div>
                     {% block body %}{% endblock %}
                 </div>
 
