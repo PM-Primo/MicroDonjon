@@ -4,21 +4,38 @@
 
 {% block body %}
 
-<div class="example-wrapper">
-    <h1>[{{chapitre.id}}] : {{chapitre.titreChapitre}}</h1>
-    <h2>Chapitre {{chapitre.typePage}}</h2>
+<div class="editor__show-wrapper">
+
+    <a href="{{path("admin_editor")}}" class="editor__back-btn">
+        <i class="fa-solid fa-circle-arrow-left"></i> Liste des chapitres
+    </a>
+
+    <div class="editor__show-title-block">
+        <h2 class="editor__show-title">{{chapitre.id}} : {{chapitre.titreChapitre}}</h2>
+        <div class="editor__show-monospace">Chapitre {{chapitre.typePage}}</div>
+    </div>
 
     <div>
-        Zone : {{chapitre.Zone}}<br><br>
-        Texte initial : {{chapCombat.texteInitial | raw}}<br><br>
-        Texte de victoire : {{chapCombat.texteVictoire | raw}}<br><br>
-        Monstre : {{chapCombat.monstre}}
+        <span class="editor__show-monospace">Zone</span> : {{chapitre.Zone}}<br><br>
+        <span class="editor__show-monospace">Texte initial</span> : 
+        <div class="editor__show-text-wrapper">
+            {{chapCombat.texteInitial | raw}}
+        </div>
+        <span class="editor__show-monospace">Texte de victoire</span> : 
+        <div class="editor__show-text-wrapper">
+            {{chapCombat.texteVictoire | raw}}
+        </div>
+                
+        <span class="editor__show-monospace">Monstre</span> : {{chapCombat.monstre}}
+        
         <br><br>
-        Sorties disponibles : <br>
 
-        {% for sortie in chapCombat.sorties %}
-            [{{sortie.chapitre.id}}] : {{sortie.texteLien}}<br>
-        {% endfor %}
+        <span class="editor__show-monospace">Sorties disponibles</span> : <br>
+        <div class="editor__show-text-wrapper">
+            {% for sortie in chapCombat.sorties %}
+                <a href="{{path("show", {'id': sortie.chapitre.id})}}" class="editor__show-exits"><i class="fa-solid fa-play"></i> [{{sortie.chapitre.id}}] : {{sortie.texteLien}}</a><br>
+            {% endfor %}
+        </div>
 
     </div>
 
