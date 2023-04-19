@@ -10,11 +10,11 @@ $(document).ready(function() {
     // append the add new item to the collectionholder
     // $collectionHolder.append($addNewItem);
 
-    $collectionHolder.data('index', $collectionHolder.find('.card').length)
+    $collectionHolder.data('index', $collectionHolder.find('.editor__exit-card').length)
 
 
     // add remove button to existing items
-    $collectionHolder.find('.card').each(function() {
+    $collectionHolder.find('.editor__exit-card').each(function() {
         addRemoveButton($(this));
     });
 
@@ -29,13 +29,13 @@ $(document).ready(function() {
 // remove item
 function addRemoveButton($card) {
     // create remove button
-    var $removeButton = $('<a href="#" class="">Suppr.</a>');
-    var $cardFooter = $('<div class="card-footer"></div>').append($removeButton);
+    var $removeButton = $('<a href="#" class="editor__delete-card-icon"><i class="fa-regular fa-circle-xmark"></i></a>');
+    var $cardFooter = $('<div class="editor__delete-card"></div>').append($removeButton);
 
     // handle click event of remove button
     $removeButton.click(function(e) {
         e.preventDefault();
-        $(e.target).parents('.card').slideUp(1000, function() {
+        $(e.target).parents('.editor__exit-card').slideUp(1000, function() {
             $(this).remove();
         })
     });
@@ -57,7 +57,7 @@ function addNewForm() {
     $collectionHolder.data('index', index + 1);
     
     // create the card
-    var $card = $('<div class="card"></div>');
+    var $card = $('<div class="editor__exit-card"></div>');
     $card.append(newForm);
     
     // append the removeButton to new panel

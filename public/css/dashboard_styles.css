@@ -93,7 +93,7 @@ ul{
     list-style-type: none
 }
 
-/*========= BASE ============*/
+/*========= REUSABLE CLASSES ============*/
 
 .dashboard__logo{
     padding: 1.5rem 0 1.5rem 0;
@@ -123,6 +123,7 @@ ul{
 .editor__back-btn:hover::after {
     transform: scaleX(1);
 }
+
 
 /* ======= EDITEUR =========*/
 
@@ -211,6 +212,7 @@ ul{
     text-transform: uppercase;
     font-weight: 500;
     border-radius: 1rem;
+    transition: .33s cubic-bezier(.17,.67,1,1.23)
 }
 
 .editor_add-chapter:hover{
@@ -224,7 +226,6 @@ ul{
     gap: 6px;
     margin-left: 2rem
 }
-
 
 /* ======== SHOW =========*/
 
@@ -255,6 +256,7 @@ ul{
     padding: 1rem;
     text-align: justify;
     margin-bottom: 1.5rem;
+    box-shadow: 0 2px 8px hsla(13, 14%, 49%, .2);
 }
 
 .editor__show-exits{
@@ -298,6 +300,146 @@ ul{
     color: var(--dark-red);
 }
 
+/* ======== ADD/EDIT =========*/
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+textarea {
+    resize: none;
+}
+
+.editor__form-wrapper{
+    margin-inline: 29%; 
+    padding-bottom: 3rem;
+}
+
+.editor__label{
+    font-family: var(--chapter-font);
+    text-transform: uppercase;
+    font-weight: 500;
+}
+
+.editor__form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 3rem;
+}
+
+.form-group{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+.form-control{
+    border: none;
+    background-color: var(--beige);
+    font-family: var(--body-font);
+    padding: .33rem 0 .33rem .5rem;
+    border-radius: .5rem;
+    transition: .2s cubic-bezier(.17,.67,1,1.23)
+}
+
+.form-control:focus{
+    outline: none;
+    box-shadow: 0 2px 8px hsla(13, 14%, 49%, .6);
+}
+
+.form-card .form-control:focus{
+    box-shadow: 0 2px 8px hsla(0, 0%, 100%, 0.6);
+}
+
+.editor__exits-list{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.editor__exit-card{
+    width: 100%;
+    background-color: var(--dark-brown);
+    padding: 1.5rem 1rem 0 1rem;
+    border-radius: .5rem;
+    position: relative;
+}
+
+.editor__exit-card .form-group{
+    width: 100%;
+}
+
+.editor__cards-label{
+    font-family: var(--chapter-font);
+    text-transform: uppercase;
+    font-weight: 500;
+    color: var(--beige);
+}
+
+.editor__exits-list-label{
+    margin-bottom: 1.25rem;
+    align-self: flex-start;
+}
+
+.editor__delete-card{
+    position: absolute;
+    top: .33rem;
+    right: .65rem;
+}
+
+.editor__delete-card-icon{
+    color: var(--beige);
+    font-size: 1.4rem;
+    transition: .33s cubic-bezier(.17,.67,1,1.23)
+}
+
+.editor__delete-card-icon:hover{
+    color: var(--dark-red);
+}
+
+.editor_add-exit-btn{
+    background-color: var(--dark-green);
+    padding: .25rem 1rem .25rem 1rem;
+    color: var(--beige);
+    font-family: var(--chapter-font);
+    text-transform: uppercase;
+    font-weight: 500;
+    border-radius: 1rem;
+    align-self: flex-start;
+    transition: .33s cubic-bezier(.17,.67,1,1.23);
+}
+
+.editor_add-exit-btn:hover{
+    background-color: var(--light-green);
+}
+
+.editor__submit-btn{
+    padding: 1rem 3rem 1rem 3rem;
+    border-radius: .5rem;
+    border: none;
+    background-color: var(--dark-green);
+    color: var(--beige);
+    font-family: var(--chapter-font);
+    text-transform: uppercase;
+    font-weight: 500;
+    cursor: pointer;
+    transition: .33s cubic-bezier(.17,.67,1,1.23);
+}
+
+.editor__submit-btn:hover{
+    background-color: var(--light-green);
+}
 
 /* ======== MEDIA QUERIES =========*/
 

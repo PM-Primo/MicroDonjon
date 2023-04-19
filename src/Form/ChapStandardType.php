@@ -21,14 +21,14 @@ class ChapStandardType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('titreChapitre' , TextType::class, ["attr" => ["class" => "form-control"], 'mapped' => false])
-            ->add('texteChapitre' , TextareaType::class, ["attr" => ["class" => "form-control", 'rows' => '5']])
-            ->add('zone' , EntityType::class, ['class' => Zone::class, 'choice_label' => 'nomZone', "attr" => ["class" => "form-control"], 'mapped' => false])
-            ->add('modifGold', IntegerType::class, ["attr" => ["class" => "form-control"],'required'=> false])
-            ->add('modifPV', IntegerType::class, ["attr" => ["class" => "form-control"],'required'=> false])
-            ->add('modifAttaque', IntegerType::class, ["attr" => ["class" => "form-control"],'required'=> false])
-            ->add('itemPrendre', EntityType::class, ['class' => Item::class, 'choice_label' => 'nomItem',"attr" => ["class" => "form-control"],'required'=> false])
-            ->add('itemPerdre', EntityType::class, ['class' => Item::class, 'choice_label' => 'nomItem',"attr" => ["class" => "form-control"],'required'=> false])
+            ->add('titreChapitre' , TextType::class, ["attr" => ["class" => "form-control"], "label_attr" => ["class" => "editor__label"], 'mapped' => false, 'label' => 'Titre du chapitre'])
+            ->add('texteChapitre' , TextareaType::class, ["attr" => ["class" => "form-control", 'rows' => '5'],"label_attr" => ["class" => "editor__label"], 'label' => 'Texte du chapitre'])
+            ->add('zone' , EntityType::class, ['class' => Zone::class, 'choice_label' => 'nomZone', "attr" => ["class" => "form-control"], "label_attr" => ["class" => "editor__label"], 'mapped' => false, 'label' => 'Zone'])
+            ->add('modifGold', IntegerType::class, ["attr" => ["class" => "form-control"], "label_attr" => ["class" => "editor__label"],'required'=> false, 'label' => 'Modificateur de pièces d\'or'])
+            ->add('modifPV', IntegerType::class, ["attr" => ["class" => "form-control"], "label_attr" => ["class" => "editor__label"],'required'=> false, 'label' => 'Modificateur de points de vie'])
+            ->add('modifAttaque', IntegerType::class, ["attr" => ["class" => "form-control"], "label_attr" => ["class" => "editor__label"],'required'=> false, 'label' => 'Modificateur de points d\'attaque'])
+            ->add('itemPrendre', EntityType::class, ['class' => Item::class, 'choice_label' => 'nomItem',"attr" => ["class" => "form-control"], "label_attr" => ["class" => "editor__label"],'required'=> false, 'label' => 'Objet à récupérer'])
+            ->add('itemPerdre', EntityType::class, ['class' => Item::class, 'choice_label' => 'nomItem',"attr" => ["class" => "form-control"], "label_attr" => ["class" => "editor__label"],'required'=> false, 'label' => 'Objet à céder'])
 
             ->add('sorties', CollectionType::class, [
                 'entry_type' => SortieStandardType::class,
@@ -37,10 +37,12 @@ class ChapStandardType extends AbstractType
                 ],
                 'by_reference' => false,
                 'allow_add' => true,
-                'allow_delete' => true
+                'allow_delete' => true,
+                // 'label' => 'Liste des sorties',
+                // "label_attr" => ["class" => "editor__label"]
             ])
 
-            ->add('submit', SubmitType::class, ["attr" => ["class" => "button-valider"]])
+            ->add('submit', SubmitType::class, ["attr" => ["class" => "editor__submit-btn"], 'label' => 'Valider !'])
         ;
     }
 
