@@ -4,36 +4,41 @@
 
 {% block body %}
 
-<div class="example-wrapper">
-    <h1>Éditeur de chapitres à combat</h1>
+<div class="editor__form-wrapper">
+    <h2 class="editor__show-title">Éditeur de chapitres à combat</h2>
+    <div class="editor__show-monospace">Chapitre n°{{chapitre.id}}</div>
 
-    {{ form_start(formAddChapCombat) }}
+    <div class="editor__form">
+        {{ form_start(formAddChapCombat) }}
+            {% form_theme formAddChapCombat 'forms/fields.twig' %}
 
-        {{ form_row(formAddChapCombat.titreChapitre) }}
-        {{ form_row(formAddChapCombat.texteInitial) }}
-        {{ form_row(formAddChapCombat.texteVictoire) }}
-        {{ form_row(formAddChapCombat.zone) }}
-        {{ form_row(formAddChapCombat.monstre) }}
+            {{ form_row(formAddChapCombat.titreChapitre) }}
+            {{ form_row(formAddChapCombat.texteInitial) }}
+            {{ form_row(formAddChapCombat.texteVictoire) }}
+            {{ form_row(formAddChapCombat.zone) }}
+            {{ form_row(formAddChapCombat.monstre) }}
 
-        <br>
-        Sorties :
-        <br><br>
+            <span class="editor__label editor__exits-list-label">Liste des sorties</span>
 
-        <div id="listeSorties" 
-            data-prototype="{{ form_widget(formAddChapCombat.sorties.vars.prototype)| e('html_attr') }}"
-            data-index="0">
-            {% for sortie in formAddChapCombat.sorties %}
-                <div class="card">
-                    {{ form_row(sortie) }}
-                </div>
-                <br>
-            {% endfor %}
-            <a id="addSortie" href="#" class="">Ajouter une sortie</a><br><br>
-        </div>
+            <div id="listeSorties" class="editor__exits-list" data-prototype="{{ form_widget(formAddChapCombat.sorties.vars.prototype)| e('html_attr') }}">
+                {% form_theme formAddChapCombat.sorties 'forms/cards.twig' %}
+                {% for sortie in formAddChapCombat.sorties %}
+                    <div class="editor__exit-card">
+                        {% form_theme sortie 'forms/cards.twig' %}
+                        {{ form_row(sortie) }}
+                    </div>
+                    <br>
+                {% endfor %}
+                <a id="addSortie" href="#" class="editor_add-exit-btn"><i class="fa-solid fa-plus"></i> Nouvelle Sortie</a><br><br>
+            </div>
+    
+            <div class="editor__buttons-box">
+                <a href="{{path("show", {'id': chapitre.id})}}" class="editor__btn editor__cancel">Annuler</a>
+                {{ form_row(formAddChapCombat.submit) }}
+            </div>
 
-        {{ form_row(formAddChapCombat.submit) }}
-
-    {{ form_end(formAddChapCombat) }}
+        {{ form_end(formAddChapCombat) }}
+    </div>
 
 </div>
 {% endblock %}

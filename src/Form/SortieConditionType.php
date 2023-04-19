@@ -16,9 +16,24 @@ class SortieConditionType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('conditionVrai', CheckboxType::class, ["attr" => ["class" => "form-control"], 'required' =>false, "label_attr" => ["class" => "editor__cards-label"], 'label' => 'Condition vérifiée'])
-            ->add('texteLien' , TextType::class, ["attr" => ["class" => "form-control"], "label_attr" => ["class" => "editor__cards-label"], 'label' => 'Texte du lien'])
-            ->add('chapitre', EntityType::class, ['class' => Chapitre::class, 'choice_label' => 'id',"attr" => ["class" => "form-control"], "label_attr" => ["class" => "editor__cards-label"], 'label' => 'Chapitre de destination'])
+            ->add('conditionVrai', CheckboxType::class, [
+                "attr" => ["class" => "form-control"],
+                'required' =>false,
+                "label_attr" => ["class" => "editor__cards-label"],
+                'label' => 'Condition vérifiée'
+            ])
+            ->add('texteLien' , TextType::class, [
+                "attr" => ["class" => "form-control"],
+                "label_attr" => ["class" => "editor__cards-label"],
+                'label' => 'Texte du lien'
+            ])
+            ->add('chapitre', EntityType::class, [
+                'class' => Chapitre::class,
+                'choice_label' => 'id',
+                "attr" => ["class" => "form-control"],
+                "label_attr" => ["class" => "editor__cards-label"],
+                'label' => 'Chapitre de destination'
+            ])
         ;
     }
 

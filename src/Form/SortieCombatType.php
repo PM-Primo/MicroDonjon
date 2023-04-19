@@ -15,8 +15,18 @@ class SortieCombatType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-        ->add('texteLien' , TextType::class, ["attr" => ["class" => "form-control"]])
-        ->add('chapitre', EntityType::class, ['class' => Chapitre::class, 'choice_label' => 'id',"attr" => ["class" => "form-control"]])
+        ->add('texteLien' , TextType::class, [
+            "attr" => ["class" => "form-control"],
+            "label_attr" => ["class" => "editor__cards-label"],
+            'label' => 'Texte du lien'
+        ])
+        ->add('chapitre', EntityType::class, [
+            'class' => Chapitre::class,
+            'choice_label' => 'id',
+            "attr" => ["class" => "form-control"],
+            "label_attr" => ["class" => "editor__cards-label"],
+            'label' => 'Chapitre de destination'
+        ])
         ;
     }
 

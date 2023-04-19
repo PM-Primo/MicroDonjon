@@ -20,11 +20,38 @@ class ChapCombatType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('titreChapitre' , TextType::class, ["attr" => ["class" => "form-control"], 'mapped' => false])
-            ->add('texteInitial' , TextareaType::class, ["attr" => ["class" => "form-control", 'rows' => '5']])
-            ->add('texteVictoire' , TextareaType::class, ["attr" => ["class" => "form-control", 'rows' => '5']])
-            ->add('zone' , EntityType::class, ['class' => Zone::class, 'choice_label' => 'nomZone', "attr" => ["class" => "form-control"], 'mapped' => false])
-            ->add('monstre' , EntityType::class, ['class' => Monstre::class, 'choice_label' => 'nomMonstre', "attr" => ["class" => "form-control"]])
+            ->add('titreChapitre' , TextType::class, [
+                "attr" => ["class" => "form-control"],
+                'mapped' => false,
+                "label_attr" => ["class" => "editor__label"],
+                "label" =>"Titre du chapitre"
+            ])
+            ->add('texteInitial' , TextareaType::class, [
+                "attr" => ["class" => "form-control", 'rows' => '5'],
+                "label_attr" => ["class" => "editor__label"],
+                "label" =>"Texte initial"
+            ])
+            ->add('texteVictoire' , TextareaType::class, [
+                "attr" => ["class" => "form-control", 'rows' => '5'],
+                "label_attr" => ["class" => "editor__label"],
+                "label" =>"Texte de victoire"
+            ])
+            ->add('zone' , EntityType::class, [
+                'class' => Zone::class,
+                'choice_label' => 'nomZone',
+                "attr" => ["class" => "form-control"],
+                'mapped' => false,
+                "label_attr" => ["class" => "editor__label"],
+                "label" =>"Zone"
+            ])
+            ->add('monstre' , EntityType::class, [
+                'class' => Monstre::class,
+                'choice_label' => 'nomMonstre',
+                "attr" => ["class" => "form-control"],
+                "label_attr" => ["class" => "editor__label"],
+                "label" =>"Monstre"
+            ])
+
 
             ->add('sorties', CollectionType::class, [
                 'entry_type' => SortieCombatType::class,
@@ -36,7 +63,7 @@ class ChapCombatType extends AbstractType
                 'allow_delete' => true
             ])
 
-            ->add('submit', SubmitType::class, ["attr" => ["class" => "button-valider"]])
+            ->add('submit', SubmitType::class, ["attr" => ["class" => "editor__submit editor__btn"]])
         ;
     }
 
