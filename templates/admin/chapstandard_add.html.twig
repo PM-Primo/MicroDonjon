@@ -6,40 +6,45 @@
 
 <div class="editor__form-wrapper">
     <h2 class="editor__show-title">Editeur de chapitres standards</h2>
+    <div class="editor__show-monospace">Chapitre n°{{chapitre.id}}</div>
 
-    <form class="editor__form">
-    {{ form_start(formAddChapStandard) }}
-        {% form_theme formAddChapStandard 'forms/fields.twig' %}
+    <div class="editor__form">
+        {{ form_start(formAddChapStandard) }}
+            {% form_theme formAddChapStandard 'forms/fields.twig' %}
 
 
-        {{ form_row(formAddChapStandard.titreChapitre) }}
-        {{ form_row(formAddChapStandard.texteChapitre) }}
-        {{ form_row(formAddChapStandard.zone) }}
-        {{ form_row(formAddChapStandard.modifGold) }}
-        {{ form_row(formAddChapStandard.modifPV) }}
-        {{ form_row(formAddChapStandard.modifAttaque) }}
-        {{ form_row(formAddChapStandard.itemPrendre) }}
-        {{ form_row(formAddChapStandard.itemPerdre) }}
+            {{ form_row(formAddChapStandard.titreChapitre) }}
+            {{ form_row(formAddChapStandard.texteChapitre) }}
+            {{ form_row(formAddChapStandard.zone) }}
+            {{ form_row(formAddChapStandard.modifGold) }}
+            {{ form_row(formAddChapStandard.modifPV) }}
+            {{ form_row(formAddChapStandard.modifAttaque) }}
+            {{ form_row(formAddChapStandard.itemPrendre) }}
+            {{ form_row(formAddChapStandard.itemPerdre) }}
 
-        <span class="editor__label editor__exits-list-label">Liste des sorties</span>
+            <span class="editor__label editor__exits-list-label">Liste des sorties</span>
 
-        <div id="listeSorties" class="editor__exits-list" data-prototype="{{ form_widget(formAddChapStandard.sorties.vars.prototype)| e('html_attr') }}">
-            {% form_theme formAddChapStandard.sorties 'forms/cards.twig' %}
-            {% for sortie in formAddChapStandard.sorties %}
-                <div class="editor__exit-card">
-                    {% form_theme sortie 'forms/cards.twig' %}
+            <div id="listeSorties" class="editor__exits-list" data-prototype="{{ form_widget(formAddChapStandard.sorties.vars.prototype)| e('html_attr') }}">
+                {% form_theme formAddChapStandard.sorties 'forms/cards.twig' %}
+                {% for sortie in formAddChapStandard.sorties %}
+                    <div class="editor__exit-card">
+                        {% form_theme sortie 'forms/cards.twig' %}
 
-                    {{ form_row(sortie) }}
-                </div>
-                <br>
-            {% endfor %}
-            <a id="addSortie" href="#" class="editor_add-exit-btn"><i class="fa-solid fa-plus"></i> Nouvelle Sortie</a><br><br>
+                        {{ form_row(sortie) }}
+                    </div>
+                    <br>
+                {% endfor %}
+                <a id="addSortie" href="#" class="editor_add-exit-btn"><i class="fa-solid fa-plus"></i> Nouvelle Sortie</a><br><br>
+            </div>
+
+            <div class="editor__buttons-box">
+                <a href="{{path("show", {'id': chapitre.id})}}" class="editor__btn editor__cancel">Annuler</a>
+                {{ form_row(formAddChapStandard.submit) }}
+            </div>
+
+
+        {{ form_end(formAddChapStandard) }}
         </div>
-
-        {{ form_row(formAddChapStandard.submit) }}
-
-    {{ form_end(formAddChapStandard) }}
-    </form>
 
 </div>
 {% endblock %}

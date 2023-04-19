@@ -213,6 +213,7 @@ class AdminController extends AbstractController
         //Vue pour afficher le formulaire d'ajout
         return $this->render('admin/chapstandard_add.html.twig', [
             'formAddChapStandard' =>$form->createView(),
+            'chapitre' => $chapitre
         ]);
     }
 

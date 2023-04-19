@@ -20,11 +20,38 @@ class ChapConditionType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('titreChapitre' , TextType::class, ["attr" => ["class" => "form-control"], 'mapped' => false])
-            ->add('texteSiVrai' , TextareaType::class, ["attr" => ["class" => "form-control", 'rows' => '5']])
-            ->add('texteSiFaux' , TextareaType::class, ["attr" => ["class" => "form-control", 'rows' => '5']])
-            ->add('zone' , EntityType::class, ['class' => Zone::class, 'choice_label' => 'nomZone', "attr" => ["class" => "form-control"], 'mapped' => false])
-            ->add('itemCondition' , EntityType::class, ['class' => Item::class, 'choice_label' => 'nomItem', "attr" => ["class" => "form-control"]])
+            ->add('titreChapitre' , TextType::class, [
+                "attr" => ["class" => "form-control"],
+                "label_attr" => ["class" => "editor__label"],
+                'mapped' => false,
+                'label' => 'Titre du chapitre'
+            ])
+            ->add('texteSiVrai' , TextareaType::class, [
+                "attr" => ["class" => "form-control", 'rows' => '5'],
+                "label_attr" => ["class" => "editor__label"],
+                'label' => 'Texte (condition vérifiée)'
+            ])
+            ->add('texteSiFaux' , TextareaType::class, [
+                "attr" => ["class" => "form-control", 'rows' => '5'],
+                "label_attr" => ["class" => "editor__label"],
+                'label' => 'Texte (condition non vérifiée)'
+            ])
+            ->add('zone' , EntityType::class, [
+                'class' => Zone::class,
+                'choice_label' => 'nomZone',
+                "attr" => ["class" => "form-control"],
+                "label_attr" => ["class" => "editor__label"],
+                'mapped' => false,
+                'label' => 'Zone'
+            ])
+            ->add('itemCondition' , EntityType::class, [
+                'class' => Item::class,
+                'choice_label' => 'nomItem',
+                "attr" => ["class" => "form-control"],
+                "label_attr" => ["class" => "editor__label"],
+                'label' => 'Objet de la condition'
+
+            ])
 
             ->add('sorties', CollectionType::class, [
                 'entry_type' => SortieConditionType::class,
@@ -36,7 +63,10 @@ class ChapConditionType extends AbstractType
                 'allow_delete' => true
             ])
 
-            ->add('submit', SubmitType::class, ["attr" => ["class" => "button-valider"]])
+            ->add('submit', SubmitType::class, [
+                "attr" => ["class" => "button-valider"],
+                'label' => 'Valider !'    
+            ])
         ;
 
     }
