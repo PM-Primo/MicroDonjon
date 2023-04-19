@@ -302,6 +302,8 @@ ul{
 
 /* ======== ADD/EDIT =========*/
 
+/* ======== Retirer le style par défaut des input =========*/
+
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
@@ -318,15 +320,11 @@ textarea {
     resize: none;
 }
 
+/* ======== Wrappers & containers =========*/
+
 .editor__form-wrapper{
     margin-inline: 29%; 
     padding-bottom: 3rem;
-}
-
-.editor__label{
-    font-family: var(--chapter-font);
-    text-transform: uppercase;
-    font-weight: 500;
 }
 
 .editor__form{
@@ -343,6 +341,17 @@ textarea {
     width: 100%;
     margin-bottom: 1rem;
 }
+
+/* ======== Label =========*/
+
+.editor__label{
+    font-family: var(--chapter-font);
+    text-transform: uppercase;
+    font-weight: 500;
+}
+
+/* ======== Champs par défaut =========*/
+
 
 .form-control{
     border: none;
@@ -361,6 +370,9 @@ textarea {
 .form-card .form-control:focus{
     box-shadow: 0 2px 8px hsla(0, 0%, 100%, 0.6);
 }
+
+/* ======== Cartes de sorties =========*/
+
 
 .editor__exits-list{
     width: 100%;
@@ -425,6 +437,9 @@ textarea {
     background-color: var(--light-green);
 }
 
+/* ======== Valider & Annuler =========*/
+
+
 .editor__btn{
     padding: 1rem 3rem 1rem 3rem;
     border-radius: .5rem;
@@ -457,6 +472,46 @@ textarea {
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
+}
+
+/* ======== Checkboxes =========*/
+
+input[type="checkbox"] {
+    -webkit-appearance: none;
+    appearance: none;
+    /* For iOS < 15 to remove gradient background */
+    background-color: var(--beige);
+    /* Not removed via appearance */
+    margin: 0;
+    height: 1.5rem;
+    width: 1.5rem;
+    border-radius: .2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+}
+
+input[type="checkbox"]::before {
+    transform: scale(0);
+    transition: 120ms transform ease-in-out;
+    color: var(--dark-brown);
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    font-size: 1.5rem;
+    content: "\f00d";
+}
+
+input[type="checkbox"]:checked::before {
+    transform: scale(1);
+}
+
+.form-checkbox{
+    display: flex;
+    flex-direction: row;
+    gap: .8rem;
+    margin-bottom: .8rem;
+    align-items: center;
 }
 
 /* ======== MEDIA QUERIES =========*/

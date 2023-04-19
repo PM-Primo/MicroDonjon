@@ -5,33 +5,41 @@
 {% block body %}
 
 <div class="editor__form-wrapper">
-    <h2 class="editor__show-title">Éditeur de chapitres à condition</h1>
+    <h2 class="editor__show-title">Éditeur de chapitres à condition</h2>
+    <div class="editor__show-monospace">Chapitre n°{{chapitre.id}}</div>
 
-    {{ form_start(formAddChapCondition) }}
+    <div class="editor__form">
+        {{ form_start(formAddChapCondition) }}
+            {% form_theme formAddChapCondition 'forms/fields.twig' %}
+    
+            {{ form_row(formAddChapCondition.titreChapitre) }}
+            {{ form_row(formAddChapCondition.texteSiVrai) }}
+            {{ form_row(formAddChapCondition.texteSiFaux) }}
+            {{ form_row(formAddChapCondition.zone) }}
+            {{ form_row(formAddChapCondition.itemCondition) }}
+    
+            <span class="editor__label editor__exits-list-label">Liste des sorties</span>
+    
+            <div id="listeSorties" class="editor__exits-list" data-prototype="{{ form_widget(formAddChapCondition.sorties.vars.prototype)| e('html_attr') }}">
+                {% form_theme formAddChapCondition.sorties 'forms/cards.twig' %}
+                {% for sortie in formAddChapCondition.sorties %}
+                    <div class="editor__exit-card">
+                        {% form_theme sortie 'forms/cards.twig' %}
+                        {% form_theme sortie.conditionVrai 'forms/checkboxes.twig' %}
 
-        {{ form_row(formAddChapCondition.titreChapitre) }}
-        {{ form_row(formAddChapCondition.texteSiVrai) }}
-        {{ form_row(formAddChapCondition.texteSiFaux) }}
-        {{ form_row(formAddChapCondition.zone) }}
-        {{ form_row(formAddChapCondition.itemCondition) }}
-
-        <br>
-        Sorties :
-        <br><br>
-
-        <div id="listeSorties" data-prototype="{{ form_widget(formAddChapCondition.sorties.vars.prototype)| e('html_attr') }}">
-            {% for sortie in formAddChapCondition.sorties %}
-                <div class="card">
-                    {{ form_row(sortie) }}
-                </div>
-                <br>
-            {% endfor %}
-            <a id="addSortie" href="#" class="">Ajouter une sortie</a><br><br>
-        </div>
-
-        {{ form_row(formAddChapCondition.submit) }}
-
-    {{ form_end(formAddChapCondition) }}
+                        {{ form_row(sortie) }}
+                    </div>
+                    <br>
+                {% endfor %}
+                <a id="addSortie" href="#" class="editor_add-exit-btn"><i class="fa-solid fa-plus"></i> Nouvelle Sortie</a><br><br>
+            </div>
+    
+            <div class="editor__buttons-box">
+                <a href="{{path("show", {'id': chapitre.id})}}" class="editor__btn editor__cancel">Annuler</a>
+                {{ form_row(formAddChapCondition.submit) }}
+            </div>    
+        {{ form_end(formAddChapCondition) }}
+    </div>
 
 </div>
 {% endblock %}

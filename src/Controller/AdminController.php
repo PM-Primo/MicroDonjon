@@ -246,6 +246,7 @@ class AdminController extends AbstractController
         //Vue pour afficher le formulaire d'ajout
         return $this->render('admin/chapcombat_add.html.twig', [
             'formAddChapCombat' =>$form->createView(),
+            'chapitre' => $chapitre
         ]);
     }
 
@@ -278,6 +279,7 @@ class AdminController extends AbstractController
         //Vue pour afficher le formulaire d'ajout
         return $this->render('admin/chapcondition_add.html.twig', [
             'formAddChapCondition' =>$form->createView(),
+            'chapitre' => $chapitre
         ]);
     }
 
