@@ -94,7 +94,7 @@ class AdminController extends AbstractController
             $entityManager->persist($chapStandard);
             $entityManager->flush(); 
 
-            return $this->redirectToRoute('admin_editor');
+            return $this->redirectToRoute('show', ['id' => $chapitre->getId()]);
         }
 
         return $this->render('admin/chapstandard_add.html.twig', [
@@ -124,7 +124,7 @@ class AdminController extends AbstractController
             $entityManager->persist($chapCombat);
             $entityManager->flush(); 
 
-            return $this->redirectToRoute('admin_editor');
+            return $this->redirectToRoute('show', ['id' => $chapitre->getId()]);
         }
 
         return $this->render('admin/chapcombat_add.html.twig', [
@@ -154,7 +154,7 @@ class AdminController extends AbstractController
             $entityManager->persist($chapCondition);
             $entityManager->flush(); 
 
-            return $this->redirectToRoute('admin_editor');
+            return $this->redirectToRoute('show', ['id' => $chapitre->getId()]);
         }
 
         return $this->render('admin/chapcondition_add.html.twig', [
@@ -207,7 +207,7 @@ class AdminController extends AbstractController
             $entityManager->persist($chapStandard);
             $entityManager->flush(); 
 
-            return $this->redirectToRoute('admin_editor');
+            return $this->redirectToRoute('show', ['id' => $chapitre->getId()]);
         }
 
         //Vue pour afficher le formulaire d'ajout
@@ -240,7 +240,7 @@ class AdminController extends AbstractController
             $entityManager->persist($chapCombat);
             $entityManager->flush(); 
 
-            return $this->redirectToRoute('admin_editor');
+            return $this->redirectToRoute('show', ['id' => $chapitre->getId()]);
         }
 
         //Vue pour afficher le formulaire d'ajout
@@ -273,7 +273,7 @@ class AdminController extends AbstractController
             $entityManager->persist($chapCondition);
             $entityManager->flush(); 
 
-            return $this->redirectToRoute('admin_editor');
+            return $this->redirectToRoute('show', ['id' => $chapitre->getId()]);
         }
 
         //Vue pour afficher le formulaire d'ajout
