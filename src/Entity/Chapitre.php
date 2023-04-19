@@ -111,4 +111,9 @@ class Chapitre
 
         return $this;
     }
+
+    public function getIdPlusTitle()
+    {
+        return $this->id.' - '.$this->titreChapitre;
+    }
 }

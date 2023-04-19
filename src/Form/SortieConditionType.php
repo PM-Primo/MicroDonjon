@@ -29,7 +29,7 @@ class SortieConditionType extends AbstractType
             ])
             ->add('chapitre', EntityType::class, [
                 'class' => Chapitre::class,
-                'choice_label' => 'id',
+                'choice_label' => 'idPlusTitle',
                 "attr" => ["class" => "form-control"],
                 "label_attr" => ["class" => "editor__cards-label"],
                 'label' => 'Chapitre de destination'

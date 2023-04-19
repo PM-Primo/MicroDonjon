@@ -22,7 +22,7 @@ class SortieCombatType extends AbstractType
         ])
         ->add('chapitre', EntityType::class, [
             'class' => Chapitre::class,
-            'choice_label' => 'titre_chapitre',
+            'choice_label' => 'idPlusTitle',
             "attr" => ["class" => "form-control"],
             "label_attr" => ["class" => "editor__cards-label"],
             'label' => 'Chapitre de destination'
@@ -36,4 +36,5 @@ class SortieCombatType extends AbstractType
             'data_class' => SortieCombat::class,
         ]);
     }
+
 }
