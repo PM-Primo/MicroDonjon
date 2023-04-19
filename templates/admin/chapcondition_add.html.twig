@@ -6,7 +6,13 @@
 
 <div class="editor__form-wrapper">
     <h2 class="editor__show-title">Éditeur de chapitres à condition</h2>
-    <div class="editor__show-monospace">Chapitre n°{{chapitre.id}}</div>
+    <div class="editor__show-monospace">
+        {% if chapitre is defined %}
+            Chapitre n°{{chapitre.id}}
+        {% else %}
+            Nouveau chapitre
+        {% endif %}
+    </div>
 
     <div class="editor__form">
         {{ form_start(formAddChapCondition) }}
@@ -35,9 +41,15 @@
             </div>
     
             <div class="editor__buttons-box">
-                <a href="{{path("show", {'id': chapitre.id})}}" class="editor__btn editor__cancel">Annuler</a>
+                {% if chapitre is defined %}
+                    <a href="{{path("show", {'id': chapitre.id})}}" class="editor__btn editor__cancel">Annuler</a>
+                {% else %}
+                    <a href="{{path("admin_editor")}}" class="editor__btn editor__cancel">Annuler</a>
+                {% endif %}
+
                 {{ form_row(formAddChapCondition.submit) }}
-            </div>    
+            </div>
+
         {{ form_end(formAddChapCondition) }}
     </div>
 
