@@ -23,9 +23,12 @@
                     <nav class="navbar">
                         <a href="{{path("app_home")}}" class="menu__link">Home</a>
                         {% if app.user %}
-                        {% if is_granted('ROLE_ADMIN') %}
-                            <a href="{{path("admin_editor")}}" class="menu__link">Éditeur</a>
-                        {% endif %}
+                            {% if is_granted('ROLE_ADMIN') %}
+                                <a href="{{path("admin_editor")}}" class="menu__link">Éditeur</a>
+                            {% endif %}
+                            {% if app.user.chapitreEnCours %}
+                                <a href="{{path("routing", {'id': app.user.chapitreEnCours})}}" class="menu__link">Aventure</a>
+                            {% endif %}
                             <a href="{{path("app_logout")}}" class="menu__link">Déconnexion</a>
                         {% else %}
                             <a href="{{path("app_login")}}" class="menu__link">Connexion</a>

@@ -23,6 +23,9 @@
                     {% if is_granted('ROLE_ADMIN') %}
                         <a href="{{path("admin_editor")}}" class="editor__menu-link">Éditeur</a>
                     {% endif %}
+                    {% if app.user.chapitreEnCours %}
+                        <a href="{{path("routing", {'id': app.user.chapitreEnCours})}}" class="editor__menu-link">Aventure</a>
+                    {% endif %}
                         <a href="{{path("app_logout")}}" class="editor__menu-link">Déconnexion</a>
                     {% else %}
                         <a href="{{path("app_login")}}" class="editor__menu-link">Connexion</a>
