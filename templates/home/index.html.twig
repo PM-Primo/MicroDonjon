@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{% extends 'dashboard.html.twig' %}
 
 {% block title %}MicroDonjon{% endblock %}
 
@@ -7,27 +7,58 @@
 
 </style>
 
-<div class="example-wrapper">
-    <h2>Bienvenue sur MicroDonjon</h2>
-
-    <p class="intro-text">
-        MicroDonjon est un <strong>jeu textuel</strong> s'inspirant librement et avec nostalgie des <strong>Livres Dont Vous Êtes 
-        Le Héros</strong> des années 80/90. Enfilez votre armure, affutez votre dague et embarquez dans un univers 
-        d'<strong>Heroïc Fantasy</strong>. Les mystères du donjon d'Ängerjalg vous attendent !
-    </p>
-
-    {% if app.user %}
-        {% if app.user.chapitreEnCours %}
-            <a href="{{path("routing", {'id': app.user.chapitreEnCours})}}">Continuer la partie en cours</a><br>
-            <a href="{{path("reset")}}">Écraser la partie en cours</a>
+<div class="home__wrapper">
+    <div class="register__imgbox">
+        <img src="{{asset("img/decoration/intro.png")}}" 
+        alt="Dessin à l'aquarelle d'un donjon en ruine en lisière de forêt" class="register__img">
+    </div>
+    <div class="home__text">
+        {% if app.user %}
+            <h2 class="register__title">Bonjour {{ app.user }}</h2>
         {% else %}
-            <a href="{{path("routing", {'id': 1})}}">Commencer une nouvelle partie</a>
+            <h2 class="register__title">Bienvenue sur MicroDonjon</h2>
         {% endif %}
+    
+        <p class="home__intro-text">
+            MicroDonjon est un <strong>jeu textuel</strong> s'inspirant librement et avec nostalgie des <strong>"Livres Dont Vous Êtes 
+            Le Héros"</strong> des années 80/90. Enfilez votre armure, affutez votre dague et embarquez dans un univers 
+            d'<strong>Heroïc Fantasy</strong>. Les mystères du donjon d'Ängerjalg vous attendent !
+        </p>
 
-    {% else %}
-        <a href="{{path("app_login")}}" class="menu__link">Se connecter</a> - 
-        <a href="{{path("app_register")}}" class="menu__link">S'inscrire</a>
-    {% endif %}
+        <p class="home__intro-text">
+            Vous entrez sur la page d'accueil du site MicroDonjon.
+            {% if app.user %}
+                {% if app.user.chapitreEnCours %}
+                Vous avez une partie en cours. Plusieurs choix s'offrent à vous. Vous pouvez continuer cette partie ou bien l'écraser définitivement et en commencer une nouvelle.
+                {% else %}
+                Vous n'avez aucune partie en cours. Vous pouvez en commencer une nouvelle dès maintenant !
+                {% endif %}
+            {% else %}
+                Vous n'êtes pas connecté.e. Si vous possédez déjà un compte vous pouvez vous connecter, sinon vous pouvez créer un compte.
+            {% endif %}
+
+        </p>
+    
+        {% if app.user %}
+            
+            {% if app.user.chapitreEnCours %}
+                <ul class="game__choices">
+                    <li><a href="{{path("routing", {'id': app.user.chapitreEnCours})}}" class="links__choice">Continuer la partie en cours</a></li>
+                    <li><a href="{{path("reset")}}" class="links__choice">Écraser la partie en cours</a></li>
+                </ul>
+            {% else %}
+                <ul class="game__choices">
+                    <li><a href="{{path("routing", {'id': 1})}}" class="links__choice">Commencer une nouvelle partie</a></li>
+                </ul>
+            {% endif %}
+    
+        {% else %}
+            <ul class="game__choices">
+                <li><a href="{{path("app_login")}}"  class="links__choice">Se connecter</a></li>
+                <li><a href="{{path("app_register")}}" class="links__choice">S'inscrire</a></li>
+            </ul>
+        {% endif %}
+    </div>
 
 </div>
 {% endblock %}
