@@ -63,7 +63,10 @@ class ChapCombatType extends AbstractType
                 'allow_delete' => true
             ])
 
-            ->add('submit', SubmitType::class, ["attr" => ["class" => "editor__submit editor__btn"]])
+            ->add('submit', SubmitType::class, [
+                "attr" => ["class" => "editor__submit editor__btn"],
+                'label' => 'Valider'    
+            ])
         ;
     }
 

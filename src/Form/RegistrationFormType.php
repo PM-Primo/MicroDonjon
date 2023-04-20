@@ -11,6 +11,7 @@ use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
@@ -20,8 +21,16 @@ class RegistrationFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('email', EmailType::class)
-            ->add('pseudo', TextType::class)
+            ->add('email', EmailType::class, [
+                "attr" => ["class" => "form-control"],
+                "label_attr" => ["class" => "editor__label"],
+                'label' => 'Adresse e-mail'
+            ])
+            ->add('pseudo', TextType::class, [
+                "attr" => ["class" => "form-control"],
+                "label_attr" => ["class" => "editor__label"],
+                'label' => 'Pseudo'
+            ])
             ->add('agreeTerms', CheckboxType::class, [
                 'mapped' => false,
                 'label' => 'Accepter les termes & conditions',
@@ -30,6 +39,8 @@ class RegistrationFormType extends AbstractType
                         'message' => 'Veuillez accepter les termes et conditions afin de poursuivre',
                     ]),
                 ],
+                'attr' => ["class" => "form-control"],
+                'label_attr' => ["class" => "editor__label"],
             ])
             ->add('plainPassword', RepeatedType::class, [
                 'mapped' => false,
@@ -37,10 +48,21 @@ class RegistrationFormType extends AbstractType
                 'invalid_message' => 'Les mots de passe doivent être identiques',
                 'options' => ['attr' => ['class' => 'password-field']],
                 'required' => true,
-                'first_options' => ['label' => 'Mot de passe'],
-                'second_options' => ['label' => 'Confirmer le mot de passe'],
+                'first_options' => [
+                    'label' => 'Mot de passe',
+                    'label_attr' => ["class" => "editor__label"],
+                    'attr' => ["class" => "form-control"]
+                ],
+                'second_options' => [
+                    'label' => 'Confirmer le mot de passe',
+                    'label_attr' => ["class" => "editor__label"],
+                    'attr' => ["class" => "form-control"]
+                ],
 
                 'attr' => ['autocomplete' => 'new-password'],
+                'row_attr' => ['class' => 'text-editor', 'id' => '...'],
+
+                "label_attr" => ["class" => "editor__label"],
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Veuillez entrer un mot de passe',
@@ -52,7 +74,10 @@ class RegistrationFormType extends AbstractType
                         'max' => 4096,
                     ]),
                 ],
+
             ])
+            ->add('submit', SubmitType::class, ["attr" => ["class" => "editor__submit editor__btn"], 'label' => 'Valider'])
+
         ;
     }
 

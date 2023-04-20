@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{% extends 'dashboard.html.twig' %}
 
 {% block title %}MicroDonjon - S'inscrire{% endblock %}
 
@@ -7,14 +7,33 @@
         <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
     {% endfor %}
 
-    <h2>S'inscrire</h2>
+    <h2 class="register__title">S'inscrire</h2>
+    
+    <div class="register__wrapper">
+        <div class="register__form"
+            {{ form_start(registrationForm) }}
+            {% form_theme registrationForm 'forms/fields.twig' %}
 
-    {{ form_start(registrationForm) }}
-        {{ form_row(registrationForm.email) }}
-        {{ form_row(registrationForm.pseudo) }}
-        {{ form_row(registrationForm.plainPassword) }}
-        {{ form_row(registrationForm.agreeTerms) }}
+                {{ form_row(registrationForm.email) }}
+                {{ form_row(registrationForm.pseudo) }}
+                {{ form_row(registrationForm.plainPassword) }}
 
-        <button type="submit" class="btn">Valider</button>
-    {{ form_end(registrationForm) }}
+                {% form_theme registrationForm.agreeTerms 'forms/checkboxes.twig' %}
+                {{ form_row(registrationForm.agreeTerms) }}
+                
+                <div class="editor__buttons-box">
+                    <a href="{{path("app_home")}}" class="editor__btn editor__cancel">Annuler</a>
+                    {{ form_row(registrationForm.submit) }}
+                </div>
+
+            {{ form_end(registrationForm) }}
+        </div>
+        
+        <div class="register__imgbox">
+            <img src="{{asset("img/decoration/wizard_shadow.png")}}" 
+            alt="Dessin à l'aquarelle d'un aventurier pénétrant dans les coujoirs sombres d'un donjon" class="register__img">
+        </div>
+
+    </div>
+
 {% endblock %}

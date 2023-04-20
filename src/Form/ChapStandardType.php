@@ -87,7 +87,7 @@ class ChapStandardType extends AbstractType
                 // "label_attr" => ["class" => "editor__label"]
             ])
 
-            ->add('submit', SubmitType::class, ["attr" => ["class" => "editor__submit editor__btn"], 'label' => 'Valider !'])
+            ->add('submit', SubmitType::class, ["attr" => ["class" => "editor__submit editor__btn"], 'label' => 'Valider'])
         ;
     }
 

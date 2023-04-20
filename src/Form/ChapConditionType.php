@@ -65,7 +65,7 @@ class ChapConditionType extends AbstractType
 
             ->add('submit', SubmitType::class, [
                 "attr" => ["class" => "editor__submit editor__btn"],
-                'label' => 'Valider !'    
+                'label' => 'Valider'    
             ])
         ;
 
