@@ -501,8 +501,9 @@ input[type="checkbox"] {
     background-color: var(--beige);
     /* Not removed via appearance */
     margin: 0;
-    height: 1.5rem;
     width: 1.5rem;
+    height: 1.5rem;
+    aspect-ratio: 1 / 1;
     border-radius: .2rem;
     display: flex;
     align-items: center;
@@ -630,6 +631,8 @@ input[type="checkbox"]:checked::before {
 
 @media screen and (max-width: 1064px){
 
+    /* == Home & Register  ==*/
+
     .home__wrapper{
         margin-inline: 8%
     }
@@ -641,6 +644,8 @@ input[type="checkbox"]:checked::before {
 }
 
 @media screen and (max-width: 768px){
+
+    /* == Home & Register ==*/
 
     .home__wrapper{
         flex-direction: column-reverse;
@@ -664,6 +669,11 @@ input[type="checkbox"]:checked::before {
     .login__form{
         width:100%;
         gap: 1rem;
+    }
+
+    .register__form{
+        width: 100%;
+        gap: .15rem;
     }
 
     .register__imgbox{
@@ -692,6 +702,9 @@ input[type="checkbox"]:checked::before {
 
 @media screen and (max-width: 576px){
 
+    /* == Home & Register ==*/
+
+
     .register__imgbox{
         width:80%;
     }
@@ -699,6 +712,13 @@ input[type="checkbox"]:checked::before {
 }
 
 @media screen and (max-width: 450px){
+    
+    
+    /* == Header ==*/
+
+    .dashboard__logo{
+        padding: 2.5rem 0 0 0;
+    }
 
     .editor__navbar{
         flex-direction: row;
@@ -709,15 +729,15 @@ input[type="checkbox"]:checked::before {
         flex-wrap: wrap;
     }
 
+    /* == Home & Register ==*/
+
     .game__choices{
         display: flex;
         flex-direction: column;
         /* justify-content: space-evenly; */
     }    
     
-    .dashboard__logo{
-        padding: 2.5rem 0 0 0;
-    }
+    /* == Buttons ==*/
 
     .editor__btn{
         padding: .5rem 1.5rem .5rem 1.5rem;
