@@ -561,6 +561,7 @@ input[type="checkbox"]:checked::before {
 
 .register__imgbox{
     width:47%;
+    height: fit-content;
     border-radius: 1rem;
     overflow: hidden;
     display: block;
@@ -581,6 +582,7 @@ input[type="checkbox"]:checked::before {
 
 /* ======== HOME =========*/
 
+
 .home__wrapper{
     margin-top: 3%;
     margin-inline: 15%; 
@@ -589,6 +591,7 @@ input[type="checkbox"]:checked::before {
     justify-content: space-between ;
     align-items: stretch;
     flex-wrap: wrap;
+    min-height: 100%; /*Ca ne fonctionne pas*/
 }
 
 .home__text{
@@ -624,8 +627,79 @@ input[type="checkbox"]:checked::before {
 
 /* ======== MEDIA QUERIES =========*/
 
+@media screen and (max-width: 1064px){
+
+    .home__wrapper{
+        margin-inline: 8%
+    }
+
+}
+
 @media screen and (max-width: 768px){
 
+    .home__wrapper{
+        flex-direction: column-reverse;
+        align-items: center;
+        gap: 1.5rem;
+        padding-bottom: 2rem;
+    }
 
+    .home__text{
+        width:100%;
+        gap: 1rem;
+    }
+
+    .register__imgbox{
+        width:70%;
+    }
+
+    .game__choices{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+    }
+
+    .dashboard__logo{
+        padding: 1.5rem 0 0 0;
+    }
+
+    .register__title{
+        margin-bottom: 0;
+    }
+
+    .home__wrapper{
+        margin-top: 0
+    }
+
+}
+
+@media screen and (max-width: 576px){
+
+    .register__imgbox{
+        width:80%;
+    }
+
+}
+
+@media screen and (max-width: 450px){
+
+    .editor__navbar{
+        flex-direction: row;
+        width: 100%;
+        justify-content: space-evenly;
+        left:0;
+        top:.5rem;
+        flex-wrap: wrap;
+    }
+
+    .game__choices{
+        display: flex;
+        flex-direction: column;
+        /* justify-content: space-evenly; */
+    }    
+    
+    .dashboard__logo{
+        padding: 2.5rem 0 0 0;
+    }
 
 }
