@@ -134,6 +134,7 @@ strong{
 .editor__main-wrapper{
     background-color: var(--light-brown);
     min-height: 100%;
+    height: max-content;
 }
 
 .editor__navbar{
@@ -458,7 +459,7 @@ select:-webkit-autofill:focus {
 
 
 .editor__btn{
-    padding: 1rem 3rem 1rem 3rem;
+    padding: .8rem 2.5rem .8rem 2.5rem;
     border-radius: .5rem;
     border: none;
     color: var(--beige);
@@ -584,14 +585,13 @@ input[type="checkbox"]:checked::before {
 
 
 .home__wrapper{
-    margin-top: 3%;
-    margin-inline: 15%; 
+    margin-inline: 15%;
+    margin-top: 3%; 
     display: flex;
     flex-direction: row;
     justify-content: space-between ;
-    align-items: stretch;
-    flex-wrap: wrap;
-    min-height: 100%; /*Ca ne fonctionne pas*/
+    align-items: center;
+    /* height: 80%; */
 }
 
 .home__text{
@@ -599,6 +599,7 @@ input[type="checkbox"]:checked::before {
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
+    align-self: stretch;
 }
 
 .links__choice{
@@ -633,6 +634,10 @@ input[type="checkbox"]:checked::before {
         margin-inline: 8%
     }
 
+    .register__wrapper{
+        margin-inline: 12%
+    }
+
 }
 
 @media screen and (max-width: 768px){
@@ -645,6 +650,18 @@ input[type="checkbox"]:checked::before {
     }
 
     .home__text{
+        width:100%;
+        gap: 1rem;
+    }
+
+    .register__wrapper{
+        flex-direction: column;
+        align-items: center;
+        gap: 1.5rem;
+        padding-bottom: 2rem;
+    }
+
+    .login__form{
         width:100%;
         gap: 1rem;
     }
@@ -700,6 +717,10 @@ input[type="checkbox"]:checked::before {
     
     .dashboard__logo{
         padding: 2.5rem 0 0 0;
+    }
+
+    .editor__btn{
+        padding: .5rem 1.5rem .5rem 1.5rem;
     }
 
 }
