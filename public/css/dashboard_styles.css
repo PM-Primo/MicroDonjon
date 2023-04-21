@@ -146,6 +146,10 @@ strong{
     gap: .35;
 }
 
+.editor__title{
+    font-size: var(--h2-font-size);
+}
+
 .editor__menu-link{
     color:var(--dark-brown);
     font-family: var(--chapter-font);
@@ -252,7 +256,7 @@ strong{
 }
 
 .editor__show-title-block{
-    margin-bottom: 2.5rem;
+    margin-bottom: 1.25rem;
 }
 
 .editor__show-text-wrapper{
@@ -631,7 +635,7 @@ input[type="checkbox"]:checked::before {
 
 @media screen and (max-width: 1064px){
 
-    /* == Home & Register  ==*/
+    /* == Home & Register ==*/
 
     .home__wrapper{
         margin-inline: 8%
@@ -641,6 +645,18 @@ input[type="checkbox"]:checked::before {
         margin-inline: 12%
     }
 
+    /* == Editor ==*/
+
+
+    .editor__show-wrapper{
+        margin-inline: 12%; 
+    }
+    .editor__form-wrapper{
+        margin-inline: 12%; 
+    }
+    .editor__form{
+        margin-top: 1.75rem;
+    }
 }
 
 @media screen and (max-width: 768px){
@@ -698,20 +714,37 @@ input[type="checkbox"]:checked::before {
         margin-top: 0
     }
 
+    /* == Editor ==*/
+
+    .editor__title{
+        margin-bottom: 1rem;
+    }
+
 }
 
 @media screen and (max-width: 576px){
 
     /* == Home & Register ==*/
 
-
     .register__imgbox{
         width:80%;
     }
 
+    /* == Editor ==*/
+
+    .editor__show-wrapper{
+        margin-inline: 6%; 
+    }
+    .editor__form-wrapper{
+        margin-inline: 6%; 
+    }
+    .editor__show-title{
+        margin-inline: 20%;
+    }
+
 }
 
-@media screen and (max-width: 450px){
+@media screen and (max-width: 480px){
     
     
     /* == Header ==*/
@@ -741,6 +774,12 @@ input[type="checkbox"]:checked::before {
 
     .editor__btn{
         padding: .5rem 1.5rem .5rem 1.5rem;
+    }
+
+    /* == Editor ==*/
+
+    .editor__show-title{
+        margin-inline: 0;
     }
 
 }

@@ -6,10 +6,6 @@
 
 <div class="editor__show-wrapper">
 
-    <a href="{{path("admin_editor")}}" class="editor__back-btn">
-        <i class="fa-solid fa-circle-arrow-left"></i> Liste des chapitres
-    </a>
-
     <div class="editor__show-title-block">
         <h2 class="editor__show-title">{{chapitre.id}} : {{chapitre.titreChapitre}}</h2>
         <div class="editor__show-monospace">Chapitre {{chapitre.typePage}}</div>
@@ -18,6 +14,9 @@
             &nbsp
             <a href="{{path("delete", {'id': chapitre.id})}}" class="editor__delete-icon"><i class="fa-solid fa-trash"></i></a>   
         </div>
+        <a href="{{path("admin_editor")}}" class="editor__back-btn">
+            <i class="fa-solid fa-circle-arrow-left"></i> Liste des chapitres
+        </a>
     </div>
 
     <div>
