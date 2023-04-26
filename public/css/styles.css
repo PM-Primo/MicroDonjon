@@ -287,7 +287,6 @@ ul{
 .game__item-imgbox{   
     width: 31%;
     height: fit-content;
-    /* overflow: hidden; */
     position: relative;
 }
 
@@ -420,8 +419,22 @@ ul{
 }
 
 
+/* ======= COMBAT PAGES =======*/
 
+.game__dice-box{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
 
+.game__die-imgbox{
+    width : 3rem;
+    height: fit-content;
+}
+
+.game__die-side{
+    width: 100% ;
+}
 
 
 /* ======= MEDIA QUERIES =======*/

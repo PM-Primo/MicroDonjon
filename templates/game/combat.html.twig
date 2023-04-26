@@ -23,9 +23,25 @@
     {% endif %}
 
     {% if attaque is defined and attaque == true %}
-        Vos lancers : {{lancers[0]}} + {{lancers[1]}} + {{app.user.attaque}} 
+        Vos lancers : {{lancers[0]}} + {{lancers[1]}} + {{app.user.attaque}}
+        <div class="game__dice-box">
+            <div class="game__die-imgbox">
+                <img src="{{asset("img/dice/dice_hero_" ~ lancers[0] ~ ".png")}}" alt="Dé sur la face {{lancers[0]}}" class="game__die-side">
+            </div>
+            <div class="game__die-imgbox">
+                <img src="{{asset("img/dice/dice_hero_" ~ lancers[1] ~ ".png")}}" alt="Dé sur la face {{lancers[1]}}" class="game__die-side">
+            </div>
+        </div>
         (total : {{totalJoueur}})<br>
         Lancers de la créature: {{lancers[2]}} + {{lancers[3]}} + {{chapCombat.monstre.attaqueMonstre}}
+        <div class="game__dice-box">
+            <div class="game__die-imgbox">
+                <img src="{{asset("img/dice/dice_monster_" ~ lancers[2] ~ ".png")}}" alt="Dé sur la face {{lancers[2]}}" class="game__die-side">
+            </div>
+            <div class="game__die-imgbox">
+                <img src="{{asset("img/dice/dice_monster_" ~ lancers[3] ~ ".png")}}" alt="Dé sur la face {{lancers[3]}}" class="game__die-side">
+            </div>
+        </div>
         (total : {{totalMonstre}})<br><br>
         {{texteCombat}}<br><br>
     {% endif %}

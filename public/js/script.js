@@ -66,6 +66,7 @@ function addNewForm() {
     $addNewItem.before($card);
 }
 
+
 const toggleOpenIcon = document.querySelector("#toggle-open-icon");
 const toggleCloseIcon = document.querySelector("#toggle-close-icon");
 const leftPage = document.querySelector("#game__left-page");
