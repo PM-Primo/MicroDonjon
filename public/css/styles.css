@@ -455,11 +455,15 @@ ul{
     .toggle-close-icon{
         visibility: visible;
     }
+
+    .game__item-imgbox {
+        width: 22%;
+    }
 }
 
 @media screen and (max-width: 768px){
-    .game__left-page-content {
-    
+    .game__item-imgbox {
+        width: 31%;
     }
 }
 
