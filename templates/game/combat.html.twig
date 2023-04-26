@@ -10,40 +10,80 @@
         <h2>{{chapitre.zone}}</h2>
     </div>
 
-    <p>{{chapCombat.texteInitial | raw}}</p>
-
-    {{chapCombat.monstre}}<br>
-    PV : {{combat.PVactuelsMonstre}}/{{chapCombat.monstre.PVmaxMonstre}}<br>
-    Attaque : {{chapCombat.monstre.attaqueMonstre}}
-    
     {% if combat.PVactuelsMonstre > 0 and app.user.PVactuels > 0 %}
-        <br><br>
-        <a href="{{path("combattre", {'idcombat': combat.id, 'idchap': chapitre.id, 'idchapcombat':chapCombat.id})}}">Attaquer</a>
-        <br><br>
-    {% endif %}
+        {% if attaque is not defined %}
+            <p>{{chapCombat.texteInitial | raw}}</p>
+        {% endif %}
 
-    {% if attaque is defined and attaque == true %}
-        Vos lancers : {{lancers[0]}} + {{lancers[1]}} + {{app.user.attaque}}
-        <div class="game__dice-box">
-            <div class="game__die-imgbox">
-                <img src="{{asset("img/dice/dice_hero_" ~ lancers[0] ~ ".png")}}" alt="Dé sur la face {{lancers[0]}}" class="game__die-side">
+        <div class="game__monster-box">
+            <div class="game__monster-imgbox">
+                <img src="{{asset(chapCombat.monstre.imageMonstre)}}" alt="{{chapCombat.monstre}}" class="game__monster-image">
             </div>
-            <div class="game__die-imgbox">
-                <img src="{{asset("img/dice/dice_hero_" ~ lancers[1] ~ ".png")}}" alt="Dé sur la face {{lancers[1]}}" class="game__die-side">
-            </div>
+            <ul class="game__monster-stats">
+                <li>{{chapCombat.monstre}}</li>
+                <li>PV : {{combat.PVactuelsMonstre}}/{{chapCombat.monstre.PVmaxMonstre}}</li>
+                <li>Attaque : {{chapCombat.monstre.attaqueMonstre}}</li>
+            </ul>
+            {% if combat.PVactuelsMonstre > 0 and app.user.PVactuels > 0 %}
+                <a href="{{path("combattre", {'idcombat': combat.id, 'idchap': chapitre.id, 'idchapcombat':chapCombat.id})}}" class="game__attack-btn">Attaquer</a>
+            {% endif %}
         </div>
-        (total : {{totalJoueur}})<br>
-        Lancers de la créature: {{lancers[2]}} + {{lancers[3]}} + {{chapCombat.monstre.attaqueMonstre}}
-        <div class="game__dice-box">
-            <div class="game__die-imgbox">
-                <img src="{{asset("img/dice/dice_monster_" ~ lancers[2] ~ ".png")}}" alt="Dé sur la face {{lancers[2]}}" class="game__die-side">
+
+        {% if attaque is defined and attaque == true %}
+            <div class="game__rolls-box">
+                <div class="game__roll">                
+                    <span class="game__rolls-title">Vos lancers :</span>
+                    <div class="game__dice-box game__hero-dice-box">
+                        <div class="game__die-imgbox">
+                            <img src="{{asset("img/dice/dice_hero_" ~ lancers[0] ~ ".png")}}" alt="Dé sur la face {{lancers[0]}}" class="game__die-side">
+                        </div>
+                        +
+                        <div class="game__die-imgbox">
+                            <img src="{{asset("img/dice/dice_hero_" ~ lancers[1] ~ ".png")}}" alt="Dé sur la face {{lancers[1]}}" class="game__die-side">
+                        </div>
+                        +
+                        <div class="game__attack-stat-box">
+                            <div class="game__combat-attack-stat">
+                                {{app.user.attaque}}
+                            </div>
+                            <div class="game__swords-imgbox">
+                                <img src="{{asset("img/icons/swords_icon_brown.png")}}" alt="Logo : deux épées croisées" class="game__die-side">
+                            </div>
+                        </div>
+                        =
+                        <div class="game__combat-total">
+                            {{totalJoueur}}
+                        </div>
+                    </div>
+                </div>
+                <div class="game__roll">
+                    <span class="game__rolls-title">Lancers de la créature :</span>
+                    <div class="game__dice-box game__monster-dice-box">
+                        <div class="game__die-imgbox">
+                            <img src="{{asset("img/dice/dice_monster_" ~ lancers[2] ~ ".png")}}" alt="Dé sur la face {{lancers[2]}}" class="game__die-side">
+                        </div>
+                        +
+                        <div class="game__die-imgbox">
+                            <img src="{{asset("img/dice/dice_monster_" ~ lancers[3] ~ ".png")}}" alt="Dé sur la face {{lancers[3]}}" class="game__die-side">
+                        </div>
+                        +
+                        <div class="game__attack-stat-box">            
+                            <div class="game__combat-attack-stat">
+                                {{chapCombat.monstre.attaqueMonstre}}
+                            </div>
+                            <div class="game__swords-imgbox">
+                                <img src="{{asset("img/icons/swords_icon_red.png")}}" alt="Logo : deux épées croisées" class="game__die-side">
+                            </div>
+                        </div>
+                        =
+                        <div class="game__combat-total">
+                            {{totalMonstre}}
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="game__die-imgbox">
-                <img src="{{asset("img/dice/dice_monster_" ~ lancers[3] ~ ".png")}}" alt="Dé sur la face {{lancers[3]}}" class="game__die-side">
-            </div>
-        </div>
-        (total : {{totalMonstre}})<br><br>
-        {{texteCombat}}<br><br>
+            {{texteCombat | raw}}
+        {% endif %}
     {% endif %}
 
 

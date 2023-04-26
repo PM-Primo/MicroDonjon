@@ -421,10 +421,52 @@ ul{
 
 /* ======= COMBAT PAGES =======*/
 
+.game__monster-box{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    /* margin-inline:10%;  */
+    justify-content: space-evenly;
+    font-family: var(--title-font);
+    font-size: var(--h2-font-size);
+}
+
+.game__monster-imgbox{
+    width : 25%;
+    height: fit-content;
+}
+
+.game__monster-image{
+    width: 100% ;
+    display: block;
+}
+
+.game__attack-btn{
+    background-color: var(--dark-red);
+    padding: .8rem 2.5rem .6rem 2.5rem;
+    border-radius: .5rem;
+    color: var(--beige);
+}
+
+.game__attack-btn:hover{
+    background-color: var(--light-red);
+}
+
+.game__rolls-box{
+    align-self: center;
+}
+
+.game__rolls-title{
+    text-decoration: underline;
+}
+
 .game__dice-box{
     display: flex;
     flex-direction: row;
     gap: 10px;
+    height:fit-content;
+    font-family: var(--title-font);
+    font-size: var(--h1-font-size);
 }
 
 .game__die-imgbox{
@@ -432,10 +474,30 @@ ul{
     height: fit-content;
 }
 
-.game__die-side{
-    width: 100% ;
+.game__attack-stat-box{
+    display: flex;
+    align-items: center;
+    gap: .5rem;
 }
 
+.game__swords-imgbox{
+    width : 1.5rem;
+    height: fit-content;
+    transform: translateY(-.3rem);
+}
+
+.game__die-side{
+    width: 100% ;
+    display: block;
+}
+
+.game__hero-dice-box{
+    color: var(--dark-brown)
+}
+
+.game__monster-dice-box{
+    color: var(--dark-red)
+}
 
 /* ======= MEDIA QUERIES =======*/
 
