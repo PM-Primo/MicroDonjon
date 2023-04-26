@@ -381,11 +381,12 @@ ul{
 
 .game__box{
     border-radius: 1.25rem;
-    padding: 2rem ;
-    width: max-content;
+    padding: 1.75rem ;
+    width: fit-content;
     align-self: center ;
     font-family: var(--title-font);
     font-size: var(--h2-font-size);
+    text-align:center; 
 }
 
 .game__getItem{
@@ -431,8 +432,17 @@ ul{
     font-size: var(--h2-font-size);
 }
 
+.game__monster-box-right{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    height: 100%;
+    justify-content: space-evenly;
+}
+
 .game__monster-imgbox{
-    width : 25%;
+    width : 33%;
     height: fit-content;
 }
 
@@ -534,6 +544,11 @@ ul{
     .game__item-imgbox {
         width: 22%;
     }
+
+    .game__monster-imgbox{
+        width : 28%;
+    }
+
 }
 
 @media screen and (max-width: 768px){
@@ -556,24 +571,43 @@ ul{
     .game__item-imgbox {
         width: 47%;
     }
+
+
+    .game__attack-btn{
+        padding: .5rem 1.5rem .3rem 1.5rem;
+    }
+
+    .game__monster-imgbox {
+        width: 45%;
+    }
+
+    .game__box{
+        padding:1rem;
+    }
 }
 
 @media screen and (max-width: 480px){
-    @media screen and (max-width: 576px){
-        .game__progression-box{
-            width: 50%
-        }
     
-        .game__inventory-grid{
-            margin-left: 1rem;
-            width: 50%;
-            justify-content: center;
-        }
+    .game__progression-box{
+        width: 50%
+    }
     
-        .game__item-imgbox{
-            width: 80%;
-            
-        }
+    .game__inventory-grid{
+        margin-left: 1rem;
+        width: 50%;
+        justify-content: center;
+    }
+    
+    .game__item-imgbox{
+        width: 80%;   
+    }
+
+    .game__die-imgbox{
+        width: 2.4rem;
+    }
+
+    .game__dice-box{
+        font-size: 2.4rem ;
     }
 }
 

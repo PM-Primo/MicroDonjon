@@ -19,14 +19,16 @@
             <div class="game__monster-imgbox">
                 <img src="{{asset(chapCombat.monstre.imageMonstre)}}" alt="{{chapCombat.monstre}}" class="game__monster-image">
             </div>
-            <ul class="game__monster-stats">
-                <li>{{chapCombat.monstre}}</li>
-                <li>PV : {{combat.PVactuelsMonstre}}/{{chapCombat.monstre.PVmaxMonstre}}</li>
-                <li>Attaque : {{chapCombat.monstre.attaqueMonstre}}</li>
-            </ul>
-            {% if combat.PVactuelsMonstre > 0 and app.user.PVactuels > 0 %}
-                <a href="{{path("combattre", {'idcombat': combat.id, 'idchap': chapitre.id, 'idchapcombat':chapCombat.id})}}" class="game__attack-btn">Attaquer</a>
-            {% endif %}
+            <div class="game__monster-box-right">
+                <ul class="game__monster-stats">
+                    <li>{{chapCombat.monstre}}</li>
+                    <li>PV : {{combat.PVactuelsMonstre}}/{{chapCombat.monstre.PVmaxMonstre}}</li>
+                    <li>Attaque : {{chapCombat.monstre.attaqueMonstre}}</li>
+                </ul>
+                {% if combat.PVactuelsMonstre > 0 and app.user.PVactuels > 0 %}
+                    <a href="{{path("combattre", {'idcombat': combat.id, 'idchap': chapitre.id, 'idchapcombat':chapCombat.id})}}" class="game__attack-btn">Attaquer</a>
+                {% endif %}
+            </div>
         </div>
 
         {% if attaque is defined and attaque == true %}
