@@ -93,6 +93,64 @@ ul{
     list-style-type: none
 }
 
+
+
+/*==============   HEADER    ==================*/
+
+.game__header{
+    display:flex;
+    flex-direction: row;
+    padding-inline: 3%;
+    justify-content: space-between;
+}
+
+.toggle-close-icon{
+    color: var(--beige);
+    font-size: var(--icons-font-size);
+    /* position: absolute;
+    top: 3%;
+    right: 1.25%; */
+    cursor: pointer;
+    visibility: hidden;
+}
+
+/* =========== NAVBAR ================== */
+
+.navbar{
+    /* position: absolute;
+    top: 1.5rem;
+    left: 1.5rem; */
+    display: flex;
+    flex-direction: column;
+    gap: .35;
+}
+
+.menu__link{
+    color:var(--light-brown);
+    font-family: var(--chapter-font);
+    text-transform: uppercase;
+    font-weight: 500;
+    position:relative;
+    width: max-content;
+}
+
+.menu__link::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: var(--light-brown);
+    transition: transform 0.4s;
+    transform-origin: top left;
+}
+
+.menu__link:hover::after {
+    transform: scaleX(1);
+}
+
 /*==============   MAIN WRAPPERS    ==================*/
 
 
@@ -148,15 +206,7 @@ ul{
     display: none;
 }
 
-.toggle-close-icon{
-    color: var(--beige);
-    font-size: var(--icons-font-size);
-    position: absolute;
-    top: 3%;
-    right: 1.25%;
-    cursor: pointer;
-    display: none;
-}
+
 
 /* ======== CHAPTER N° ============ */
 
@@ -196,7 +246,7 @@ ul{
 
 /* =========== PROGRESSION STACK ============== */
 
-.game__progession_box{
+.game__progression-box{
     display: flex;
     flex-direction: column;
     width: 30%;
@@ -370,48 +420,16 @@ ul{
 }
 
 
-/* =========== NAVBAR ================== */
 
-.navbar{
-    position: absolute;
-    top: 1.5rem;
-    left: 1.5rem;
-    display: flex;
-    flex-direction: column;
-    gap: .35;
-}
 
-.menu__link{
-    color:var(--light-brown);
-    font-family: var(--chapter-font);
-    text-transform: uppercase;
-    font-weight: 500;
-    position:relative;
-    width: max-content;
-}
 
-.menu__link::after {
-    content: '';
-    position: absolute;
-    width: 100%;
-    transform: scaleX(0);
-    height: 2px;
-    bottom: 0;
-    left: 0;
-    background-color: var(--light-brown);
-    transition: transform 0.4s;
-    transform-origin: top left;
-}
-
-.menu__link:hover::after {
-    transform: scaleX(1);
-}
 
 /* ======= MEDIA QUERIES =======*/
 
-@media screen and (max-width: 768px){
+
+
+@media screen and (max-width: 1064px){
     .game__left-page{
-        /* display: none; */
         width: 100%;
         transform: translateX(-100%);
         transition: transform 1000ms;
@@ -435,18 +453,53 @@ ul{
     }
 
     .toggle-close-icon{
-        display: block;
+        visibility: visible;
+    }
+}
+
+@media screen and (max-width: 768px){
+    .game__left-page-content {
+    
+    }
+}
+
+@media screen and (max-width: 576px){
+    .game__progression-box{
+        width: 40%
+    }
+
+    .game__inventory-grid{
+        margin-left: 1rem;
+        width: 60%;
+        gap: 8px 5%;
+    }
+
+    .game__item-imgbox {
+        width: 47%;
+    }
+}
+
+@media screen and (max-width: 480px){
+    @media screen and (max-width: 576px){
+        .game__progression-box{
+            width: 50%
+        }
+    
+        .game__inventory-grid{
+            margin-left: 1rem;
+            width: 50%;
+            justify-content: center;
+        }
+    
+        .game__item-imgbox{
+            width: 80%;
+            
+        }
     }
 }
 
 /* ======= JS TOGGLE =======*/
 
 .game__left-page__toggle-open{
-    /* display: block; */
-    /* width: 100%; */
     transform: translateX(0);
-}
-
-.game__right-page__toggle-close{
-    /* display: none; */
 }

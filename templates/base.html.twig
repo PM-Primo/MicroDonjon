@@ -19,30 +19,31 @@
             <div class="game__main-wrapper">
                 
                 <div class="game__left-page" id="game__left-page">
-
-                    <nav class="navbar">
-                        <a href="{{path("app_home")}}" class="menu__link">Home</a>
-                        {% if app.user %}
-                            {% if is_granted('ROLE_ADMIN') %}
-                                <a href="{{path("admin_editor")}}" class="menu__link">Éditeur</a>
+                    <header class="game__header">
+                        <nav class="navbar">
+                            <a href="{{path("app_home")}}" class="menu__link">Home</a>
+                            {% if app.user %}
+                                {% if is_granted('ROLE_ADMIN') %}
+                                    <a href="{{path("admin_editor")}}" class="menu__link">Éditeur</a>
+                                {% endif %}
+                                {% if app.user.chapitreEnCours %}
+                                    <a href="{{path("routing", {'id': app.user.chapitreEnCours})}}" class="menu__link">Aventure</a>
+                                {% endif %}
+                                <a href="{{path("app_logout")}}" class="menu__link">Déconnexion</a>
+                            {% else %}
+                                <a href="{{path("app_login")}}" class="menu__link">Connexion</a>
+                                <a href="{{path("app_register")}}" class="menu__link">Inscription</a>
                             {% endif %}
-                            {% if app.user.chapitreEnCours %}
-                                <a href="{{path("routing", {'id': app.user.chapitreEnCours})}}" class="menu__link">Aventure</a>
-                            {% endif %}
-                            <a href="{{path("app_logout")}}" class="menu__link">Déconnexion</a>
-                        {% else %}
-                            <a href="{{path("app_login")}}" class="menu__link">Connexion</a>
-                            <a href="{{path("app_register")}}" class="menu__link">Inscription</a>
-                        {% endif %}
-                    </nav>
-                    
-                    <h1>MicroDonjon</h1>
-
-                    <div class="toggle-close-icon" id="toggle-close-icon"><i class="fa-regular fa-circle-xmark"></i></div>
+                        </nav>
+                        
+                        <h1>MicroDonjon</h1>
+    
+                        <div class="toggle-close-icon" id="toggle-close-icon"><i class="fa-regular fa-circle-xmark"></i></div>
+                    </header>
 
                     {% if app.user %}
                     <div class="game__left-page-content">
-                        <div class="game__progession_box">
+                        <div class="game__progression-box">
                             {% set counter = 1 %}
                             {% for zone in app.user.visites %}
                                 {% if counter is odd %}                                
