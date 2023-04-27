@@ -69,7 +69,7 @@
                                 </div>
                             </div>
                             {% for item in app.user.inventaire %}
-                                <div class="game__item-imgbox" id="item-image-{{item.id}}">
+                                <div class="game__item-imgbox" id="item-image-{{item.id}}" data-item-id="{{item.id}}">
                                     {% if item.id == 1 or item.id == 10 %}
                                         <img src="{{asset(item.imageItem)}}" alt="{{item}}" class="game__item-image game__weapon">
                                         {# <div class="game__info-item">
@@ -87,7 +87,7 @@
                         </div>
                         {% for item in app.user.inventaire %} 
                             <div class="game__item-description-box" id="item-description-{{item.id}}">
-                                Blabla voici du texte Ceci est un test
+                                Blabla voici du texte pour l'objet {{item}} : Ceci est un test
                             </div>
                         {% endfor %} 
                     </div>

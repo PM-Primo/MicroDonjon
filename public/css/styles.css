@@ -349,10 +349,7 @@ ul{
     position:absolute;
     width:80%;
     transform: translateX(-100%);
-}
-
-.game__item-description-box-open{
-    transform:translateX(0)
+    transition: transform 1000ms;
 }
 
 /* =========== HP BAR ============== */
@@ -649,4 +646,8 @@ ul{
 
 .game__left-page__toggle-open{
     transform: translateX(0);
+}
+
+.game__item-description-box-open{
+    transform:translateX(0)
 }

@@ -71,6 +71,13 @@ const toggleOpenIcon = document.querySelector("#toggle-open-icon");
 const toggleCloseIcon = document.querySelector("#toggle-close-icon");
 const leftPage = document.querySelector("#game__left-page");
 const rightPage = document.querySelector("#game__right-page");
+const itemBoxes = document.getElementsByClassName("game__item-imgbox")
+
+console.log(itemBoxes)
+
+Array.from(itemBoxes).forEach(itemBox => {
+    itemBox.addEventListener("click", openDescriptionBox)
+});
 
 toggleOpenIcon.addEventListener("click", toggleOpen);
 toggleCloseIcon.addEventListener("click", toggleClose);
@@ -81,4 +88,24 @@ function toggleOpen(){
 
 function toggleClose(){
     leftPage.classList.remove("game__left-page__toggle-open");
+}
+
+function openDescriptionBox(e){
+    e.stopPropagation();
+    const descriptionBoxes = document.getElementsByClassName("game__item-description-box")
+    Array.from(descriptionBoxes).forEach(descriptionBox => {
+        descriptionBox.classList.remove("game__item-description-box-open")
+    })
+    const itemId = this.getAttribute("data-item-id")
+    const descriptionBox = document.querySelector("#item-description-"+itemId)
+    descriptionBox.classList.add("game__item-description-box-open")
+    document.addEventListener("click", closeDescriptionBox);
+}
+
+function closeDescriptionBox(){
+    const descriptionBoxes = document.getElementsByClassName("game__item-description-box")
+    Array.from(descriptionBoxes).forEach(descriptionBox => {
+        descriptionBox.classList.remove("game__item-description-box-open")
+    })
+    document.removeEventListener("click", closeDescriptionBox)
 }
