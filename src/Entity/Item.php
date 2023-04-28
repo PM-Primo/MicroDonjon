@@ -34,6 +34,11 @@ class Item
      */
     private $possesseurs;
 
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $descriptionItem;
+
     public function __construct()
     {
         $this->possesseurs = new ArrayCollection();
@@ -98,5 +103,17 @@ class Item
     public function __toString(): string
     {
         return $this->nomItem;
+    }
+
+    public function getDescriptionItem(): ?string
+    {
+        return $this->descriptionItem;
+    }
+
+    public function setDescriptionItem(?string $descriptionItem): self
+    {
+        $this->descriptionItem = $descriptionItem;
+
+        return $this;
     }
 }

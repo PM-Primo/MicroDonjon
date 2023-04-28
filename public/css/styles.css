@@ -376,7 +376,7 @@ ul{
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
 
-    padding: 1.25rem;
+    padding: 2.5rem 1.25rem 2.5rem 1.25rem;
     border-radius: 1rem;
     width: 70%;
     display: flex;
@@ -396,7 +396,18 @@ ul{
 }
 
 .game__description-box-info{
-    width: 45%
+    width: 45%;
+    min-height: 100%;
+    display:flex;
+    flex-direction: column;
+
+}
+
+.game__description-box-info p{
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center ;
 }
 
 /* =========== HP BAR ============== */
