@@ -126,7 +126,7 @@
                         <div class="game__description-box-info">
                             <h2>{{item}}</h2>
                             <p>
-                                {{item.descriptionItem | raw}}
+                                {{item.descriptionItem|striptags('<br><div>')|raw}}
                             </p>
                         </div>
                         <div class="game__description-box-exit"><i class="fa-regular fa-circle-xmark"></i></div>

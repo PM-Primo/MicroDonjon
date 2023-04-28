@@ -27,11 +27,11 @@
         <span class="editor__show-monospace">Zone</span> : {{chapitre.Zone}}<br><br>
         <span class="editor__show-monospace">Texte <i>(condition vérifiée)</i></span> : 
         <div class="editor__show-text-wrapper">
-            {{chapCondition.texteSiVrai | raw}}
+            {{chapCondition.texteSiVrai|striptags('<br><div>')|raw}}
         </div>
         <span class="editor__show-monospace">Texte <i>(condition non vérifiée)</i></span> : 
         <div class="editor__show-text-wrapper">
-            {{chapCondition.texteSiFaux | raw}}
+            {{chapCondition.texteSiFaux|striptags('<br><div>')|raw}}
         </div>
 
         <span class="editor__show-monospace">Objet de la condition</span> : {{chapCondition.itemCondition}}

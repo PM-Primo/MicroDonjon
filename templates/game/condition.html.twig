@@ -12,9 +12,9 @@
     </div>
 
     {% if condition %}
-        <p>{{chapCondition.texteSiVrai | raw}}</p>
+        <p>{{chapCondition.texteSiVrai|striptags('<br><div>')|raw}}</p>
     {% else %}
-        <p>{{chapCondition.texteSiFaux | raw}}</p>
+        <p>{{chapCondition.texteSiFaux|striptags('<br><div>')|raw}}</p>
           
     {% endif %}
 

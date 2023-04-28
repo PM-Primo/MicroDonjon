@@ -13,7 +13,7 @@
 
     {% if combat.PVactuelsMonstre > 0 and app.user.PVactuels > 0 %}
         {% if attaque is not defined %}
-            <p>{{chapCombat.texteInitial | raw}}</p>
+            <p>{{chapCombat.texteInitial|striptags('<br><div>')|raw}}</p>
         {% endif %}
 
         <div class="game__monster-box">
@@ -85,7 +85,7 @@
                     </div>
                 </div>
             </div>
-            {{texteCombat | raw}}
+            {{texteCombat|striptags('<br><div>')|raw}}
         {% endif %}
     {% endif %}
 
@@ -98,7 +98,7 @@
     {% endif %}
 
     {% if combat.PVactuelsMonstre <= 0 %}
-        <p>{{chapCombat.texteVictoire | raw}}</p>
+        <p>{{chapCombat.texteVictoire|striptags('<br><div>')|raw}}</p>
         <ul class="game__choices">
             {% for sortie in chapCombat.sorties %}
                 <li><a href="{{path("routing", {'id': sortie.chapitre.id})}}" class="links__choice">{{sortie.texteLien}}</a></li>

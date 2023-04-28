@@ -12,7 +12,7 @@
         <h2>{{chapitre.zone}}</h2>
     </div>
 
-    <p>{{chapStandard.texteChapitre | raw}}</p>
+    <p>{{chapStandard.texteChapitre|striptags('<br><div>')|raw }}</p>
 
     {% if app.user.PVactuels > 0 %}
         <ul class="game__choices">

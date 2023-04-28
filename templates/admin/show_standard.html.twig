@@ -27,7 +27,7 @@
         <span class="editor__show-monospace">Zone</span> : {{chapitre.Zone}}<br><br>
         <span class="editor__show-monospace">Texte du chapitre</span> : 
         <div class="editor__show-text-wrapper">
-            {{chapStandard.texteChapitre | raw}}
+            {{chapStandard.texteChapitre|striptags('<br><div>')|raw}}
         </div>
 
         <span class="editor__show-monospace">Effets du chapitre</span> :<br>

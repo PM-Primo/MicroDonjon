@@ -24,11 +24,11 @@
         <span class="editor__show-monospace">Zone</span> : {{chapitre.Zone}}<br><br>
         <span class="editor__show-monospace">Texte initial</span> : 
         <div class="editor__show-text-wrapper">
-            {{chapCombat.texteInitial | raw}}
+            {{chapCombat.texteInitial|striptags('<br><div>')|raw}}
         </div>
         <span class="editor__show-monospace">Texte de victoire</span> : 
         <div class="editor__show-text-wrapper">
-            {{chapCombat.texteVictoire | raw}}
+            {{chapCombat.texteVictoire|striptags('<br><div>')|raw}}
         </div>
                 
         <span class="editor__show-monospace">Monstre</span> : {{chapCombat.monstre}}
