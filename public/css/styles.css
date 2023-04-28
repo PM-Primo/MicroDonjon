@@ -290,6 +290,7 @@ ul{
     width: 31%;
     height: fit-content;
     position: relative;
+    cursor: pointer;
 }
 
 .game__item-image{   
@@ -382,6 +383,7 @@ ul{
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
+    align-items: center;
 }
 
 .game__item-description-box-open{
@@ -408,6 +410,19 @@ ul{
     display: flex;
     flex-direction: column;
     justify-content: center ;
+}
+
+.game__description-box-exit{
+    position:absolute;
+    top:1rem;
+    right:1rem;
+    font-size: var(--icons-font-size);
+    color: var(--dark-brown);
+    cursor: pointer;
+}
+
+.game__description-box-exit:hover{
+    color: var(--dark-red);
 }
 
 /* =========== HP BAR ============== */
@@ -617,11 +632,23 @@ ul{
         width : 28%;
     }
 
+    .game__item-description-content{
+        width : 80%
+    }
 }
 
 @media screen and (max-width: 768px){
     .game__item-imgbox {
         width: 31%;
+    }
+    
+    .game__item-description-content{
+        flex-direction: column;
+    }
+
+    .game__description-box-info {
+        width: 100%;
+
     }
 }
 
@@ -652,6 +679,12 @@ ul{
     .game__box{
         padding:1rem;
     }
+    
+    .game__item-description-content{
+        padding: 1.5rem .75rem 1.5rem .75rem;
+
+    }
+
 }
 
 @media screen and (max-width: 480px){
@@ -696,6 +729,14 @@ ul{
     .game__left-page-content {
         padding-top: .5rem;
 
+    }
+
+    .game__description-box-image {
+        width: 60%;
+    }
+
+    .game__item-description-content{
+        width : 90%
     }
 
 }

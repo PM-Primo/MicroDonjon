@@ -93,17 +93,23 @@ function toggleClose(){
 
 const itemBoxes = document.getElementsByClassName("game__item-imgbox")
 const descriptionBoxes = document.getElementsByClassName("game__item-description-box")
+const descriptionBoxesExits = document.getElementsByClassName("game__description-box-exit")
 
-console.log(itemBoxes)
 
 Array.from(itemBoxes).forEach(itemBox => {
     itemBox.addEventListener("click", openDescriptionBox)
+    itemBox.addEventListener("touch", openDescriptionBox)
 });
 Array.from(descriptionBoxes).forEach(descriptionBox => {
     descriptionBox.addEventListener("click", closeDescriptionBox)
+    descriptionBox.addEventListener("touch", closeDescriptionBox)
+});
+Array.from(descriptionBoxesExits).forEach(exit => {
+    exit.addEventListener("click", closeDescriptionBox)
+    exit.addEventListener("touch", closeDescriptionBox)
 });
 
-function openDescriptionBox(e){
+function openDescriptionBox(){
     Array.from(descriptionBoxes).forEach(descriptionBox => {
         descriptionBox.classList.remove("game__item-description-box-open")
     })
@@ -113,9 +119,17 @@ function openDescriptionBox(e){
 }
 
 function closeDescriptionBox(e){
-
+    
     if(e.target.classList.contains('game__item-description-box-open')) {
         e.target.classList.remove("game__item-description-box-open")    
+    }
+    else if(e.target.classList.contains('fa-circle-xmark')) {
+        const parent = e.target.parentNode.parentNode.parentNode
+        parent.classList.remove("game__item-description-box-open")    
+    }
+    else if(e.target.classList.contains('game__description-box-exit')) {
+        const parent = e.target.parentNode.parentNode
+        parent.classList.remove("game__item-description-box-open")    
     }
 
 }
