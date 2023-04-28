@@ -85,11 +85,6 @@
 
                             {% endfor %}
                         </div>
-                        {% for item in app.user.inventaire %} 
-                            <div class="game__item-description-box" id="item-description-{{item.id}}">
-                                Blabla voici du texte pour l'objet {{item}} : Ceci est un test
-                            </div>
-                        {% endfor %} 
                     </div>
                     
                     {% endif %}
@@ -120,6 +115,23 @@
                     <div class="toggle-open-icon" id="toggle-open-icon"><i class="fa-solid fa-bars"></i></div>
                     {% block body %}{% endblock %}
                 </div>
+
+                {# Les boîtes modales pour l'inventaire #}
+                {% for item in app.user.inventaire %} 
+                <div class="game__item-description-box" id="item-description-{{item.id}}">
+                    <div class="game__item-description-content">
+                        <div class="game__description-box-image">
+                            <img src="{{asset(item.imageItem)}}" alt="{{item}}" class="game__item-image">
+                        </div>
+                        <div class="game__description-box-info">
+                            <h2>{{item}}</h2>
+                            <p>
+                                Blabla voici du texte pour l'objet {{item}} : Ceci est un test
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %} 
 
             </div>
 

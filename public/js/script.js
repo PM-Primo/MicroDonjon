@@ -1,3 +1,6 @@
+/*============== COLLECTION TYPE =================*/
+
+
 var $collectionHolder
 
 // $addNewItem = $('<a href="#" class="">Ajouter une sortie</a><br><br>');
@@ -66,18 +69,13 @@ function addNewForm() {
     $addNewItem.before($card);
 }
 
+/*============== TOGGLE LEFT PAGE - RESPONSIVE=================*/
+
 
 const toggleOpenIcon = document.querySelector("#toggle-open-icon");
 const toggleCloseIcon = document.querySelector("#toggle-close-icon");
 const leftPage = document.querySelector("#game__left-page");
 const rightPage = document.querySelector("#game__right-page");
-const itemBoxes = document.getElementsByClassName("game__item-imgbox")
-
-console.log(itemBoxes)
-
-Array.from(itemBoxes).forEach(itemBox => {
-    itemBox.addEventListener("click", openDescriptionBox)
-});
 
 toggleOpenIcon.addEventListener("click", toggleOpen);
 toggleCloseIcon.addEventListener("click", toggleClose);
@@ -90,22 +88,34 @@ function toggleClose(){
     leftPage.classList.remove("game__left-page__toggle-open");
 }
 
+/*============== ITEM DESCRIPTIONS =================*/
+
+
+const itemBoxes = document.getElementsByClassName("game__item-imgbox")
+const descriptionBoxes = document.getElementsByClassName("game__item-description-box")
+
+console.log(itemBoxes)
+
+Array.from(itemBoxes).forEach(itemBox => {
+    itemBox.addEventListener("click", openDescriptionBox)
+});
+Array.from(descriptionBoxes).forEach(descriptionBox => {
+    descriptionBox.addEventListener("click", closeDescriptionBox)
+});
+
 function openDescriptionBox(e){
-    e.stopPropagation();
-    const descriptionBoxes = document.getElementsByClassName("game__item-description-box")
     Array.from(descriptionBoxes).forEach(descriptionBox => {
         descriptionBox.classList.remove("game__item-description-box-open")
     })
     const itemId = this.getAttribute("data-item-id")
     const descriptionBox = document.querySelector("#item-description-"+itemId)
     descriptionBox.classList.add("game__item-description-box-open")
-    document.addEventListener("click", closeDescriptionBox);
 }
 
-function closeDescriptionBox(){
-    const descriptionBoxes = document.getElementsByClassName("game__item-description-box")
-    Array.from(descriptionBoxes).forEach(descriptionBox => {
-        descriptionBox.classList.remove("game__item-description-box-open")
-    })
-    document.removeEventListener("click", closeDescriptionBox)
+function closeDescriptionBox(e){
+
+    if(e.target.classList.contains('game__item-description-box-open')) {
+        e.target.classList.remove("game__item-description-box-open")    
+    }
+
 }

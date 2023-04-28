@@ -103,7 +103,7 @@
             {% for sortie in chapCombat.sorties %}
                 <li><a href="{{path("routing", {'id': sortie.chapitre.id})}}" class="links__choice">{{sortie.texteLien}}</a></li>
             {% endfor %}
-            {% if chapStandard.sorties|length == 0 %}
+            {% if chapCombat.sorties|length == 0 %}
                 <li><a href="{{path("reset")}}"  class="links__choice">Vous pouvez commencer une nouvelle partie si vous le souhaitez</a></li>
             {% endif %} 
         </ul>  
