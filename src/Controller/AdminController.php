@@ -13,6 +13,7 @@ use App\Entity\SortieStandard;
 use App\Form\ChapStandardType;
 use App\Entity\SortieCondition;
 use App\Form\ChapConditionType;
+use App\Repository\UserRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -366,14 +367,17 @@ class AdminController extends AbstractController
     /**
      * @Route("/list/users", name="list_users")
      */
-    public function listUsers(ManagerRegistry $doctrine): Response
+    public function listUsers(ManagerRegistry $doctrine, UserRepository $ur): Response
     {
 
         $repository = $doctrine->getRepository(User::class);
         $users = $repository->findAll();
 
+        $lowPVUsers = $ur->findLowPV(50);
+
         return $this->render('admin/show_users.html.twig', [
-            'users' => $users
+            'users' => $users, 
+            'lowPV' => $lowPVUsers
         ]);
     }
 

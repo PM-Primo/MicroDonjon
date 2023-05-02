@@ -108,4 +108,21 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
 //            ->getOneOrNullResult()
 //        ;
 //    }
+
+    public function findLowPV($threshold){
+        $em = $this->getEntityManager();
+        $qb = $em->createQueryBuilder();
+        
+        $qb->select('u')
+            ->from('App\Entity\User', 'u')
+            ->where('u.PVactuels <= :threshold')
+            ->setParameter('threshold', $threshold)
+            ->orderBy('u.PVactuels')
+        ;
+
+        $query = $qb->getQuery();
+        return $query->getResult();
+    }
+
+
 }
