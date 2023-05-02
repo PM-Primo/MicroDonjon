@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\User;
 use App\Entity\Chapitre;
 use App\Entity\ChapCombat;
 use App\Entity\ChapStandard;
@@ -358,6 +359,22 @@ class AdminController extends AbstractController
 
         return $this->redirectToRoute('admin_editor');
 
+    }
+
+
+
+    /**
+     * @Route("/list/users", name="list_users")
+     */
+    public function listUsers(ManagerRegistry $doctrine): Response
+    {
+
+        $repository = $doctrine->getRepository(User::class);
+        $users = $repository->findAll();
+
+        return $this->render('admin/show_users.html.twig', [
+            'users' => $users
+        ]);
     }
 
 }

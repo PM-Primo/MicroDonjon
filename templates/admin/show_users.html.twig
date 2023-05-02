@@ -1,0 +1,27 @@
+{% extends 'dashboard.html.twig' %}
+
+{% block title %}MicroDonjon{% endblock %}
+{% block noindex %}<meta name="robots" content="noindex">{% endblock %}
+
+{% block body %}
+
+
+<h2 class="editor__title">Liste des utilisateurs.trices</h2>
+
+<div class="editor__cards-wrapper">
+    {% for user in users %}
+        <div class="editor__cards">
+            {# <a href="{{path("show", {'id': tableauChapitre[0].id})}}" class="editor__menu-link">Chapitre n° {{tableauChapitre[0].id}}</a><br> #}
+            {{user.email}}<br>
+            PV : {{user.PVActuels}}/{{user.PVMax}}<br>
+            {% if user.chapitreEnCours %}
+                Chapitre en cours : {{user.chapitreEnCours}}<br>
+            {% else %}    
+                Aventure non débutée
+            {% endif %}
+        </div>
+    {% endfor %}
+
+</div>
+
+{% endblock %}
