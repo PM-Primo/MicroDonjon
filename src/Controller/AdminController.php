@@ -18,12 +18,14 @@ use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class AdminController extends AbstractController
 {
     /**
      * @Route("/admin", name="app_admin")
+     * @IsGranted("ROLE_ADMIN")
      */
     public function index(): Response
     {
@@ -34,6 +36,7 @@ class AdminController extends AbstractController
 
     /**
      * @Route("/admin/editor", name="admin_editor")
+     * @IsGranted("ROLE_ADMIN")
      */
     public function openEditor(ManagerRegistry $doctrine): Response
     {
@@ -76,6 +79,7 @@ class AdminController extends AbstractController
     
     /**
      * @Route("/add/standard", name="add_standard")
+     * @IsGranted("ROLE_ADMIN")
      */
     public function addStandard(ManagerRegistry $doctrine, Request $request){
 
@@ -106,6 +110,7 @@ class AdminController extends AbstractController
 
     /**
      * @Route("/add/combat", name="add_combat")
+     * @IsGranted("ROLE_ADMIN")
      */
     public function addCombat(ManagerRegistry $doctrine, Request $request){
 
@@ -136,6 +141,7 @@ class AdminController extends AbstractController
 
     /**
      * @Route("/add/condition", name="add_condition")
+     * @IsGranted("ROLE_ADMIN")
      */
     public function addCondition(ManagerRegistry $doctrine, Request $request){
 
@@ -167,6 +173,7 @@ class AdminController extends AbstractController
 
     /**
      * @Route("/edit/routing/{id}", name="edit_routing")
+     * @IsGranted("ROLE_ADMIN")
      */
     public function editRouting(Chapitre $chapitre): Response
     {
@@ -188,6 +195,7 @@ class AdminController extends AbstractController
 
     /**
      * @Route("/edit/standard/{id}", name="edit_standard")
+     * @IsGranted("ROLE_ADMIN")
      */
     public function editStandard(ManagerRegistry $doctrine, Chapitre $chapitre, Request $request): Response
     {    
@@ -221,6 +229,7 @@ class AdminController extends AbstractController
 
     /**
      * @Route("/edit/combat/{id}", name="edit_combat")
+     * @IsGranted("ROLE_ADMIN")
      */
     public function editCombat(ManagerRegistry $doctrine, Chapitre $chapitre, Request $request): Response
     {
@@ -254,6 +263,7 @@ class AdminController extends AbstractController
 
     /**
      * @Route("/edit/condition/{id}", name="edit_condition")
+     * @IsGranted("ROLE_ADMIN")
      */
     public function editCondition(ManagerRegistry $doctrine, Chapitre $chapitre, Request $request): Response
     {
@@ -287,6 +297,7 @@ class AdminController extends AbstractController
 
     /**
      * @Route("/show/{id}", name="show")
+     * @IsGranted("ROLE_ADMIN")
      */
     public function show(ManagerRegistry $doctrine, Chapitre $chapitre): Response
     {
@@ -328,6 +339,7 @@ class AdminController extends AbstractController
 
     /**
      * @Route("/delete/chapitre/{id}", name="delete")
+     * @IsGranted("ROLE_ADMIN")
      */
     public function delete(ManagerRegistry $doctrine, Chapitre $chapitre): Response
     {
@@ -366,6 +378,7 @@ class AdminController extends AbstractController
 
     /**
      * @Route("/list/users", name="list_users")
+     * @IsGranted("ROLE_ADMIN")
      */
     public function listUsers(ManagerRegistry $doctrine, UserRepository $ur): Response
     {

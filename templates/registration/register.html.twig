@@ -9,7 +9,7 @@
 
     <h2 class="register__title" >S'inscrire</h2>
     <div class="register__wrapper">
-        <div class="register__form"
+        <div class="register__form">
             {{ form_start(registrationForm) }}
             {% form_theme registrationForm 'forms/fields.twig' %}
 
@@ -24,7 +24,7 @@
                     <a href="{{path("app_home")}}" class="editor__btn editor__cancel">Annuler</a>
                     {{ form_row(registrationForm.submit) }}
                 </div>
-
+                
             {{ form_end(registrationForm) }}
         </div>
         
