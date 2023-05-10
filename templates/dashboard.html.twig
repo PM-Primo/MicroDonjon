@@ -15,34 +15,46 @@
         {% endblock %}
     </head>
     <body>
-        <main>
-            <div class="editor__main-wrapper">
-                <nav class="editor__navbar">
-                    <a href="{{path("app_home")}}" class="editor__menu-link">Home</a>
-                    {% if app.user %}
-                    {% if is_granted('ROLE_ADMIN') %}
-                        <a href="{{path("admin_editor")}}" class="editor__menu-link">Éditeur</a>
-                    {% endif %}
-                    {% if is_granted('ROLE_ADMIN') %}
-                        <a href="{{path("list_users")}}" class="editor__menu-link">Utilisateurs</a>
-                    {% endif %}
-                    {% if app.user.chapitreEnCours %}
-                        <a href="{{path("routing", {'id': app.user.chapitreEnCours})}}" class="editor__menu-link">Aventure</a>
-                    {% endif %}
-                        <a href="{{path("app_logout")}}" class="editor__menu-link">Déconnexion</a>
-                    {% else %}
-                        <a href="{{path("app_login")}}" class="editor__menu-link">Connexion</a>
-                        <a href="{{path("app_register")}}" class="editor__menu-link">Inscription</a>
-                    {% endif %}
-                </nav>
-                    
+        <div class="editor__main-wrapper">
+            <nav class="editor__navbar">
+                <a href="{{path("app_home")}}" class="editor__menu-link">Home</a>
+                {% if app.user %}
+                {% if is_granted('ROLE_ADMIN') %}
+                <a href="{{path("admin_editor")}}" class="editor__menu-link">Éditeur</a>
+                {% endif %}
+                {% if is_granted('ROLE_ADMIN') %}
+                <a href="{{path("list_users")}}" class="editor__menu-link">Utilisateurs</a>
+                {% endif %}
+                {% if app.user.chapitreEnCours %}
+                <a href="{{path("routing", {'id': app.user.chapitreEnCours})}}" class="editor__menu-link">Aventure</a>
+                {% endif %}
+                <a href="{{path("app_logout")}}" class="editor__menu-link">Déconnexion</a>
+                {% else %}
+                <a href="{{path("app_login")}}" class="editor__menu-link">Connexion</a>
+                <a href="{{path("app_register")}}" class="editor__menu-link">Inscription</a>
+                {% endif %}
+            </nav>
+            <main>
+            
                 <h1 class="dashboard__logo">MicroDonjon</h1>
                 
                 {% block body %}{% endblock %}
+            
+            </main> 
+                
+            <footer class="dashboard__footer">
+                <small class="footer__cgu">
+                    <a href="https://www.cnil.fr" target="_blank">Conditions générales d'utilisation</a>
+                </small>
+                <div class="footer__links">
+                    <a href="https://www.instagram.com/spglx/" target="_blank" class="footer__instagram"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://www.twitter.com" target="_blank" class="footer__twitter"><i class="fa-brands fa-twitter"></i></a>
+                    <a href="https://github.com/PM-Primo" target="_blank" class="footer__github"><i class="fa-brands fa-github"></i></a>
+                </div>
+            </footer>
 
-            </div>
+        </div>
 
-        </main>
 
         {% block javascripts %}
             <script

@@ -71,7 +71,7 @@ body {
 }
 
 main{
-    height:100%
+    height:100%;
 }
 
 h1, h2, h3 {
@@ -135,6 +135,8 @@ strong{
     background-color: var(--light-brown);
     min-height: 100%;
     height: max-content;
+    position: relative;
+    padding-bottom: .5rem;
 }
 
 .editor__navbar{
@@ -629,6 +631,64 @@ input[type="checkbox"]:checked::before {
 
 .links__choice:hover::after {
     transform: scaleX(1);
+}
+
+/* ======== USER LIST =========*/
+
+.editor__cards-wrapper-nopadding{
+    margin: 1.5rem 0 5rem 0;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap : .75rem;
+    justify-content: center;
+}
+
+/*========= FOOTER ===========*/
+
+.dashboard__footer{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: .5rem;
+    padding-inline: 2rem ;
+}
+
+.footer__cgu{
+    font-family: var(--chapter-font);
+    text-transform: uppercase;
+    font-weight: 500;
+}
+
+.footer__cgu a{
+    color: var(--dark-brown);
+}
+
+.footer__links{
+    font-size: var(--medium-icons-font-size);
+    display: flex;
+    gap: .5rem;
+}
+
+.footer__links a{
+    color: var(--dark-brown);
+    transition: 500ms ease-in-out;
+}
+
+.footer__instagram:hover{
+    color: #d62976
+}
+
+.footer__twitter:hover{
+    color: #00acee
+}
+
+.footer__github:hover{
+    color: #000000;
 }
 
 /* ======== MEDIA QUERIES =========*/

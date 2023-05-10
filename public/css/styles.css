@@ -34,6 +34,7 @@
     --normal-font-size: .938rem;
     --small-font-size: .813rem;
     --icons-font-size: 1.8rem;
+    --medium-icons-font-size: 1.5rem;
 
 
     /*========== Font weight ==========*/
@@ -590,6 +591,54 @@ ul{
 
 .game__monster-dice-box{
     color: var(--dark-red)
+}
+
+
+/*========= FOOTER ===========*/
+
+.game__footer{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: .5rem;
+    padding-inline: 2rem ;
+}
+
+.footer__cgu{
+    font-family: var(--chapter-font);
+    text-transform: uppercase;
+    font-weight: 500;
+}
+
+.footer__cgu a{
+    color: var(--light-brown);
+}
+
+.footer__links{
+    font-size: var(--medium-icons-font-size);
+    display: flex;
+    gap: .5rem;
+}
+
+.footer__links a{
+    color: var(--light-brown);
+    transition: 500ms ease-in-out;
+}
+
+.footer__instagram:hover{
+    color: #feda75
+}
+
+.footer__twitter:hover{
+    color: #00acee
+}
+
+.footer__github:hover{
+    color: black;
 }
 
 /* ======= MEDIA QUERIES =======*/

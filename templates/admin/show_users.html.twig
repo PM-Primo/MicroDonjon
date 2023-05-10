@@ -8,7 +8,7 @@
 
 <h2 class="editor__title">Liste des utilisateurs.trices</h2>
 
-<div class="editor__cards-wrapper">
+<div class="editor__cards-wrapper-nopadding">
     {% for user in users %}
         <div class="editor__cards">
             {# <a href="{{path("show", {'id': tableauChapitre[0].id})}}" class="editor__menu-link">Chapitre n° {{tableauChapitre[0].id}}</a><br> #}
@@ -25,7 +25,7 @@
 
 <h2 class="editor__title">Utilisateurs.trices en difficulté</h2>
 
-<div class="editor__cards-wrapper">
+<div class="editor__cards-wrapper-nopadding">
     {% for user in lowPV %}
         <div class="editor__cards">
             {# <a href="{{path("show", {'id': tableauChapitre[0].id})}}" class="editor__menu-link">Chapitre n° {{tableauChapitre[0].id}}</a><br> #}
