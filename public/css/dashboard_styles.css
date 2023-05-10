@@ -502,6 +502,8 @@ select:-webkit-autofill:focus {
     justify-content: space-evenly;
 }
 
+
+
 /* ======== Checkboxes =========*/
 
 input[type="checkbox"] {
@@ -590,6 +592,12 @@ input[type="checkbox"]:checked::before {
     flex-direction: column;
     gap: 2rem;
     justify-content: center;
+}
+
+/*=========RESET PASSWORD =========*/
+
+.reset__brown-link{
+    color: var(--dark-brown);
 }
 
 /* ======== HOME =========*/

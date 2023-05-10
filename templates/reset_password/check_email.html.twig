@@ -1,0 +1,17 @@
+{% extends 'dashboard.html.twig' %}
+
+{% block title %}Nouveau mot de passe{% endblock %}
+
+{% block body %}
+
+    <h2 class="editor__show-title">Nouveau mot de passe</h2>
+    <br><br>
+    <div class="editor__show-wrapper">
+        <p>
+            Si une adresse mail correspondant à l'e-mail renseigné précédemment existe, alors un e-mail contenant le lien pour réinitialiser votre mot de passe vient d'y être envoyé.
+            Ce lien expirera dans {{ resetToken.expirationMessageKey|trans(resetToken.expirationMessageData, 'ResetPasswordBundle') }}.
+        </p>
+        <br>
+        <p>Si vous n'avez rien reçu, veuillez vérifier vos courriers indésirables ou <a href="{{ path('app_forgot_password_request') }}" class="reset__brown-link">réessayer</a>.</p>
+    </div>
+{% endblock %}

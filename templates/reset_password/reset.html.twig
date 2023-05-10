@@ -1,0 +1,22 @@
+{% extends 'dashboard.html.twig' %}
+
+{% block title %}Réinitialiser le mot de passe{% endblock %}
+
+{% block body %}
+    <div class="editor__form-wrapper">
+
+        <h2 class="editor__show-title">Nouveau mot de passe</h2>
+
+        <div class="editor__form">
+            {{ form_start(resetForm) }}
+                
+            {% form_theme resetForm 'forms/fields.twig' %}
+    
+                {{ form_row(resetForm.plainPassword) }}
+                <div class="editor__buttons-box">
+                    <button class="editor__submit editor__btn">Valider</button>
+                </div>
+            {{ form_end(resetForm) }}
+        </div>
+    </div>
+{% endblock %}
