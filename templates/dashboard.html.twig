@@ -32,7 +32,7 @@
                     {% if app.user.chapitreEnCours %}
                         <a href="{{path("routing", {'id': app.user.chapitreEnCours})}}" class="editor__menu-link">Aventure</a>
                     {% endif %}
-                    <a href="#"class="editor__menu-link">Profil</a>
+                    <a href="{{path("view_profile", {'id': app.user.id})}}" class="editor__menu-link">Profil</a>
                     <a href="{{path("app_logout")}}" class="editor__menu-link">Déconnexion</a>
                 {% else %}
                     <a href="{{path("app_login")}}" class="editor__menu-link">Connexion</a>

@@ -1,0 +1,41 @@
+{% extends 'dashboard.html.twig' %}
+
+{% block title %}MicroDonjon - Profil de {{user.pseudo}}{% endblock %}
+{% block noindex %}<meta name="robots" content="noindex">{% endblock %}
+
+{% block body %}
+
+    <div class="editor__show-wrapper">
+
+        <h2 class="editor__title">Profil - {{user.pseudo}}</h2>
+
+        <a href="{{path("edit_profile", {'id':user.id})}}">Modifier mes informations</a><br><br>
+
+        <span class="editor__show-monospace">Pseudonyme</span> : {{user.pseudo}}<br><br>
+        <span class="editor__show-monospace">Adresse e-mail</span> : {{user.email}}<br><br>
+        <span class="editor__show-monospace">Points de vie</span> : {{user.PVactuels}} / {{user.PVmax}}<br><br>
+        <span class="editor__show-monospace">Chapitre en cours</span> : {{user.chapitreEnCours}}<br><br>
+        <span class="editor__show-monospace">Zones visitées</span> : <br>
+        <div class="editor__show-text-wrapper">
+            {% for zone in user.visites %}
+                - {{zone}}<br>
+            {% endfor %}
+        </div>
+        <span class="editor__show-monospace">Inventaire</span> : <br>
+        <div class="editor__show-text-wrapper">
+            {% for item in user.inventaire %}
+                - {{item}}<br>
+            {% endfor %}
+        </div>
+        {% if user.combats is not empty %}            
+            <span class="editor__show-monospace">Ennemis affrontés</span> : <br>
+            <div class="editor__show-text-wrapper">
+                {% for combat in user.combats %}
+                    - {{combat.monstres}}<br>
+                {% endfor %}
+            </div>
+        {% endif %}
+
+    </div>
+
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends 'dashboard.html.twig' %}
+
+{% block title %}MicroDonjon - Profil de {{user.pseudo}}{% endblock %}
+{% block noindex %}<meta name="robots" content="noindex">{% endblock %}
+
+{% block body %}
+
+    <div class="editor__show-wrapper">
+
+        <h2 class="editor__title">Éditer mes informations</h2>
+
+        <div class="editor__form">
+            {{ form_start(formUser) }}
+                {% form_theme formUser 'forms/fields.twig' %}
+    
+                {{ form_row(formUser.pseudo) }}
+                {{ form_row(formUser.email) }}
+
+                <div class="editor__buttons-box">
+                    <a href="{{path("view_profile", {'id':user.id})}}" class="editor__btn editor__cancel">Annuler</a>
+                    {{ form_row(formUser.submit) }}
+                </div>
+    
+            {{ form_end(formUser) }}
+
+        </div>
+
+    </div>
+
+{% endblock %}
