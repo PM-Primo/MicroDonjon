@@ -29,6 +29,7 @@
                                 {% if app.user.chapitreEnCours %}
                                     <a href="{{path("routing", {'id': app.user.chapitreEnCours})}}" class="menu__link">Aventure</a>
                                 {% endif %}
+                                <a href="#"class="editor__menu-link">Profil</a>
                                 <a href="{{path("app_logout")}}" class="menu__link">Déconnexion</a>
                             {% else %}
                                 <a href="{{path("app_login")}}" class="menu__link">Connexion</a>

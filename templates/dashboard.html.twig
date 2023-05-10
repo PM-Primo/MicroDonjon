@@ -17,21 +17,26 @@
     <body>
         <div class="editor__main-wrapper">
             <nav class="editor__navbar">
+                {# <div class="nav__iconbox">
+                    <a href="{{path("app_home")}}" class="editor__menu-link"><i class="fa-solid fa-house"></i></a>
+                    {% if app.user %}
+                        <a href="#"class="editor__menu-link"><i class="fa-solid fa-user"></i></a>
+                        <a href="{{path("app_logout")}}" class="editor__menu-link"><i class="fa-solid fa-power-off"></i></a>
+                    {% endif %}
+                </div> #}
                 <a href="{{path("app_home")}}" class="editor__menu-link">Home</a>
                 {% if app.user %}
-                {% if is_granted('ROLE_ADMIN') %}
-                <a href="{{path("admin_editor")}}" class="editor__menu-link">Éditeur</a>
-                {% endif %}
-                {% if is_granted('ROLE_ADMIN') %}
-                <a href="{{path("list_users")}}" class="editor__menu-link">Utilisateurs</a>
-                {% endif %}
-                {% if app.user.chapitreEnCours %}
-                <a href="{{path("routing", {'id': app.user.chapitreEnCours})}}" class="editor__menu-link">Aventure</a>
-                {% endif %}
-                <a href="{{path("app_logout")}}" class="editor__menu-link">Déconnexion</a>
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <a href="{{path("admin_editor")}}" class="editor__menu-link">Éditeur</a>
+                    {% endif %}
+                    {% if app.user.chapitreEnCours %}
+                        <a href="{{path("routing", {'id': app.user.chapitreEnCours})}}" class="editor__menu-link">Aventure</a>
+                    {% endif %}
+                    <a href="#"class="editor__menu-link">Profil</a>
+                    <a href="{{path("app_logout")}}" class="editor__menu-link">Déconnexion</a>
                 {% else %}
-                <a href="{{path("app_login")}}" class="editor__menu-link">Connexion</a>
-                <a href="{{path("app_register")}}" class="editor__menu-link">Inscription</a>
+                    <a href="{{path("app_login")}}" class="editor__menu-link">Connexion</a>
+                    <a href="{{path("app_register")}}" class="editor__menu-link">Inscription</a>
                 {% endif %}
             </nav>
             <main>

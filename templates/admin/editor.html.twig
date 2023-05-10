@@ -8,11 +8,15 @@
     <h2 class="editor__title">Éditeur de chapitres</h2>
 
     <div class="editor__btn-box">
+        <a href="{{path("list_users")}}" class="editor_add-chapter">liste des utilisateurs</a>
         <a href="{{path("add_standard")}}" class="editor_add-chapter"><i class="fa-solid fa-plus"></i> chapitre standard</a>
         <a href="{{path("add_combat")}}" class="editor_add-chapter"><i class="fa-solid fa-plus"></i> chapitre combat</a>
         <a href="{{path("add_condition")}}" class="editor_add-chapter"><i class="fa-solid fa-plus"></i> chapitre condition</a>
     </div>
     
+    <div>
+    </div>
+
     <div class="editor__cards-wrapper">
         {% for tableauChapitre in tableauTotal %}
             <div class="editor__cards">

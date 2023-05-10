@@ -148,6 +148,10 @@ strong{
     gap: .35;
 }
 
+.nav__iconbox{
+    /* font-size: */
+}
+
 .editor__title{
     font-size: var(--h2-font-size);
 }
