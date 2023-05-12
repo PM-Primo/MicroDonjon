@@ -38,10 +38,36 @@
             </div>
         {% endif %}
 
+        <div class="profile__delete-button" id="profile__delete-button">Supprimer mon compte</div>
+
+        {# Modale pour valider la suppression #}
+        <div class="profile__deletebox" id="profile__deletebox">
+            <div class="profile__deletebox-content">
+
+                <div class="profile__deletebox-info">
+                    <h2>Attention !</h2>
+                    <br>
+                    <p>
+                        Vous vous apprêtez à supprimer totalement votre compte.<br>
+                        Cette manoeuvre est irréversible et 
+                        l'intégralité de vos données de progression seront écrasées.
+                        <br><br>
+                        Souhaitez vous tout de même poursuivre ?
+                    </p>
+                </div>
+                <div class="profile__delete-buttonsbox">
+                    <a href="{{path("view_profile")}}" class="editor__btn editor__cancel">Annuler</a>
+                    <a href="{{path("delete_profile")}}" class="editor__btn editor__submit">Valider</a>
+                </div>
+                <div class="profile__deletebox-exit" id="profile__deletebox-exit"><i class="fa-regular fa-circle-xmark"></i></div>
+            </div>
+        </div>
+
+
     </div>
 
 {% endblock %}
 
 {% block javascripts %}
-    <script src="{{ asset('js/test.js') }}"></script>
+    <script src="{{ asset('js/delete_profile.js') }}"></script>
 {% endblock %}

@@ -124,21 +124,21 @@
 
                 {# Les boîtes modales pour l'inventaire #}
                 {% for item in app.user.inventaire %} 
-                <div class="game__item-description-box" id="item-description-{{item.id}}">
-                    <div class="game__item-description-content">
-                        <div class="game__description-box-image">
-                            <img src="{{asset(item.imageItem)}}" alt="{{item}}" class="game__item-image">
+                    <div class="game__item-description-box" id="item-description-{{item.id}}">
+                        <div class="game__item-description-content">
+                            <div class="game__description-box-image">
+                                <img src="{{asset(item.imageItem)}}" alt="{{item}}" class="game__item-image">
+                            </div>
+                            <div class="game__description-box-info">
+                                <h2>{{item}}</h2>
+                                <p>
+                                    {{item.descriptionItem|striptags('<br><div>')|raw}}
+                                </p>
+                            </div>
+                            <div class="game__description-box-exit"><i class="fa-regular fa-circle-xmark"></i></div>
                         </div>
-                        <div class="game__description-box-info">
-                            <h2>{{item}}</h2>
-                            <p>
-                                {{item.descriptionItem|striptags('<br><div>')|raw}}
-                            </p>
-                        </div>
-                        <div class="game__description-box-exit"><i class="fa-regular fa-circle-xmark"></i></div>
                     </div>
-                </div>
-            {% endfor %} 
+                {% endfor %} 
 
             </div>
 

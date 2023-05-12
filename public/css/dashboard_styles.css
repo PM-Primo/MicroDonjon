@@ -730,6 +730,92 @@ input[type="checkbox"]:checked::before {
     color: #000000;
 }
 
+/* =========== MODALE ======= */
+
+.profile__deletebox{
+    /* display: none; */
+    position: fixed; /* Stay in place */
+    z-index: 3; /* Sit on top */
+    left: 0;
+    top: 0;    
+    width:100%;
+    height: 100%;
+    transform: translateX(-100%);
+
+    opacity: 0;
+    transition: opacity 500ms  ;/*cubic-bezier(0.445, 0.05, 0.55, 0.95)*/
+
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.5); /* Black w/ opacity */
+
+    backdrop-filter: blur( 2px );
+    -webkit-backdrop-filter: blur( 2px );
+}
+
+.profile__deletebox-content{
+    background-color: var(--beige);
+
+    position: absolute;
+    top:50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+
+    padding: 2.5rem 1.25rem 2.5rem 1.25rem;
+    border-radius: 1rem;
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.profile__deletebox-open{
+    /* display: block; */
+    transform:translateX(0);
+    opacity: 1;
+}
+
+
+.profile__deletebox-info{
+    width: 80%;
+    min-height: 100%;
+    display:flex;
+    flex-direction: column;
+}
+
+.profile__deletebox-info p{
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center ;
+}
+
+.profile__deletebox-exit{
+    position:absolute;
+    top:1rem;
+    right:1rem;
+    font-size: var(--icons-font-size);
+    color: var(--dark-brown);
+    cursor: pointer;
+}
+
+.profile__deletebox-exit:hover{
+    color: var(--dark-red);
+}
+
+.profile__delete-buttonsbox{
+    width:70%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    gap: .5rem;
+    margin-top: 1.25rem;
+}
+
 /* ======== MEDIA QUERIES =========*/
 
 @media screen and (max-width: 1064px){
@@ -756,6 +842,12 @@ input[type="checkbox"]:checked::before {
     .editor__form{
         margin-top: 1.75rem;
     }
+
+
+    .profile__deletebox-content{
+        width: 90%;
+    }
+
 }
 
 @media screen and (max-width: 768px){

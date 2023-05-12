@@ -9,10 +9,12 @@ use Symfony\Component\Mime\Address;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Security\Core\Security;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
 class SecurityController extends AbstractController
 {
@@ -99,6 +101,40 @@ class SecurityController extends AbstractController
         return $this->render('security/edit_profile.html.twig', [
             'formUser' =>$form->createView()
         ]);
+
+    }
+
+    /**
+     * @Route("/profile/delete", name="delete_profile")
+     */
+    public function deleteProfile(ManagerRegistry $doctrine, TokenStorageInterface $tokenStorage)
+    {
+
+        $entityManager = $doctrine->getManager();
+
+        $user = $this->getUser();
+
+        foreach($user->getInventaire() as $item){
+            $user->removeInventaire($item);
+        }
+        foreach($user->getChapitres() as $chapitre){
+            $user->removeChapitre($chapitre);
+        }
+        foreach($user->getVisites() as $zone){
+            $user->removeVisite($zone);
+        }
+        foreach($user->getCombats() as $combat){
+            $entityManager->remove($combat, $flush=true);
+        }
+
+        // $entityManager->persist($user);
+        $entityManager->remove($user);
+        $entityManager->flush();   
+
+        // return $this->render('home/index.html.twig');
+        $tokenStorage->setToken();
+
+        return $this->redirectToRoute('app_home');
 
     }
 

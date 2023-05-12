@@ -716,7 +716,6 @@ ul{
         width: 47%;
     }
 
-
     .game__attack-btn{
         padding: .5rem 1.5rem .3rem 1.5rem;
     }
@@ -732,6 +731,10 @@ ul{
     .game__item-description-content{
         padding: 1.5rem .75rem 1.5rem .75rem;
 
+    }
+
+    .profile__deletebox-info{
+        width: 95%;
     }
 
 }
