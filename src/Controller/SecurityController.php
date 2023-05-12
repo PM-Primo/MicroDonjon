@@ -95,7 +95,12 @@ class SecurityController extends AbstractController
             $entityManager->persist($user);
             $entityManager->flush();
 
-            return $this->redirectToRoute('view_profile');
+            if($newEmail != $oldEmail){
+                return $this->render('registration/email_sent.html.twig');
+            }
+            else{
+                return $this->redirectToRoute('view_profile');
+            }
         }
 
         return $this->render('security/edit_profile.html.twig', [

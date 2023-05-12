@@ -1,0 +1,23 @@
+{% extends 'dashboard.html.twig' %}
+
+{% block title %}MicroDonjon{% endblock %}
+
+{% block body %}
+
+    <h2 class="register__title" >e-mail envoyé</h2>
+    <div class="register__wrapper">
+        <div class="register__form">
+            <p>Un e-mail vous a été envoyé sur l'adresse que vous avez fournie.<br>
+                Merci de valider votre adresse en cliquant sur le lien qui vous a été transmis.<br>
+                Si vous ne l'y trouvez pas, pensez à vérifier votre boîte de courrier indésirable.<br>
+            </p>
+        </div>
+        
+        <div class="register__imgbox">
+            <img src="{{asset("img/decoration/skeleton.png")}}" 
+            alt="Dessin à l'aquarelle d'un squelette brandissant une épée dans un donjon" class="register__img">
+        </div>
+
+    </div>
+
+{% endblock %}
