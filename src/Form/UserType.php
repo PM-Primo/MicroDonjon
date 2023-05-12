@@ -17,12 +17,12 @@ class UserType extends AbstractType
         $builder
         ->add('email' , EmailType::class, [
             "attr" => ["class" => "form-control"],
-            "label_attr" => ["class" => "editor__cards-label"],
+            "label_attr" => ["class" => "editor__label"],
             'label' => 'Nouvelle adresse mail'
         ])
         ->add('pseudo', TextType::class, [
             "attr" => ["class" => "form-control"],
-            "label_attr" => ["class" => "editor__cards-label"],
+            "label_attr" => ["class" => "editor__label"],
             'label' => 'Nouveau Pseudo'
         ])
         ->add('submit', SubmitType::class, ["attr" => ["class" => "editor__submit editor__btn"], 'label' => 'Valider'])

@@ -594,6 +594,33 @@ input[type="checkbox"]:checked::before {
     justify-content: center;
 }
 
+.login__resetpw-link{
+    font-family: var(--chapter-font);
+    color: var(--dark-brown);
+    font-weight: 500;
+    text-transform: uppercase;
+    align-self: center;
+    width: fit-content;
+    position: relative
+}
+
+.login__resetpw-link::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: var(--dark-brown);
+    transition: transform 0.4s;
+    transform-origin: top left;
+}
+
+.login__resetpw-link:hover::after {
+    transform: scaleX(1);
+}
+
 /*=========RESET PASSWORD =========*/
 
 .reset__brown-link{

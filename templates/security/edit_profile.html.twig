@@ -5,7 +5,7 @@
 
 {% block body %}
 
-    <div class="editor__show-wrapper">
+    <div class="editor__form-wrapper">
 
         <h2 class="editor__title">Éditer mes informations</h2>
 
@@ -20,11 +20,13 @@
                     <a href="{{path("view_profile", {'id':user.id})}}" class="editor__btn editor__cancel">Annuler</a>
                     {{ form_row(formUser.submit) }}
                 </div>
-    
-            {{ form_end(formUser) }}
 
-        </div>
-
+                
+                
+                {{ form_end(formUser) }}
+                
+            </div>
+            
     </div>
 
 {% endblock %}

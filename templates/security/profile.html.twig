@@ -9,7 +9,9 @@
 
         <h2 class="editor__title">Profil - {{user.pseudo}}</h2>
 
-        <a href="{{path("edit_profile", {'id':user.id})}}">Modifier mes informations</a><br><br>
+        <a href="{{path("edit_profile", {'id':user.id})}}" class="login__resetpw-link">Modifier mes informations</a><br>
+        <a href="/reset-password" class="login__resetpw-link">Modifier mon mot de passe</a>
+        <br><br>
 
         <span class="editor__show-monospace">Pseudonyme</span> : {{user.pseudo}}<br><br>
         <span class="editor__show-monospace">Adresse e-mail</span> : {{user.email}}<br><br>
