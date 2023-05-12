@@ -1,38 +1,38 @@
 {% extends 'dashboard.html.twig' %}
 
-{% block title %}MicroDonjon - Profil de {{user.pseudo}}{% endblock %}
+{% block title %}MicroDonjon - Profil de {{app.user.pseudo}}{% endblock %}
 {% block noindex %}<meta name="robots" content="noindex">{% endblock %}
 
 {% block body %}
 
     <div class="editor__show-wrapper">
 
-        <h2 class="editor__title">Profil - {{user.pseudo}}</h2>
+        <h2 class="editor__title">Profil - {{app.user.pseudo}}</h2>
 
-        <a href="{{path("edit_profile", {'id':user.id})}}" class="login__resetpw-link">Modifier mes informations</a><br>
+        <a href="{{path("edit_profile")}}" class="login__resetpw-link">Modifier mes informations</a><br>
         <a href="/reset-password" class="login__resetpw-link">Modifier mon mot de passe</a>
         <br><br>
 
-        <span class="editor__show-monospace">Pseudonyme</span> : {{user.pseudo}}<br><br>
-        <span class="editor__show-monospace">Adresse e-mail</span> : {{user.email}}<br><br>
-        <span class="editor__show-monospace">Points de vie</span> : {{user.PVactuels}} / {{user.PVmax}}<br><br>
-        <span class="editor__show-monospace">Chapitre en cours</span> : {{user.chapitreEnCours}}<br><br>
+        <span class="editor__show-monospace">Pseudonyme</span> : {{app.user.pseudo}}<br><br>
+        <span class="editor__show-monospace">Adresse e-mail</span> : {{app.user.email}}<br><br>
+        <span class="editor__show-monospace">Points de vie</span> : {{app.user.PVactuels}} / {{app.user.PVmax}}<br><br>
+        <span class="editor__show-monospace">Nombre de chapitres visités</span> : {{app.user.chapitres|length}}<br><br>
         <span class="editor__show-monospace">Zones visitées</span> : <br>
         <div class="editor__show-text-wrapper">
-            {% for zone in user.visites %}
+            {% for zone in app.user.visites %}
                 - {{zone}}<br>
             {% endfor %}
         </div>
         <span class="editor__show-monospace">Inventaire</span> : <br>
         <div class="editor__show-text-wrapper">
-            {% for item in user.inventaire %}
+            {% for item in app.user.inventaire %}
                 - {{item}}<br>
             {% endfor %}
         </div>
-        {% if user.combats is not empty %}            
+        {% if app.user.combats is not empty %}            
             <span class="editor__show-monospace">Ennemis affrontés</span> : <br>
             <div class="editor__show-text-wrapper">
-                {% for combat in user.combats %}
+                {% for combat in app.user.combats %}
                     - {{combat.monstres}}<br>
                 {% endfor %}
             </div>
@@ -40,4 +40,8 @@
 
     </div>
 
+{% endblock %}
+
+{% block javascripts %}
+    <script src="{{ asset('js/test.js') }}"></script>
 {% endblock %}

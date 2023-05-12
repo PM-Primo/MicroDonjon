@@ -40,50 +40,39 @@ class SecurityController extends AbstractController
 
 
     /**
-     * @Route("/profile/{id}", name="view_profile")
+     * @Route("/profile/", name="view_profile")
      */
-    public function viewProfile(User $user)
+    public function viewProfile()
     {
-        if($this->getUser() == $user){
-            return $this->render('security/profile.html.twig', [
-                'user' => $user,
-            ]);  
-        }
-        else{
-            return $this->render('home/index.html.twig'); 
-        }
+        return $this->render('security/profile.html.twig');  
     }
 
     /**
-     * @Route("/editprofile/{id}", name="edit_profile")
+     * @Route("/editprofile/", name="edit_profile")
      */
-    public function editProfile(ManagerRegistry $doctrine, User $user, Request $request)
+    public function editProfile(ManagerRegistry $doctrine, Request $request)
     {
-        if($this->getUser() == $user){
 
-            $repository = $doctrine->getRepository(User::class);
-            $form = $this->createForm(UserType::class, $user);
-            $form->handleRequest($request);
+        $user = $this->getUser();
 
-            if($form->isSubmitted() && $form->isValid()){
-                $user = $form->getData();
+        $repository = $doctrine->getRepository(User::class);
+        $form = $this->createForm(UserType::class, $user);
+        $form->handleRequest($request);
 
-                $entityManager = $doctrine->getManager();
-                $entityManager->persist($user);
-                $entityManager->flush(); 
+        if($form->isSubmitted() && $form->isValid()){
+            $user = $form->getData();
 
-                return $this->redirectToRoute('view_profile', ['id' => $user->getId()]);
-            }
+            $entityManager = $doctrine->getManager();
+            $entityManager->persist($user);
+            $entityManager->flush(); 
 
-            return $this->render('security/edit_profile.html.twig', [
-                'formUser' =>$form->createView(),
-                'user' => $user
-            ]);
-
+            return $this->redirectToRoute('view_profile');
         }
-        else{
-            return $this->render('home/index.html.twig'); 
-        }
+
+        return $this->render('security/edit_profile.html.twig', [
+            'formUser' =>$form->createView()
+        ]);
+
     }
 
 }

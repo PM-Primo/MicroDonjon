@@ -1,6 +1,6 @@
 {% extends 'dashboard.html.twig' %}
 
-{% block title %}MicroDonjon - Profil de {{user.pseudo}}{% endblock %}
+{% block title %}MicroDonjon - Profil de {{app.user.pseudo}}{% endblock %}
 {% block noindex %}<meta name="robots" content="noindex">{% endblock %}
 
 {% block body %}
@@ -17,7 +17,7 @@
                 {{ form_row(formUser.email) }}
 
                 <div class="editor__buttons-box">
-                    <a href="{{path("view_profile", {'id':user.id})}}" class="editor__btn editor__cancel">Annuler</a>
+                    <a href="{{path("view_profile")}}" class="editor__btn editor__cancel">Annuler</a>
                     {{ form_row(formUser.submit) }}
                 </div>
 

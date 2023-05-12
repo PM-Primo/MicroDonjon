@@ -29,7 +29,7 @@
                                 {% if app.user.chapitreEnCours %}
                                     <a href="{{path("routing", {'id': app.user.chapitreEnCours})}}" class="menu__link">Aventure</a>
                                 {% endif %}
-                                <a href="{{path("view_profile", {'id': app.user.id})}}" class="menu__link">Profil</a>
+                                <a href="{{path("view_profile")}}" class="menu__link">Profil</a>
                                 <a href="{{path("app_logout")}}" class="menu__link">Déconnexion</a>
                             {% else %}
                                 <a href="{{path("app_login")}}" class="menu__link">Connexion</a>
@@ -62,9 +62,6 @@
                         <div class="game__inventory-grid">
                             <div class="game__item-imgbox">
                                 <img src="{{asset("img/items/00_bourse.png")}}" alt="Bourse" class="game__item-image game__weapon">
-                                {# <div class="game__info-item">
-                                    {{app.user.gold}}
-                                </div> #}
                                 <div class="game__macaron">
                                     {{app.user.gold}}
                                 </div>
@@ -73,9 +70,6 @@
                                 <div class="game__item-imgbox" id="item-image-{{item.id}}" data-item-id="{{item.id}}">
                                     {% if item.id == 1 or item.id == 10 %}
                                         <img src="{{asset(item.imageItem)}}" alt="{{item}}" class="game__item-image game__weapon">
-                                        {# <div class="game__info-item">
-                                            {{app.user.attaque}}
-                                        </div> #}
                                         <div class="game__macaron">
                                             {{app.user.attaque}}
                                         </div>
