@@ -16,14 +16,15 @@ class UserChecker implements UserCheckerInterface
             return;
         }
 
-        // if (!$user->isVerified()) {
-        //     // the message passed to this exception is meant to be displayed to the user
-        //     throw new CustomUserMessageAccountStatusException('Veuillez vérifier votre adresse mail. Un courrier vous a été envoyé sur votre boîte mail.');
-        // }
+        if (!$user->isVerified()) {
+            // the message passed to this exception is meant to be displayed to the user
+            throw new CustomUserMessageAccountStatusException('Veuillez vérifier votre adresse mail. Un courrier vous a été envoyé sur votre boîte mail.');
+        }
     }
-
+    
     public function checkPostAuth(UserInterface $user): void
     {
+        
         if (!$user instanceof AppUser) {
             return;
         }
