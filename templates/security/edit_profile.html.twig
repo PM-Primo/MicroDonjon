@@ -16,6 +16,8 @@
                 {{ form_row(formUser.pseudo) }}
                 {{ form_row(formUser.email) }}
 
+                <p>Si vous modifiez votre adresse, un mail vous sera envoyé afin de vérifier votre nouvelle adresse</p>
+
                 <div class="editor__buttons-box">
                     <a href="{{path("view_profile")}}" class="editor__btn editor__cancel">Annuler</a>
                     {{ form_row(formUser.submit) }}

@@ -4,7 +4,10 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Form\UserType;
+use App\Security\EmailVerifier;
+use Symfony\Component\Mime\Address;
 use Doctrine\Persistence\ManagerRegistry;
+use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -13,6 +16,14 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class SecurityController extends AbstractController
 {
+
+    private EmailVerifier $emailVerifier;
+
+    public function __construct(EmailVerifier $emailVerifier)
+    {
+        $this->emailVerifier = $emailVerifier;
+    }
+
     /**
      * @Route("/login", name="app_login")
      */
@@ -54,17 +65,33 @@ class SecurityController extends AbstractController
     {
 
         $user = $this->getUser();
+        $oldEmail = $user->getEmail();
 
         $repository = $doctrine->getRepository(User::class);
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()){
-            $user = $form->getData();
 
+            $newEmail = $form->get('email')->getData();
+            
+            if($newEmail != $oldEmail){
+
+                $this->getUser()->setIsVerified(false);
+
+                $this->emailVerifier->sendEmailConfirmation('app_verify_email', $user,
+                    (new TemplatedEmail())
+                        ->from(new Address('admin@microdonjon.fr', 'Admin Microdonjon'))
+                        ->to($newEmail)
+                        ->subject('Confirmation de l\'adresse mail')
+                        ->htmlTemplate('registration/confirmation_email.html.twig')
+                );
+            }
+
+            $user = $form->getData();
             $entityManager = $doctrine->getManager();
             $entityManager->persist($user);
-            $entityManager->flush(); 
+            $entityManager->flush();
 
             return $this->redirectToRoute('view_profile');
         }
