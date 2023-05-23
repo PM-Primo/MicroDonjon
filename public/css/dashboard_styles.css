@@ -730,10 +730,9 @@ input[type="checkbox"]:checked::before {
     color: #000000;
 }
 
-/* =========== MODALE ======= */
+/* =========== DELETE MODALE ======= */
 
 .profile__deletebox{
-    /* display: none; */
     position: fixed; /* Stay in place */
     z-index: 3; /* Sit on top */
     left: 0;
@@ -773,7 +772,6 @@ input[type="checkbox"]:checked::before {
 }
 
 .profile__deletebox-open{
-    /* display: block; */
     transform:translateX(0);
     opacity: 1;
 }
