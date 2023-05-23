@@ -111,7 +111,7 @@ INSERT INTO `chap_condition` (`id`, `chapitre_id`, `item_condition_id`, `texte_s
 	(6, 45, 13, 'La salle circulaire est occupée en son centre par une colossale statue. Vous reconnaissez ce visage, il s\'agit des traits grâcieux de Käangelanne, la dernière héroïne a avoir restauré la paix sur les terres d\'Ängerjalg.\r\n<br><br>\r\nLa légende raconte que la statue sait reconnaître les véritables héros.\r\n<br><br>\r\nVous vous agenouillez devant la statue.\r\n<br><br>\r\nLa statue semble vous considérer digne d\'être un héros. En un grondement sourd, elle abaisse le bras vers vous et vous tend son épée.\r\n', 'La salle circulaire est occupée en son centre par une colossale statue. Vous reconnaissez ce visage, il s\'agit des traits grâcieux de Käangelanne, la dernière héroïne a avoir restauré la paix sur les terres d\'Ängerjalg.\r\n<br><br>\r\nLa légende raconte que la statue sait reconnaître les véritables héros.\r\n<br><br>\r\nVous vous agenouillez devant la statue ...\r\n<br><br>\r\n... mais rien ne se passe, vous êtes un petit peu vexé mais décidez malgré tout de continuer votre chemin.\r\n<br><br>\r\nDeux portes s\'offrent à vous :'),
 	(7, 67, 5, 'En échange de quelques pièces d\'or, vous tendez votre gourde au vendeur.', 'Vous n\'avez, hélas, aucun récipient pour transporter votre potion.<br>\r\nVous pouvez la boire tout de suite si vous le souhaitez, ou bien jeter votre dévolu sur l\'un des autres objets magiques de l\'étal.');
 
--- Listage des données de la table microdonjon.chap_standard : ~58 rows (environ)
+-- Listage des données de la table microdonjon.chap_standard : ~57 rows (environ)
 INSERT INTO `chap_standard` (`id`, `chapitre_id`, `item_prendre_id`, `item_perdre_id`, `texte_chapitre`, `modif_gold`, `modif_pv`, `modif_attaque`) VALUES
 	(1, 1, NULL, NULL, 'Cela fait plusieurs décennies déjà que la verte plaine d\'Ängerjalg s\'est ternie. La végétation, autrefois luxuriante a cédé la place à des marécages brunâtres embourbant les villages alentour.\r\n\r\nLa légende raconte qu\'un sorcier, tapi dans les ténèbres menaçantes du donjon de Vangläs, devrait ses pouvoirs à l\'aspiration de l\'énergie vitale des forêts de la région. \r\n<br><br>\r\nVotre village vous a estimé.e digne de confiance et vous a missionné.e pour partir à l\'aventure afin de mettre un terme à ses sombres desseins.\r\n<br><br>\r\nVous êtes équipé.e d\'une légère armure de cuir, d\'une dague effilée, d\'un parchemin afin de cartographier votre progression, ainsi que d\'une besace vous permettant de collecter divers artéfacts au cours de votre aventure.\r\n<br><br>\r\nAlors que vous vous tenez sur le seuil du donjon, vous prenez une grande inspiration et poussez la massive porte d\'ébène. Une odeur de renfermé et de champignons divers vous attaque instantanément les narines. \r\n\r\nVous plissez les yeux pour vous accoutumer à l\'obscurité et plongez dans le donjon.\r\n<br><br>\r\nIl est désormais trop tard pour faire demi-tour.', NULL, NULL, NULL),
 	(2, 2, NULL, NULL, 'Vous franchissez le seuil du donjon.<br>\r\nUn long corridor se déroule devant vous, éclairé par une rangée de lanternes.<br>\r\nLe couloir bifurque de part et d\'autre à son extrémité vers deux portes closes.<br>\r\nVous pouvez récupérer une lanterne, elle pourrait s\'avérer utile pour la suite de votre aventure.<br>\r\nVous pouvez également ignorer les lanternes et vous diriger directement vers l\'une des deux portes.', NULL, NULL, NULL),
@@ -172,9 +172,7 @@ INSERT INTO `chap_standard` (`id`, `chapitre_id`, `item_prendre_id`, `item_perdr
 	(59, 79, NULL, NULL, 'testtestfkcgvlhbmnml;gk,cf', NULL, -15, 6),
 	(60, 83, NULL, NULL, 'Bonjour ceci est un test', 15, -4, NULL);
 
--- Listage des données de la table microdonjon.combat : ~1 rows (environ)
-INSERT INTO `combat` (`id`, `aventurier_id`, `monstres_id`, `pvactuels_monstre`) VALUES
-	(99, 16, 1, 0);
+-- Listage des données de la table microdonjon.combat : ~0 rows (environ)
 
 -- Listage des données de la table microdonjon.doctrine_migration_versions : ~0 rows (environ)
 INSERT INTO `doctrine_migration_versions` (`version`, `executed_at`, `execution_time`) VALUES
@@ -187,8 +185,8 @@ INSERT INTO `item` (`id`, `nom_item`, `image_item`, `description_item`) VALUES
 	(3, 'Lanterne', 'img/items/03_lanterne.png', 'Vous avez trouvé cette lanterne dans les corridors du donjon. \r\n<br><br>\r\nElle vous permettra de vous éclairer au cas où vous devriez vous aventurer dans les zones les plus obscures du donjon.'),
 	(4, 'Clé rouillée', 'img/items/04_cle_rouillee.png', 'Une petite clé rongée par la rouille trouvée dans le poste de garde du donjon.\r\n<br><br>\r\nElle ne possède pas d\'indication particulière mais elle permet certainement d\'ouvrir une serrure dans les alentours.\r\n<br><br>\r\nNéanmoins, l\'oxydation a déjà bien fragilisé le matériau, vous craignez qu\'elle ne puisse offrir qu\'un nombre réduit d\'utilisations.'),
 	(5, 'Gourde', 'img/items/05_gourde.png', 'Vous avez trouvé cette gourde sur le squelette d\'un aventurier au destin malheureux.\r\n<br><br>\r\nElle est vide pour le moment mais vous pourrez la remplir du liquide de votre choix le moment venu.'),
-	(6, 'Gourde (eau revigorante)', 'img/items/06_gourde_eau.png', 'Vous avez trouvé cette gourde sur le squelette d\'un aventurier au destin malheureux.\r\n<br><br>\r\nElle est remplie d\'une eau cristalline et revigorante. Dans le cas où votre total de points de vie viendrait à descendre en dessous de zéro vous pourriez boire cette eau et reprendre un petit peu d\'énergie.'),
-	(7, 'Gourde (potion de soin)', 'img/items/07_gourde_potion.png', 'Vous avez trouvé cette gourde sur le squelette d\'un aventurier au destin malheureux.\r\n<br><br>\r\nElle est remplie d\'une potion de soin rose et effervescente. Dans le cas où votre total de points de vie viendrait à descendre en dessous de zéro vous pourriez boire cette eau et reprendre un petit peu d\'énergie.'),
+	(6, 'Gourde (eau revigorante)', 'img/items/05_gourde.png', 'Vous avez trouvé cette gourde sur le squelette d\'un aventurier au destin malheureux.\r\n<br><br>\r\nElle est remplie d\'une eau cristalline et revigorante. Dans le cas où votre total de points de vie viendrait à descendre en dessous de zéro vous pourriez boire cette eau et reprendre un petit peu d\'énergie.'),
+	(7, 'Gourde (potion de soin)', 'img/items/05_gourde.png', 'Vous avez trouvé cette gourde sur le squelette d\'un aventurier au destin malheureux.\r\n<br><br>\r\nElle est remplie d\'une potion de soin rose et effervescente. Dans le cas où votre total de points de vie viendrait à descendre en dessous de zéro vous pourriez boire cette eau et reprendre un petit peu d\'énergie.'),
 	(8, 'Pioche spectrale', 'img/items/08_pioche_spectrale.png', 'Cette pioche vous a été offerte par le contremaître du donjon à l\'issue d\'une petite partie de devinettes. \r\n<br><br>\r\nElle vous permettra certainement de vous frayer un chemin à travers certaines roches friables dans le donjon.'),
 	(9, 'Armure rubis', 'img/items/09_armure_rubis.png', 'Vous avez trouvé cette magnifique armure sertie de mille rubis étincelants dans l\'armurerie du donjon. \r\n<br><br>\r\nElle vous offre une bonne résistance aux dégâts que peuvent vous infliger les créatures et les pièges du donjon.\r\n<br><br>\r\nVous disposez d\'un maximum de 125 points de vie dont le décompte est affiché au dessus de l\'écran de droite.\r\n<br><br>\r\nLorsque votre total de points de vie descend à zéro, la partie est termninée. Vous pouvez néanmoins choisir d\'en commencer une autre et de visiter différents embranchements, vous trouverez probablement des objets vous permettant de progresser plus loin !'),
 	(10, 'Épée du héros', 'img/items/10_epee_heros.png', 'Cette épée élancée et élégante vous a été léguée par la statue de l\'héroïne Käangelanne. Son tranchant éclatant vous permettra de combattre efficacement les créatures maléfiques du donjon.\r\n<br><br>\r\nLors des affrontements avec les créatures du donjon vous, ainsi que la créature que vous affronter, lancez deux dés chacun. La somme des deux dés est ajoutée à votre statistique d\'attaque. Il en est de même pour la créature. Si votre total est supérieur à celui de la créature, vous lui infligez des dégâts, dans le cas contraire vous en subissez. \r\n<br><br>\r\nVotre statistique d\'attaque est lisible à tout moment dans le petit macaron situé au dessus de la présente épée.'),
@@ -204,14 +202,14 @@ INSERT INTO `messenger_messages` (`id`, `body`, `headers`, `queue_name`, `create
 
 -- Listage des données de la table microdonjon.monstre : ~8 rows (environ)
 INSERT INTO `monstre` (`id`, `nom_monstre`, `pvmax_monstre`, `attaque_monstre`, `image_monstre`) VALUES
-	(1, 'Gobelin Physionomiste', 10, 3, 'img/monstres/01_gobelin_physionomiste.png'),
-	(2, 'Malle Polymorphe', 10, 3, 'img/monstres/02_malle_polymorphe.png'),
-	(3, 'Drosera Insatiable', 10, 3, 'img/monstres/03_drosera_insatiable.png'),
-	(4, 'Ouvrage Vorace', 10, 10, 'img/monstres/04_ouvrage_vorace.png'),
-	(5, 'Gardien Osseux', 10, 3, 'img/monstres/05_gardien_osseux.png'),
-	(6, 'Horreur Tentaculaire', 10, 3, 'img/monstres/06_horreur_tentaculaire.png'),
-	(7, 'Marchand Itinérant', 10, 3, 'img/monstres/07_marchand_itinerant.png'),
-	(8, 'Perfide Sorcier de Vangläs', 150, 10, 'img/monstres/08_perfide_sorcier.png');
+	(1, 'Gobelin Physionomiste', 10, 8, 'img/monstres/01_gobelin_physionomiste.png'),
+	(2, 'Malle Polymorphe', 15, 7, 'img/monstres/02_malle_polymorphe.png'),
+	(3, 'Drosera Insatiable', 13, 9, 'img/monstres/03_drosera_insatiable.png'),
+	(4, 'Ouvrage Vorace', 5, 11, 'img/monstres/04_ouvrage_vorace.png'),
+	(5, 'Gardien Osseux', 10, 10, 'img/monstres/05_gardien_osseux.png'),
+	(6, 'Horreur Tentaculaire', 18, 9, 'img/monstres/06_horreur_tentaculaire.png'),
+	(7, 'Marchand Itinérant', 15, 10, 'img/monstres/07_marchand_itinerant.png'),
+	(8, 'Perfide Sorcier de Vangläs', 60, 13, 'img/monstres/08_perfide_sorcier.png');
 
 -- Listage des données de la table microdonjon.reset_password_request : ~0 rows (environ)
 INSERT INTO `reset_password_request` (`id`, `user_id`, `selector`, `hashed_token`, `requested_at`, `expires_at`) VALUES
@@ -264,7 +262,7 @@ INSERT INTO `sortie_condition` (`id`, `chap_condition_id`, `chapitre_id`, `condi
 	(29, 7, 71, 0, 'Boire la potion de soin'),
 	(30, 7, 47, 0, 'Acheter autre chose');
 
--- Listage des données de la table microdonjon.sortie_standard : ~98 rows (environ)
+-- Listage des données de la table microdonjon.sortie_standard : ~97 rows (environ)
 INSERT INTO `sortie_standard` (`id`, `chap_standard_id`, `chapitre_id`, `texte_lien`) VALUES
 	(1, 1, 2, 'Partir à l\'aventure !'),
 	(2, 2, 3, 'Récupérer une lanterne'),
@@ -380,7 +378,7 @@ INSERT INTO `sortie_standard` (`id`, `chap_standard_id`, `chapitre_id`, `texte_l
 
 -- Listage des données de la table microdonjon.user : ~11 rows (environ)
 INSERT INTO `user` (`id`, `email`, `roles`, `password`, `pseudo`, `pvmax`, `pvactuels`, `gold`, `attaque`, `chapitre_en_cours`, `date_victoire`, `is_verified`) VALUES
-	(16, 'toto@toto.web', '["ROLE_ADMIN"]', '$2y$13$tMnmNHNVBeHUPYQxsorioOk1oBJnmFL/AiY4S416ieaEcdYq7IuSi', 'PM_67', 100, 100, 15, 10, 6, NULL, 1),
+	(16, 'toto@toto.web', '["ROLE_ADMIN"]', '$2y$13$tMnmNHNVBeHUPYQxsorioOk1oBJnmFL/AiY4S416ieaEcdYq7IuSi', 'PM_67', 100, 100, 0, 10, NULL, NULL, 1),
 	(17, 'grugru@grugru.web', '[]', '$2y$13$RDM.X2Kc.BngfRdRd4F1c.rKOR0CiKhZGqPg7Nz09874QaPBwvCJy', 'gru', 100, 48, 0, 10, NULL, NULL, 0),
 	(18, 'grugru@gmail.com', '[]', '$2y$13$c.Q.xu//vaU7eZ1SbifBPOS14Mh2UWfEoJOW5wt1UrJH9QxM1MrVa', 'grugru', 100, 19, 0, 10, NULL, NULL, 0),
 	(19, 'brbrbrbr@brbr.com', '[]', '$2y$13$EFAhmJNDafhZtIvyt9cb4eNQCsIbLU/L85ZajjVo4xeY8XcA4BEH2', 'brbrbrbr36', 100, 100, 0, 10, 4, NULL, 1),
@@ -392,22 +390,14 @@ INSERT INTO `user` (`id`, `email`, `roles`, `password`, `pseudo`, `pvmax`, `pvac
 	(33, 'wwww@wwww.fr', '[]', '$2y$13$tDW6PYnViY4KpciCPku7MOc93eKr6sNCZld022ZfW5am.tAAtbLZm', 'wwww', 100, 100, 0, 10, NULL, NULL, 0),
 	(34, 'vvvv67@vvvv.com', '[]', '$2y$13$EXCADG6haLzqCWmthKrS2ObzgNUHh2NNtbPdshwlgEay0yDw6halC', 'vvvv67', 100, 100, 0, 10, NULL, NULL, 1);
 
--- Listage des données de la table microdonjon.user_chapitre : ~7 rows (environ)
+-- Listage des données de la table microdonjon.user_chapitre : ~1 rows (environ)
 INSERT INTO `user_chapitre` (`user_id`, `chapitre_id`) VALUES
-	(16, 1),
-	(16, 2),
-	(16, 3),
-	(16, 4),
-	(16, 5),
-	(16, 6),
 	(21, 1);
 
--- Listage des données de la table microdonjon.user_item : ~18 rows (environ)
+-- Listage des données de la table microdonjon.user_item : ~16 rows (environ)
 INSERT INTO `user_item` (`user_id`, `item_id`) VALUES
 	(16, 1),
 	(16, 2),
-	(16, 3),
-	(16, 4),
 	(20, 1),
 	(20, 2),
 	(21, 1),
@@ -423,12 +413,8 @@ INSERT INTO `user_item` (`user_id`, `item_id`) VALUES
 	(34, 1),
 	(34, 2);
 
--- Listage des données de la table microdonjon.user_zone : ~5 rows (environ)
+-- Listage des données de la table microdonjon.user_zone : ~1 rows (environ)
 INSERT INTO `user_zone` (`user_id`, `zone_id`) VALUES
-	(16, 1),
-	(16, 2),
-	(16, 3),
-	(16, 21),
 	(21, 21);
 
 -- Listage des données de la table microdonjon.zone : ~21 rows (environ)

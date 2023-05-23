@@ -75,10 +75,11 @@ function addNewForm() {
 const toggleOpenIcon = document.querySelector("#toggle-open-icon");
 const toggleCloseIcon = document.querySelector("#toggle-close-icon");
 const leftPage = document.querySelector("#game__left-page");
-const rightPage = document.querySelector("#game__right-page");
 
 toggleOpenIcon.addEventListener("click", toggleOpen);
 toggleCloseIcon.addEventListener("click", toggleClose);
+toggleOpenIcon.addEventListener("touch", toggleOpen);
+toggleCloseIcon.addEventListener("touch", toggleClose);
 
 function toggleOpen(){
     leftPage.classList.add("game__left-page__toggle-open");

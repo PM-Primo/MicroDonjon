@@ -661,16 +661,16 @@ ul{
         z-index: 1;
     }
 
-    .game__right-page-content{  
-        padding: 5% 7% 5% 7%;
-    }
-
     .toggle-open-icon{
         display: block;
     }
-
+    
     .toggle-close-icon{
         visibility: visible;
+    }
+    
+    .game__right-page-content{  
+        padding: 5% 7% 5% 7%;
     }
 
     .game__item-imgbox {

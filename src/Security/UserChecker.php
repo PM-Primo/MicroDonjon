@@ -18,7 +18,8 @@ class UserChecker implements UserCheckerInterface
 
         if (!$user->isVerified()) {
             // the message passed to this exception is meant to be displayed to the user
-            throw new CustomUserMessageAccountStatusException('Veuillez vérifier votre adresse mail. Un courrier vous a été envoyé sur votre boîte mail.');
+            throw new CustomUserMessageAccountStatusException('Veuillez vérifier votre adresse mail. 
+            Un courrier a été envoyé sur votre boîte mail.');
         }
     }
     
@@ -28,10 +29,5 @@ class UserChecker implements UserCheckerInterface
         if (!$user instanceof AppUser) {
             return;
         }
-
-        // user account is expired, the user may be notified
-        // if ($user->isExpired()) {
-        //     throw new AccountExpiredException('...');
-        // }
     }
 }
