@@ -2,13 +2,20 @@
 
 namespace App\Entity;
 
-use App\Repository\ItemRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\ItemRepository;
+use Doctrine\Common\Collections\Collection;
+use ApiPlatform\Core\Annotation\ApiResource;
+use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=ItemRepository::class)
+ * @ApiResource(
+ * collectionOperations={"get"},
+ * itemOperations={"get"},
+ * normalizationContext={"groups"={"item:read"}}
+ * )
  */
 class Item
 {
@@ -21,6 +28,7 @@ class Item
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"item:read"})
      */
     private $nomItem;
 
@@ -36,6 +44,7 @@ class Item
 
     /**
      * @ORM\Column(type="text", nullable=true)
+     * @Groups({"item:read"})
      */
     private $descriptionItem;
 

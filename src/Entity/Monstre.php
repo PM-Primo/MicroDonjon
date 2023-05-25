@@ -2,13 +2,20 @@
 
 namespace App\Entity;
 
-use App\Repository\MonstreRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\MonstreRepository;
+use Doctrine\Common\Collections\Collection;
+use ApiPlatform\Core\Annotation\ApiResource;
+use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=MonstreRepository::class)
+ * @ApiResource(
+ * collectionOperations={"get"},
+ * itemOperations={"get"},
+ * normalizationContext={"groups"={"monstre:read"}}
+ * )
  */
 class Monstre
 {
@@ -21,21 +28,25 @@ class Monstre
 
     /**
      * @ORM\Column(type="string", length=100)
+     * @Groups({"monstre:read"})
      */
     private $nomMonstre;
 
     /**
      * @ORM\Column(type="integer")
+     * @Groups({"monstre:read"})
      */
     private $PVmaxMonstre;
 
     /**
      * @ORM\Column(type="integer")
+     * @Groups({"monstre:read"})
      */
     private $attaqueMonstre;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * 
      */
     private $imageMonstre;
 

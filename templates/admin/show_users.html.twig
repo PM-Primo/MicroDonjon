@@ -11,7 +11,7 @@
 <div class="editor__cards-wrapper-nopadding">
     {% for user in users %}
         <div class="editor__cards">
-            {# <a href="{{path("show", {'id': tableauChapitre[0].id})}}" class="editor__menu-link">Chapitre n° {{tableauChapitre[0].id}}</a><br> #}
+            {{user.pseudo}}<br>
             {{user.email}}<br>
             PV : {{user.PVActuels}}/{{user.PVMax}}<br>
             {% if user.chapitreEnCours %}
@@ -28,7 +28,7 @@
 <div class="editor__cards-wrapper-nopadding">
     {% for user in lowPV %}
         <div class="editor__cards">
-            {# <a href="{{path("show", {'id': tableauChapitre[0].id})}}" class="editor__menu-link">Chapitre n° {{tableauChapitre[0].id}}</a><br> #}
+            {{user.pseudo}}<br>
             {{user.email}}<br>
             PV : {{user.PVActuels}}/{{user.PVMax}}<br>
             {% if user.chapitreEnCours %}

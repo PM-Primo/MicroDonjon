@@ -2,12 +2,19 @@
 
 namespace App\Entity;
 
-use App\Repository\ZoneRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\ZoneRepository;
+use Doctrine\Common\Collections\Collection;
+use ApiPlatform\Core\Annotation\ApiResource;
+use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
+ * @ApiResource(
+ *  collectionOperations={"get"},
+ *  itemOperations={"get"},
+ *  normalizationContext={"groups"={"zone:read"}}
+ * )
  * @ORM\Entity(repositoryClass=ZoneRepository::class)
  */
 class Zone
@@ -21,11 +28,13 @@ class Zone
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"zone:read"})
      */
     private $nomZone;
 
     /**
      * @ORM\Column(type="text", nullable=true)
+     * @Groups({"zone:read"})
      */
     private $descriptionZone;
 
@@ -38,9 +47,10 @@ class Zone
      * @ORM\ManyToMany(targetEntity=User::class, mappedBy="visites")
      */
     private $visiteurs;
-
+    
     /**
      * @ORM\OneToMany(targetEntity=Chapitre::class, mappedBy="zone")
+     * @Groups({"zone:read"})
      */
     private $chapitres;
 
