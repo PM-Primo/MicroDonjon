@@ -68,7 +68,6 @@ body {
     font-size: var(--normal-font-size);
     color: black;
     height: 100%;
-    /* transition: background 0.4s; for dark mode animation */
 }
 
 main{
