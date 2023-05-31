@@ -10,11 +10,7 @@ $(document).ready(function() {
     $collectionHolder = $('#listeSorties');
     $addNewItem = $("#addSortie")
 
-    // append the add new item to the collectionholder
-    // $collectionHolder.append($addNewItem);
-
     $collectionHolder.data('index', $collectionHolder.find('.editor__exit-card').length)
-
 
     // add remove button to existing items
     $collectionHolder.find('.editor__exit-card').each(function() {
